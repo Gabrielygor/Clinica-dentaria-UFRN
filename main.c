@@ -102,3 +102,24 @@ void cliente(void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+void cliente(void){
+    char op;
+    system("clear||cls");
+    printf("===================================\n");
+    printf("   Gerenciamento de Funcionarios   \n");
+    printf("===================================\n");
+    printf("\n");
+    printf("|[1]. Cadastrar Funcionario\n");
+    printf("|[2]. Pesquisar Funcionario\n");
+    printf("|[3]. Atualizar Funcionario\n");
+    printf("|[4]. Excluir Funcionario\n");
+    printf("|[0]. Voltar ao menu anterior\n");
+    printf("\n");
+    printf("|Escolha a opcao desejada: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
