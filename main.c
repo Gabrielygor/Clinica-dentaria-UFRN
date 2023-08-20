@@ -17,7 +17,9 @@
 void tela_menu_p(void);     
 void info_trabalho(void);
 void equipe(void);
-void cliente(void);                                 
+void cliente(void);    
+void funcionario(void);       
+void agendamento(void);                      
 
 
 int main(void){
@@ -25,6 +27,8 @@ int main(void){
     info_trabalho();
     equipe();
     cliente();
+    funcionario();
+    agendamento();
     return 0;
 }
 
@@ -39,6 +43,7 @@ void tela_menu_p(void) {    //Tela principal do programa
     printf("|[2].Gerenciamento/Cadastro de funcionarios\n");
     printf("|[3].Agendamento de horarios\n");
     printf("|[4].Gestao de estoque\n");
+    printf("|[5]. Listar consultas e retornos agendados\n");
     printf("|[0].Sair\n");
     printf("\n");   
     printf("|Escolha a opcao desejada: ");
@@ -103,7 +108,7 @@ void cliente(void){
     getchar();
 }
 
-void cliente(void){
+void funcionario(void){
     char op;
     system("clear||cls");
     printf("===================================\n");
@@ -114,6 +119,27 @@ void cliente(void){
     printf("|[2]. Pesquisar Funcionario\n");
     printf("|[3]. Atualizar Funcionario\n");
     printf("|[4]. Excluir Funcionario\n");
+    printf("|[0]. Voltar ao menu anterior\n");
+    printf("\n");
+    printf("|Escolha a opcao desejada: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void agendamento(void){
+    char op;
+    system("clear||cls");
+    printf("=================\n");
+    printf("   Agendamento   \n");
+    printf("=================\n");
+    printf("\n");
+    printf("|[1]. Agendar Consulta\n");
+    printf("|[2]. Agendar Retotno\n");
+    printf("|[3]. Excluir Consultas\n");
+    printf("|[4]. Excluir Retorno\n");
     printf("|[0]. Voltar ao menu anterior\n");
     printf("\n");
     printf("|Escolha a opcao desejada: ");
