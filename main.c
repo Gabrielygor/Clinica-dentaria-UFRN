@@ -22,7 +22,7 @@ void funcionario(void);
 void agendamento(void);                      
 void estoque(void);
 
-int main(void){
+int main(void){   //Funcao principal do programa
     tela_menu_p();
     info_trabalho();
     equipe();
@@ -33,18 +33,20 @@ int main(void){
     return 0;
 }
 
-void tela_menu_p(void) {    //Tela principal do programa
+void tela_menu_p(void) {   //Tela principal do programa
     char op;
-    system("clear||cls");
+    system("clear||cls");   //Limpa a tela do terminal
     printf("===============================================\n");
     printf("   SISTEMA DE GESTAO PARA CLINICAS DENTARIAS   \n");
     printf("===============================================\n");
     printf("\n");
-    printf("|[1].Gerenciamento/Cadastro de Clientes\n");
-    printf("|[2].Gerenciamento/Cadastro de Funcionarios\n");
-    printf("|[3].Agendamento de Horarios\n");
-    printf("|[4].Gestao de estoque\n");
-    printf("|[5].Listar consultas e retornos agendados\n");
+    printf("|[1]. Gerenciamento/Cadastro de Clientes\n");
+    printf("|[2]. Gerenciamento/Cadastro de Funcionarios\n");
+    printf("|[3]. Agendamento de Horarios\n");
+    printf("|[4]. Gestao de estoque\n");
+    printf("|[5]. Listar consultas e retornos agendados\n");
+    printf("|[6]. Informacoes do Trabalho\n");
+    printf("|[7]. Informacoes da Equipe\n");
     printf("|[0].Sair\n");
     printf("\n");   
     printf("|Escolha a opcao desejada: ");
@@ -63,7 +65,7 @@ void info_trabalho(void){
     printf("\n");
     printf("    Este programa aborda o conteudo do segundo semestre de 2023 da disciplina de programacao do curso de\n");
     printf("Bacharelado em Sistemas de Informacao (BSI) na Universidade do Rio Grande do Norte(UFRN).\n");
-    printf("E tambem representa uma solucao de software desenvolvida em linguagem C para a gestao de clinicas\n");
+    printf("    E tambem representa uma solucao de software desenvolvida em linguagem C para a gestao de clinicas\n");
     printf("odontologicas. O sistema e projetado para auxiliar a administracao eficiente das atividades de uma\n");
     printf("clinica dentaria.\n");
     printf("\n");
@@ -172,3 +174,8 @@ void estoque(void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+
+
+
