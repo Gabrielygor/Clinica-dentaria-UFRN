@@ -48,6 +48,8 @@ void tela_menu_p(void) {   //Tela principal do programa
     printf("|[6]. Informacoes do Trabalho\n");
     printf("|[7]. Informacoes da Equipe\n");
     printf("|[0].Sair\n");
+    printf("\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");   
     printf("\n");   
     printf("|Escolha a opcao desejada: ");
     scanf("%c", &op);
@@ -69,6 +71,9 @@ void info_trabalho(void){
     printf("odontologicas. O sistema e projetado para auxiliar a administracao eficiente das atividades de uma\n");
     printf("clinica dentaria.\n");
     printf("\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("\n");
+    printf("\n");   
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
@@ -86,6 +91,8 @@ void equipe(void){
     printf("|Instagram: https://www.instagram.com/gabriel_ygors/ \n");
     printf("|Github: https://github.com/Gabrielygor\n");
     printf("\n");
+    printf("=-=-=-=-=-=-\n");
+    printf("\n");   
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
@@ -104,10 +111,12 @@ void cliente(void){
     printf("|[5]. Excluir Cliente\n");
     printf("|[0]. Voltar ao menu anterior\n");
     printf("\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("\n");
     printf("|Escolha a opcao desejada: ");
     scanf("%c", &op);
     getchar();
-    printf("\n");
+    printf("\n");   
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
@@ -125,6 +134,8 @@ void funcionario(void){
     printf("|[4]. Excluir Funcionario\n");
     printf("|[5]. Listar Funcionarios\n");
     printf("|[0]. Voltar ao menu anterior\n");
+    printf("\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     printf("\n");
     printf("|Escolha a opcao desejada: ");
     scanf("%c", &op);
@@ -147,6 +158,8 @@ void agendamento(void){
     printf("|[4]. Excluir Retorno\n");
     printf("|[0]. Voltar ao menu anterior\n");
     printf("\n");
+    printf("=-=-=-=-=-=-=-=-=\n");
+    printf("\n");
     printf("|Escolha a opcao desejada: ");
     scanf("%c", &op);
     getchar();
@@ -166,6 +179,8 @@ void estoque(void){
     printf("|[2]. Excluir Estoque\n");
     printf("|[3]. Listar Estoque\n");
     printf("|[0]. Voltar ao menu anterior\n");
+    printf("\n");
+    printf("=-=-=-=-=-=-=\n");
     printf("\n");
     printf("|Escolha a opcao desejada: ");
     scanf("%c", &op);
