@@ -37,20 +37,25 @@ void tela_menu_p(void) {   //Tela principal do programa
     char op;
     system("clear||cls");   //Limpa a tela do terminal
     printf("===============================================\n");
+    printf("\n");
     printf("   SISTEMA DE GESTÃO PARA CLÍNICAS DENTÁRIAS   \n");
+    printf("\n");
     printf("===============================================\n");
-    printf("\n");
-    printf("|[1]. Gerenciamento/Cadastro de Clientes\n");
-    printf("|[2]. Gerenciamento/Cadastro de Funcionários\n");
-    printf("|[3]. Agendamento de Horários\n");
-    printf("|[4]. Gestão de estoque\n");
-    printf("|[5]. Listar consultas e retornos agendados\n");
-    printf("|[6]. Informações do Trabalho\n");
-    printf("|[7]. Informações da Equipe\n");
-    printf("|[0].Sair\n");
-    printf("\n");
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");   
-    printf("\n");   
+    printf("                                                          ⠀⣀⣠⠤⠶⠶⠤⠄⣀⡀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀                 \n");
+    printf("|[1]. Gerenciamento/Cadastro de Clientes                ⣠⡖⠋⠁⠀⠀⠀⠀⠀⠈⠉⠐⠦⠄⠒⠈⠉⠉⠉⠉⠉⠛⠲⣤                \n");
+    printf("|[2]. Gerenciamento/Cadastro de Funcionários           ⢸⠇⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⠀                \n");
+    printf("|[3]. Agendamento de Horários                          ⡟⠀⠀⠀⠀⠛⠉⠁⠀⠀⠀⠀⠀⠐⠉⠙⠣⡀⠀⠀⠀⠀⠀⠀⠀⠈⡇⣀⡀⠀⠀⠀         \n");
+    printf("|[4]. Gestão de estoque                                ⡇⠀⠀⠀⢠⢉⢤⡑⠀⠀⠀⠀⠀⡀⢉⣉⢂⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⡀⠈⠂⠀⠀         \n");
+    printf("|[5]. Listar consultas e retornos agendados            ⢣⠀⠀⠀⠠⢸⣿⣇⠀⠀⠀⠀⠀⡁⣷⣿⡾⠀⠀⠀⠀⠀⠀⠀⠀⣸⡴⠀⠀⠦⠄⡀         \n");
+    printf("|[6]. Informações do Trabalho                          ⢸⡄⠀⠀⠀⠒⠛⠄⠀⠀⠀⠀⠀⢠⡹⠭⠂⠀⠀⠀⠀⠀⠀⠀⣠⠁⡀⡏⣁⡀⠰⡁        \n");
+    printf("|[7]. Informações da Equipe                           ⠠⠃⢃⠀⠀⠀⠀⠒⣀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠤⠐⠐⠋⠙⢵⡆⠐⡺⠀        \n");
+    printf("|[0].Sair                                            ⢠⡇⢀⡼⡄⠀⠀⠀⠀⠘⣮⣭⣉⣭⣴⣾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠚⠁⠀⠀⠀⠀        \n");
+    printf("                                                     ⠈⠣⡀⠀⠙⡀⠀⠀⠀⠀⠘⣉⣙⣁⡰⠃⠀⠀⠀⠀⠀⠀⠀⣰⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀        \n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=         ⢈⠡⠆⠳⠀⠀⠀⠀⠀⠐⠭⠵⠊⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        \n");   
+    printf("                                                        ⠈⠑⠒⠂⢧⠀⠀⠀⠀⠀⠠⡄⡀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        \n");
+    printf("                                                              ⢣⠀⠀⠀⠀⡜⠀⠀⠡⡄⠀⠀⠀⠀⠀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀          \n");
+    printf("                                                               ⢣⡀⠀⢀⠃⠀⠀⠀⠘⢢⡀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀         \n");   
+    printf("                                                                ⠙⠛⠛⠀⠀⠀⠀⠀⠀⠘⠳⠶⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀         \n");
     printf("|Escolha a opção desejada: ");
     scanf("%c", &op);
     getchar();
@@ -62,7 +67,9 @@ void tela_menu_p(void) {   //Tela principal do programa
 void info_trabalho(void){
     system("clear||cls");
     printf("=============================\n");
+    printf("\n");
     printf("   Inforamções do Trabalho   \n");
+    printf("\n");
     printf("=============================\n");
     printf("\n");
     printf("    Este programa aborda o conteudo do segundo semestre de 2023 da disciplina de programação do curso de\n");
@@ -81,7 +88,9 @@ void info_trabalho(void){
 void equipe(void){
     system("clear||cls");
     printf("============\n");
+    printf("\n");
     printf("   Equipe   \n");
+    printf("\n");
     printf("============\n");
     printf("\n");
     printf("|Projeto desenvolvido por:\n");
@@ -101,7 +110,9 @@ void cliente(void){
     char op;
     system("clear||cls");
     printf("===============================\n");
+    printf("\n");
     printf("   Gerenciamento de Clientes   \n");
+    printf("\n");
     printf("===============================\n");
     printf("\n");
     printf("|[1]. Cadastrar Cliente\n");
@@ -125,7 +136,9 @@ void funcionario(void){
     char op;
     system("clear||cls");
     printf("===================================\n");
+    printf("\n");
     printf("   Gerenciamento de Funcionários   \n");
+    printf("\n");
     printf("===================================\n");
     printf("\n");
     printf("|[1]. Cadastrar Funcionário\n");
@@ -149,7 +162,9 @@ void agendamento(void){
     char op;
     system("clear||cls");
     printf("=================\n");
+    printf("\n");
     printf("   Agendamento   \n");
+    printf("\n");
     printf("=================\n");
     printf("\n");
     printf("|[1]. Agendar Consulta\n");
@@ -172,7 +187,9 @@ void estoque(void){
     char op;
     system("clear||cls");
     printf("=============\n");
+    printf("\n");
     printf("   Estoque   \n");
+    printf("\n");
     printf("=============\n");
     printf("\n");
     printf("|[1]. Adicionar Estoque\n");
