@@ -119,7 +119,7 @@ void info_trabalho(void){
     printf("    Este programa aborda o conteudo do segundo semestre de 2023 da disciplina de programação do curso de\n");
     printf("Bacharelado em Sistemas de Informação (BSI) na Universidade do Rio Grande do Norte(UFRN).\n");
     printf("    E também representa uma solução de software desenvolvida em linguagem C para a gestão de clinicas\n");
-    printf("odontologicas. O sistema e projetado para auxiliar a administra��o eficiente das atividades de uma\n");
+    printf("odontologicas. O sistema e projetado para auxiliar a administração eficiente das atividades de uma\n");
     printf("clínica dentária.\n");
     printf("\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
@@ -156,7 +156,7 @@ void equipe(void){
 
 void cliente(void) {
     char op;
-    do {
+    do { // Loop para o menu de Clientes se repetir                                                           
         system("clear||cls");
         printf("===============================\n");
         printf("\n");
@@ -199,7 +199,7 @@ void cliente(void) {
             default:
                 printf("Opção inválida! Tente novamente.\n");
         }
-    } while (op != '0');
+    } while (op != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
 }
 
 void cadastrocliente(void){
@@ -299,7 +299,7 @@ void funcionario(void){
           default:
               printf("Opção inválida! Tente novamente.\n");
       }     
-    }while (op != '0');
+    } while (op != '0');
 }
 
 void cadastrofun(void){
@@ -356,53 +356,161 @@ void excluirfun(void){
 
 void agendamento(void){
     char op;
+    do{
+        system("clear||cls");
+        printf("=================\n");
+        printf("\n");
+        printf("   Agendamento   \n");
+        printf("\n");
+        printf("=================\n");
+        printf("\n");
+        printf("|[1]. Agendar Consulta\n");
+        printf("|[2]. Agendar Retorno\n");
+        printf("|[3]. Excluir Consultas\n");
+        printf("|[4]. Excluir Retorno\n");
+        printf("|[0]. Voltar ao menu Principal\n");
+        printf("\n");
+        printf("=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("|Escolha a opção desejada: ");
+        scanf(" %c", &op);
+        getchar();
+      
+        switch (op){
+          case '1':
+            agendarconsulta();
+            break;
+          case '2':
+            agendarretorno();
+            break;
+          case '3':
+            excluirconsulta();
+            break;
+          case '4':
+            excluirretorno();
+            break;
+          case '0':
+            tela_menu_p();
+            break;
+          default:
+            printf("Opção inválida! Tente novamente.\n");
+
+
+
+            }
+      } while (op != '0');
+}  
+
+void agendarconsulta(void){
     system("clear||cls");
-    printf("=================\n");
-    printf("\n");
-    printf("   Agendamento   \n");
-    printf("\n");
-    printf("=================\n");
-    printf("\n");
-    printf("|[1]. Agendar Consulta\n");
-    printf("|[2]. Agendar Retorno\n");
-    printf("|[3]. Excluir Consultas\n");
-    printf("|[4]. Excluir Retorno\n");
-    printf("|[0]. Voltar ao menu anterior\n");
-    printf("\n");
-    printf("=-=-=-=-=-=-=-=-=\n");
-    printf("\n");
-    printf("|Escolha a opção desejada: ");
-    scanf("%c", &op);
+    printf("Agendar Em construção...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
+}
+void agendarretorno(void){
+    system("clear||cls");
+    printf("Agendar Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+void excluirconsulta(void){
+    system("clear||cls");
+    printf("Excluir Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+void excluirretorno(void){
+    system("clear||cls");
+    printf("Excluir Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void estoque(void){
     char op;
+    do{
+        system("clear||cls");
+        printf("=============\n");
+        printf("\n");
+        printf("   Estoque   \n");
+        printf("\n");
+        printf("=============\n");
+        printf("\n");
+        printf("|[1]. Adicionar Estoque\n");
+        printf("|[2]. Excluir Estoque\n");
+        printf("|[3]. Listar Estoque\n");
+        printf("|[0]. Voltar ao menu Principal\n");
+        printf("\n");
+        printf("=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("|Escolha a opção desejada: ");
+        scanf(" %c", &op);
+        getchar();
+
+        switch (op){
+          case '1':
+            adicionarestoque();
+            break;
+          case '2':
+            excluirestoque();
+            break;
+          case '3':
+            listarestoque();
+            break;
+          case '0':
+            tela_menu_p();
+            break;
+          default:
+            printf("Opção inválida! Tente novamente.\n");
+            
+            
+        }
+
+      }  while (op != '0');
+}
+
+void adicionarestoque(void){
     system("clear||cls");
-    printf("=============\n");
-    printf("\n");
-    printf("   Estoque   \n");
-    printf("\n");
-    printf("=============\n");
-    printf("\n");
-    printf("|[1]. Adicionar Estoque\n");
-    printf("|[2]. Excluir Estoque\n");
-    printf("|[3]. Listar Estoque\n");
-    printf("|[0]. Voltar ao menu anterior\n");
-    printf("\n");
-    printf("=-=-=-=-=-=-=\n");
-    printf("\n");
-    printf("|Escolha a opção desejada: ");
-    scanf("%c", &op);
+    printf("Adicionar Em construção...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
+}
+
+void excluirestoque(void){
+    system("clear||cls");
+    printf("Excluir Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+
+void listarestoque(void){
+    system("clear||cls");
+    printf("Listar Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
 }
 
 
