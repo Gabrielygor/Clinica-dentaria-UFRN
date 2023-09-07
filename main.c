@@ -1,35 +1,54 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte (UFRN)          ///
-///                 Centro de Ensino Superior do Serid� (CERES)            ///
-///               Departamento de Computa��o e Tecnologia                 ///
-///                  Disciplina DCT1106 -- Programa��o                    ///
-///             Projeto Sistema de Gest�o para clinicas dentarias           ///
+///                 Centro de Ensino Superior do Seridó (CERES)             ///
+///               Departamento de Computação e Tecnologia                   ///
+///                  Disciplina DCT1106 -- Programação                      ///
+///             Projeto Sistema de Gestão para clinicas dentarias           ///
 ///                      Developed by @Gabrielygor                          ///
 ///////////////////////////////////////////////////////////////////////////////
 ///  Trabalho referente ao segundo semestre do ano de 2023 do curso de BSI  ///
 ///////////////////////////////////////////////////////////////////////////////
 
-// CONFERIR SE TODAS AS LINHAS TEM "  ; ; ;   " NO FINAL 
+// CONFERIR SE TODAS AS LINHAS TEM "  ; ; ;   " NO FINAL DE CADA FRASE
 // CARACTERES ESPECIAIS COMO " Ç Á Â Ã " SÓ FUNCIONAM NATIVAMENTE NO LINUX
 
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h>    // Biblioteca
 
-
-
-void tela_menu_p(void);  //Tem que ter para poder criar as telas lá em baixo 
+void tela_menu_p(void);     
 void info_trabalho(void);
 void equipe(void);
-void cliente(void);    
-void funcionario(void);       
-void agendamento(void);                      
+
+void cliente(void);
+void cadastrocliente(void);
+void pesquisacliente(void);
+void atualizacliente(void);
+void listacliente(void);
+void excluircliente(void);
+
+void funcionario(void);
+void cadastrofun(void);
+void pesquisafun(void);
+void atualizafun(void);
+void listafun(void);
+void excluirfun(void);
+
+void agendamento(void);
+void agendarconsulta(void);
+void agendarretorno(void);
+void excluirconsulta(void);
+void excluirretorno(void);
+
 void estoque(void);
+void adicionarestoque(void);
+void excluirestoque(void);
+void listarestoque(void);
 
 int main(void) {  // Função do programa principal que contem a logica de programação 
     char op;
     do {
         tela_menu_p(); //Chama a Função de menu principal 
-        printf("Escolha a opção desejada: ");
+        printf("Escolha a opção desejada: "); //Pergunta a opção
         scanf(" %c", &op); //Le a opção desejada
         getchar();  //Limpa a opção escolhida acima (contida no scanf)
 
@@ -82,10 +101,12 @@ void tela_menu_p(void) {   //Tela principal do programa
     printf("|[5]. Listar consultas e retornos agendados     \n");
     printf("|[6]. Informações do Trabalho                   \n");
     printf("|[7]. Informações da Equipe                     \n");
-    printf("|[0].Sair                                       \n");
+    printf("|[0]. Sair                                       \n");
     printf("\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");   
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void info_trabalho(void){
     system("clear||cls");
@@ -108,6 +129,8 @@ void info_trabalho(void){
     getchar();
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void equipe(void){
     system("clear||cls");
     printf("============\n");
@@ -129,31 +152,107 @@ void equipe(void){
     getchar();
 }
 
-void cliente(void){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void cliente(void) {
     char op;
+    do {
+        system("clear||cls");
+        printf("===============================\n");
+        printf("\n");
+        printf("   Gerenciamento de Clientes   \n");
+        printf("\n");
+        printf("===============================\n");
+        printf("\n");
+        printf("|[1]. Cadastrar Cliente\n");
+        printf("|[2]. Pesquisar Cliente\n");
+        printf("|[3]. Atualizar Cliente\n");
+        printf("|[4]. Listar Cliente\n");
+        printf("|[5]. Excluir Cliente\n");
+        printf("|[0]. Voltar ao menu Principal\n");
+        printf("\n");
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("|Escolha a opção desejada: ");
+        scanf(" %c", &op);
+        getchar();
+
+        switch (op) {
+            case '1':
+                cadastrocliente();
+                break;
+            case '2':
+                pesquisacliente();
+                break;
+            case '3':
+                atualizacliente();
+                break;
+            case '4':
+                listacliente();
+                break;
+            case '5':
+                excluircliente();
+                break;
+            case '0':
+                tela_menu_p();
+                break;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (op != '0');
+}
+
+void cadastrocliente(void){
     system("clear||cls");
-    printf("===============================\n");
-    printf("\n");
-    printf("   Gerenciamento de Clientes   \n");
-    printf("\n");
-    printf("===============================\n");
-    printf("\n");
-    printf("|[1]. Cadastrar Cliente\n");
-    printf("|[2]. Pesquisar Cliente\n");
-    printf("|[3]. Atualizar Cliente\n");
-    printf("|[4]. Listar Cliente\n");
-    printf("|[5]. Excluir Cliente\n");
-    printf("|[0]. Voltar ao menu anterior\n");
-    printf("\n");
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-    printf("\n");
-    printf("|Escolha a opção desejada: ");
-    scanf("%c", &op);
+    printf("Cadastro Em construção...");
     getchar();
-    printf("\n");   
+    printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
 }
+
+void pesquisacliente(void){
+    system("clear||cls");
+    printf("Pesquisa Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+
+void atualizacliente(void){
+    system("clear||cls");
+    printf("Atualizar Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+
+void listacliente(void){
+    system("clear||cls");
+    printf("Listar Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+
+void excluircliente(void){
+    system("clear||cls");
+    printf("Excluir Em construção...");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void funcionario(void){
     char op;
@@ -181,6 +280,8 @@ void funcionario(void){
     getchar();
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void agendamento(void){
     char op;
     system("clear||cls");
@@ -205,6 +306,8 @@ void agendamento(void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void estoque(void){
     char op;
