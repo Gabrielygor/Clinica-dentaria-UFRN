@@ -14,35 +14,15 @@
 
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h>    // Biblioteca
+#include "cliente.h"
+#include "funcionario.h"
+#include "estoque.h"
+#include "valida.h"
+#include "agendamento.h"
 
-void tela_menu_p(void);     
+void tela_menu_p(void);         //Assinaturas variadas     
 void info_trabalho(void);
 void equipe(void);
-
-void cliente(void);
-void cadastrocliente(void);
-void pesquisacliente(void);
-void atualizacliente(void);
-void listacliente(void);
-void excluircliente(void);
-
-void funcionario(void);
-void cadastrofun(void);
-void pesquisafun(void);
-void atualizafun(void);
-void listafun(void);
-void excluirfun(void);
-
-void agendamento(void);
-void agendarconsulta(void);
-void agendarretorno(void);
-void excluirconsulta(void);
-void excluirretorno(void);
-
-void estoque(void);
-void adicionarestoque(void);
-void excluirestoque(void);
-void listarestoque(void);
 
 int main(void) {  // Função do programa principal que contem a logica de programação 
     char op;
@@ -86,7 +66,6 @@ int main(void) {  // Função do programa principal que contem a logica de progr
 }
 
 void tela_menu_p(void) {   //Tela principal do programa
-    char op;
     system("clear||cls");   //Limpa a tela do terminal
     printf("=============================================== \n");
     printf("\n");
