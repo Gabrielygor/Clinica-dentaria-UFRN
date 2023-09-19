@@ -1,6 +1,8 @@
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h> 
 #include "funcionario.h"
+#include "telas.h"
+
 
 void funcionario(void){
     char op;
@@ -42,7 +44,6 @@ void funcionario(void){
               listafun();
               break;
           case '0':
-              tela_menu_p();
               break;
           default:
               printf("Opção inválida! Tente novamente.\n");

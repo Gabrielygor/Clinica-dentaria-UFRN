@@ -1,6 +1,8 @@
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h> 
 #include "estoque.h"
+#include "telas.h"
+
 
 void estoque(void){
     char op;
@@ -34,7 +36,6 @@ void estoque(void){
             listarestoque();
             break;
           case '0':
-            tela_menu_p();
             break;
           default:
             printf("Opção inválida! Tente novamente.\n");

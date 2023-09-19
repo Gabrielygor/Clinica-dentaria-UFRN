@@ -1,6 +1,8 @@
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h> 
 #include "agendamento.h"
+#include "telas.h"
+
 
 void agendamento(void){
     char op;
@@ -38,7 +40,6 @@ void agendamento(void){
             excluirretorno();
             break;
           case '0':
-            tela_menu_p();
             break;
           default:
             printf("Opção inválida! Tente novamente.\n");
