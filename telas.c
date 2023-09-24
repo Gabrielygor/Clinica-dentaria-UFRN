@@ -1,5 +1,6 @@
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h>    // Biblioteca
+#include "telas.h"
 
 
 void tela_menu_p(void) {   //Tela principal do programa

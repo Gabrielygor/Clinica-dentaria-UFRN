@@ -14,25 +14,16 @@
 
 #include <stdio.h>      //Biblioteca 
 #include <stdlib.h>    // Biblioteca
-
+// gcc -o *.c
 
 
 #include "cliente.h"
 #include "funcionario.h"
 #include "agendamento.h"
 #include "estoque.h"
-#include "valida.h"
 #include "telas.h"
 
-void tela_menu_p(void);         //Assinaturas variadas     
-void info_trabalho(void);
-void equipe(void);
 
-// Cria telas.h 
-// Mudar tela principal (void)Principal(void)
-//Olhar git Renan 
-//ver como colocar pelo gcc terminal
-//
 
 int main(void) {  // Função do programa principal que contem a logica de programação 
     char op;
@@ -57,6 +48,7 @@ int main(void) {  // Função do programa principal que contem a logica de progr
                 break;
             case '5':
                 printf("Em desenvolvimento\n");
+                getchar();
                 break;
             case '6':
                 info_trabalho();
@@ -74,10 +66,5 @@ int main(void) {  // Função do programa principal que contem a logica de progr
 
     return 0; //Retorna 0 e encera o programa 
 }
-
-
-
-
-
 
 
