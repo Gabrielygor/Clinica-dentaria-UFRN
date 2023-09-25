@@ -48,7 +48,11 @@ void estoque(void){
 
 void adicionarestoque(void){
     system("clear||cls");
-    printf("Adicionar Em construção...");
+    printf("Digite o nome do objeto:\n");
+    printf("Digite a quantidade do objeto:\n");
+    printf("Digite um ID para o objeto:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -58,7 +62,9 @@ void adicionarestoque(void){
 
 void excluirestoque(void){
     system("clear||cls");
-    printf("Excluir Em construção...");
+    printf("Digite o nome do objeto que deseja excluir:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -68,7 +74,9 @@ void excluirestoque(void){
 
 void listarestoque(void){
     system("clear||cls");
-    printf("Listar Em construção...");
+    printf("Lista de obejtos cadastrados no sistema:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
