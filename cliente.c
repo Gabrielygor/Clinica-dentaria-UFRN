@@ -53,7 +53,12 @@ void cliente(void) {
 
 void cadastrocliente(void){
     system("clear||cls");
-    printf("Cadastro Em construção...");
+    printf("Digite o nome do cleinte:\n");
+    printf("Digite o CPF do cliente:\n");
+    printf("Digite a data de nascimento do cliente:\n");
+    printf("Digite o telefone do cliente:\n");
+    printf("\n");
+    printf(  "EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -63,7 +68,9 @@ void cadastrocliente(void){
 
 void pesquisacliente(void){
     system("clear||cls");
-    printf("Pesquisa Em construção...");
+    printf("Digite o CPF do cliente que deseja buscar:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -73,7 +80,9 @@ void pesquisacliente(void){
 
 void atualizacliente(void){
     system("clear||cls");
-    printf("Atualizar Em construção...");
+    printf("Digite o CPF do cliente para atualizar:");
+    printf("\n");  
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -83,7 +92,9 @@ void atualizacliente(void){
 
 void listacliente(void){
     system("clear||cls");
-    printf("Listar Em construção...");
+    printf("Lista de Clientes cadastrados no sistema:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -93,6 +104,8 @@ void listacliente(void){
 
 void excluircliente(void){
     system("clear||cls");
+    printf("Digite o CPF do cliente que deseja excluir:\n");
+    printf("\n");
     printf("Excluir Em construção...");
     getchar();
     printf("\n");
