@@ -52,7 +52,12 @@ void agendamento(void){
 
 void agendarconsulta(void){
     system("clear||cls");
-    printf("Agendar Em construção...");
+    printf("Digite o CPF do cliente para a consulta:\n");
+    printf("Digite o funcionário responsavel pela consulta:\n");
+    printf("Digite a data da consulta:\n");
+    printf("Digite o horário da consulta:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -61,7 +66,11 @@ void agendarconsulta(void){
 }
 void agendarretorno(void){
     system("clear||cls");
-    printf("Agendar Em construção...");
+    printf("Digite o CPF do cliente:\n");
+    printf("Digite a data do retorno:\n");
+    printf("Digite o horário do retorno:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -70,7 +79,9 @@ void agendarretorno(void){
 }
 void excluirconsulta(void){
     system("clear||cls");
-    printf("Excluir Em construção...");
+    printf("Digite o CPF do cliente para excluir uma consulta:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -79,7 +90,9 @@ void excluirconsulta(void){
 }
 void excluirretorno(void){
     system("clear||cls");
-    printf("Excluir Em construção...");
+    printf("Digite o CPF do cliente para excluir o retorno:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
