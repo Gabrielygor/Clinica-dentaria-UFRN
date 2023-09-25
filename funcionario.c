@@ -53,7 +53,13 @@ void funcionario(void){
 
 void cadastrofun(void){
     system("clear||cls");
-    printf("Cadastro Em construção...");
+    printf("Digire o nome do funcionário:\n");
+    printf("Digite o CPF do funcionário:\n");
+    printf("Digite a data de nascimentos do funcionário:\n");
+    printf("Digite o telefone do funcionário:\n");
+    printf("Digite o cargo do funcionário:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -63,7 +69,9 @@ void cadastrofun(void){
 
 void pesquisafun(void){
     system("clear||cls");
-    printf("Pesquisa Em construção...");
+    printf("Digite o CPF do funcionário que deseja pesquisar:\n");
+    printf("\n");
+    printf("EM CONSTRÇÃO...");  
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -73,7 +81,9 @@ void pesquisafun(void){
 
 void atualizafun(void){
     system("clear||cls");
-    printf("Atualizar Em construção...");
+    printf("Digite o CPF do funcionário que deseja atualizar:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -83,7 +93,9 @@ void atualizafun(void){
 
 void listafun(void){
     system("clear||cls");
-    printf("Listar Em construção...");
+    printf("Lista de funcionários cadastrados nos sistema:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -93,7 +105,9 @@ void listafun(void){
 
 void excluirfun(void){
     system("clear||cls");
-    printf("Excluir Em construção...");
+    printf("Digite o CPF do funcionário que deseja excluir:\n");
+    printf("\n");
+    printf("EM CONSTRUÇÃO...");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
