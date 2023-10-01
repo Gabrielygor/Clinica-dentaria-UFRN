@@ -96,3 +96,29 @@ int ehDg(char c){
     return 0;
   }
 }
+
+/*
+int lerHora(char hora[5]) {
+    int tamanho = strlen(hora); //formato HH:MM  Validacoes ainda nao usados no programa 
+
+    if (tamanho != 5) {
+        return 0;
+    } else {
+        if (hora[2] != ':') {
+            return 0;
+        }
+
+        if (hora[0] >= '0' && hora[0] <= '2' && hora[1] >= '0' && hora[1] <= '9' &&
+            hora[3] >= '0' && hora[3] <= '5' && hora[4] >= '0' && hora[4] <= '9') {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+
+
+*/
