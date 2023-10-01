@@ -55,6 +55,7 @@ void cliente(void) {
 
 void cadastrocliente(void){
     char cpf[12];
+    char nome[100];
 
     system("clear||cls");
     printf("==========================\n");
@@ -75,7 +76,17 @@ void cadastrocliente(void){
         printf("=============\n");
     }
 
-    printf("Digite o nome do cliente:\n");
+    printf("\n");
+    printf("Digite o nome do cliente: \n");
+    scanf("%s", nome); 
+    if (validarNome(nome)) {
+        printf("Nome válido.\n");
+        printf("=-=-=-=-=-=-=\n");
+    } else {
+        printf("Nome inválido.\n");  
+        printf("=-=-=-=-=-=-=-=\n");
+    }
+
     printf("Digite a data de nascimento do cliente:\n");
     printf("Digite o telefone do cliente:\n");
     printf("\n");

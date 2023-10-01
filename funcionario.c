@@ -55,15 +55,16 @@ void funcionario(void){
 
 void cadastrofun(void){
     char cpf[12];
+    char nome[100];
   
     system("clear||cls");
-    printf("=============================\n");
+    printf("===========================\n");
     printf("\n");
-    printf("   Cadastro de funcionario   \n");
+    printf("   Cadastro de Dentista   \n");
     printf("\n");
-    printf("=============================\n");
+    printf("===========================\n");
   
-    printf("Digite o CPF do cleinte(Apenas numeros):\n");
+    printf("Digite o CPF do dentista(Apenas numeros):\n");
     scanf("%s", cpf);
     if (validaCPF(cpf)) {
         printf("===========\n");
@@ -75,10 +76,20 @@ void cadastrofun(void){
         printf("=============\n");
     }
     
-    printf("Digite o nome do funcionário:\n");
+    printf("\n");
+    printf("Digite o nome do dentista: \n");
+    scanf("%s", nome); 
+    if (validarNome(nome)) {
+        printf("Nome válido.\n");
+        printf("=-=-=-=-=-=-=\n");
+    } else {
+        printf("Nome inválido.\n");  
+        printf("=-=-=-=-=-=-=-=\n");
+    }
+    
     printf("Digite a data de nascimentos do funcionário:\n");
     printf("Digite o telefone do funcionário:\n");
-    printf("Digite o cargo do funcionário:\n");
+    
     printf("\n");
     printf("EM CONSTRUÇÃO...");
     getchar();

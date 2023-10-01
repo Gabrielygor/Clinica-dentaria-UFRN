@@ -1,5 +1,7 @@
 #include "ulti.h"
 #include <string.h>
+#include <stdio.h>
+
 
 //Valida CPF
 ///Validacao baseada no seguinte codigo: https://github.com/Brunowcst/Sistema-de-controle-de-clientes-
@@ -32,5 +34,31 @@ int validaCPF(char *cpf) {
                 return 0;
         }
     }
+    return 1;
+}
+
+// Valida letra 
+// Baseado no codigo de Flavius
+int testaLetra(char c){
+  if (c >= 'A' && c <= 'Z'){
+    return 1;
+  } else if (c >= 'a' && c <= 'z'){
+    return 1;
+  } else if (c == ' '){
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+// Valida nome 
+// Baseado no codigo de Flavius
+int validarNome(char *nome){
+  for (int i=0; nome[i]!='\0'; i++){
+    if (!testaLetra(nome[i])){
+      printf("<%c>", nome[i]);
+      return 0;
+    }
+  }
     return 1;
 }
