@@ -77,7 +77,7 @@ void cadastrocliente(void){
     }
 
     printf("\n");
-    printf("Digite o nome do paciente: \n");
+    printf("Digite o nome do paciente(Sem espaço entre os nomes): \n");
     scanf("%s", nome); 
     if (validarNome(nome)) {
         printf("Nome válido.\n");

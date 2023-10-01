@@ -76,7 +76,7 @@ void cadastrofun(void){
     }
     
     printf("\n");
-    printf("Digite o nome do dentista: \n");
+    printf("Digite o nome do dentista(Sem espaço entre os nomes): \n");
     scanf("%s", nome); 
     if (validarNome(nome)) {
         printf("Nome válido.\n");
