@@ -2,6 +2,8 @@
 #include <stdlib.h> 
 #include "funcionario.h"
 #include "telas.h"
+#include "ulti.h"
+
 
 
 void funcionario(void){
@@ -52,9 +54,28 @@ void funcionario(void){
 }
 
 void cadastrofun(void){
+    char cpf[12];
+  
     system("clear||cls");
-    printf("Digire o nome do funcionário:\n");
-    printf("Digite o CPF do funcionário:\n");
+    printf("=============================\n");
+    printf("\n");
+    printf("   Cadastro de funcionario   \n");
+    printf("\n");
+    printf("=============================\n");
+  
+    printf("Digite o CPF do cleinte(Apenas numeros):\n");
+    scanf("%s", cpf);
+    if (validaCPF(cpf)) {
+        printf("===========\n");
+        printf("CPF válido.\n");
+        printf("===========\n");
+    } else {
+        printf("=============\n");
+        printf("CPF inválido.\n");
+        printf("=============\n");
+    }
+    
+    printf("Digite o nome do funcionário:\n");
     printf("Digite a data de nascimentos do funcionário:\n");
     printf("Digite o telefone do funcionário:\n");
     printf("Digite o cargo do funcionário:\n");

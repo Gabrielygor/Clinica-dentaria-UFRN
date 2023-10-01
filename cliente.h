@@ -1,3 +1,4 @@
+
 void cliente(void);                  // Assinaturas de Clientes
 void cadastrocliente(void);
 void pesquisacliente(void);

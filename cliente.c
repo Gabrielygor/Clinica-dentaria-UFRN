@@ -2,6 +2,8 @@
 #include <stdlib.h> 
 #include "cliente.h"
 #include "telas.h"
+#include "ulti.h"
+
 
 
 void cliente(void) {
@@ -52,9 +54,28 @@ void cliente(void) {
 }
 
 void cadastrocliente(void){
+    char cpf[12];
+
     system("clear||cls");
-    printf("Digite o nome do cleinte:\n");
-    printf("Digite o CPF do cliente:\n");
+    printf("==========================\n");
+    printf("\n");
+    printf("   Cadastro de Clientes   \n");
+    printf("\n");
+    printf("==========================\n");
+
+    printf("Digite o CPF do cleinte(Apenas numeros):\n");
+    scanf("%s", cpf);
+    if (validaCPF(cpf)) {
+        printf("===========\n");
+        printf("CPF válido.\n");
+        printf("===========\n");
+    } else {
+        printf("=============\n");
+        printf("CPF inválido.\n");
+        printf("=============\n");
+    }
+
+    printf("Digite o nome do cliente:\n");
     printf("Digite a data de nascimento do cliente:\n");
     printf("Digite o telefone do cliente:\n");
     printf("\n");

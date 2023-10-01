@@ -2,6 +2,8 @@
 #include <stdlib.h> 
 #include "estoque.h"
 #include "telas.h"
+#include "ulti.h"
+
 
 
 void estoque(void){

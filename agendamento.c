@@ -2,6 +2,8 @@
 #include <stdlib.h> 
 #include "agendamento.h"
 #include "telas.h"
+#include "ulti.h"
+
 
 
 void agendamento(void){
