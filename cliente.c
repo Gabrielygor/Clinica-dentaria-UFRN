@@ -56,28 +56,27 @@ void cliente(void) {
 void cadastrocliente(void){
     char cpf[12];
     char nome[100];
+    int idade;
 
     system("clear||cls");
     printf("==========================\n");
     printf("\n");
-    printf("   Cadastro de Clientes   \n");
+    printf("   Cadastro de Pacientes   \n");
     printf("\n");
     printf("==========================\n");
 
-    printf("Digite o CPF do cleinte(Apenas numeros):\n");
+    printf("Digite o CPF do paciente(Apenas numeros):\n");
     scanf("%s", cpf);
     if (validaCPF(cpf)) {
-        printf("===========\n");
         printf("CPF válido.\n");
-        printf("===========\n");
+        printf("=-=-=-=-=-=\n");
     } else {
-        printf("=============\n");
         printf("CPF inválido.\n");
-        printf("=============\n");
+        printf("=-=-=-=-=-=-=\n");
     }
 
     printf("\n");
-    printf("Digite o nome do cliente: \n");
+    printf("Digite o nome do paciente: \n");
     scanf("%s", nome); 
     if (validarNome(nome)) {
         printf("Nome válido.\n");
@@ -87,8 +86,21 @@ void cadastrocliente(void){
         printf("=-=-=-=-=-=-=-=\n");
     }
 
-    printf("Digite a data de nascimento do cliente:\n");
-    printf("Digite o telefone do cliente:\n");
+    printf("\n");
+    printf("Digite sua idade: ");
+    scanf("%d", &idade);
+
+    int resultado = validarIdade(idade);
+
+    if (resultado) {
+        printf("Idade válida!\n");
+        printf("=-=-=-=-=-=-=\n");
+    } else {
+        printf("Idade inválida!\n");
+        printf("=-=-=-=-=-=-=-=\n");
+    }
+
+    printf("Digite o telefone do paciente ou do responsavel:\n");
     printf("\n");
     printf(  "EM CONSTRUÇÃO...");
     getchar();

@@ -67,13 +67,11 @@ void cadastrofun(void){
     printf("Digite o CPF do dentista(Apenas numeros):\n");
     scanf("%s", cpf);
     if (validaCPF(cpf)) {
-        printf("===========\n");
         printf("CPF válido.\n");
-        printf("===========\n");
+        printf("=-=-=-=-=-=\n");
     } else {
-        printf("=============\n");
         printf("CPF inválido.\n");
-        printf("=============\n");
+        printf("=-=-=-=-=-=-=\n");
     }
     
     printf("\n");
@@ -87,7 +85,6 @@ void cadastrofun(void){
         printf("=-=-=-=-=-=-=-=\n");
     }
     
-    printf("Digite a data de nascimentos do funcionário:\n");
     printf("Digite o telefone do funcionário:\n");
     
     printf("\n");

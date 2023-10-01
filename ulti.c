@@ -38,7 +38,7 @@ int validaCPF(char *cpf) {
 }
 
 // Valida letra 
-// Baseado no codigo de Flavius
+// Baseado no codigo de Flavius GORGÔNIO
 int testaLetra(char c){
   if (c >= 'A' && c <= 'Z'){
     return 1;
@@ -52,7 +52,7 @@ int testaLetra(char c){
 }
 
 // Valida nome 
-// Baseado no codigo de Flavius
+// Baseado no codigo de Flavius GORGÔNIO
 int validarNome(char *nome){
   for (int i=0; nome[i]!='\0'; i++){
     if (!testaLetra(nome[i])){
@@ -61,4 +61,15 @@ int validarNome(char *nome){
     }
   }
     return 1;
+}
+
+
+//Validador de idade 
+//Desenvolvido com auxilio do perplexity.ai 
+int validarIdade(int idade) {
+    if (idade >= 0 && idade <= 150) {
+        return 1; // Idade válida
+    } else {
+        return 0; // Idade inválida
+    }
 }
