@@ -57,6 +57,7 @@ void cadastrocliente(void){
     char cpf[12];
     char nome[100];
     int idade;
+    char telefone[12];
 
     system("clear||cls");
     printf("==========================\n");
@@ -100,7 +101,18 @@ void cadastrocliente(void){
         printf("=-=-=-=-=-=-=-=\n");
     }
 
-    printf("Digite o telefone do paciente ou do responsavel:\n");
+    printf("\n");
+    printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
+    scanf("%s", telefone);
+
+    if (validaTele(telefone)) {
+        printf("Número válido.\n");
+        printf("=-=-=-=-=-=-=-=\n");
+    } else {
+        printf("Número inválido.\n");
+        printf("=-=-=-=-=-=-=-=-=\n");
+    }
+
     printf("\n");
     printf(  "EM CONSTRUÇÃO...");
     getchar();

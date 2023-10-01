@@ -56,6 +56,7 @@ void funcionario(void){
 void cadastrofun(void){
     char cpf[12];
     char nome[100];
+    char telefone[12];
   
     system("clear||cls");
     printf("===========================\n");
@@ -85,7 +86,15 @@ void cadastrofun(void){
         printf("=-=-=-=-=-=-=-=\n");
     }
     
-    printf("Digite o telefone do funcionário:\n");
+    printf("\n");
+    printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
+    scanf("%s", telefone);
+
+    if (validaTele(telefone)) {
+        printf("Número de telefone válido.\n");
+    } else {
+        printf("Número de telefone inválido.\n");
+    }
     
     printf("\n");
     printf("EM CONSTRUÇÃO...");

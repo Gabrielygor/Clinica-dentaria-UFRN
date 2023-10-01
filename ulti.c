@@ -73,3 +73,26 @@ int validarIdade(int idade) {
         return 0; // Idade inválida
     }
 }
+
+//VALIDA TELEFONE
+// Desenvolvido com auxilio do ChatGPT
+int validaTele(char* fone){ 
+  int tam;
+  tam = strlen(fone);
+  if (tam != 11){
+    return 0;
+  }
+  for (int i=0; i < tam; i++){
+    if (!ehDg(fone[i])) {
+      return 0;
+    }
+  }
+  return 1;
+}
+int ehDg(char c){
+  if (c>= '0' && c <= '9'){
+    return 1;
+  } else {
+    return 0;
+  }
+}
