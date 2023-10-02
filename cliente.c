@@ -54,7 +54,7 @@ void cliente(void) {
 }
 
 void cadastrocliente(void){
-    char cpf[12];
+    char cpf[12];    //Define as variaveis usadas no cadastro de clientes
     char nome[100];
     int idade;
     char telefone[12];
@@ -67,18 +67,18 @@ void cadastrocliente(void){
     printf("==========================\n");
 
     printf("Digite o CPF do paciente(Apenas numeros):\n");
-    scanf("%s", cpf);
-    if (validaCPF(cpf)) {
-        printf("CPF válido.\n");
+    scanf("%s", cpf);   //Recebe a variavel cpf
+    if (validaCPF(cpf)) {  // Testa a variavel cpf no validador(ulti.c)
+        printf("CPF válido.\n"); //Se o cpf for valido aprova ele 
         printf("=-=-=-=-=-=\n");
     } else {
         printf("CPF inválido.\n");
         printf("=-=-=-=-=-=-=\n");
     }
 
-    printf("\n");
+    printf("\n"); //Um \n para pular uma linha antes de perguntar/receber outra informacao
     printf("Digite o nome do paciente(Sem espaço entre os nomes): \n");
-    scanf("%s", nome); 
+    scanf("%s", nome); //Repete o mesmo processo que o cpf acima OBS(Todos os validadores estão localizados na pasta ulti.c)
     if (validarNome(nome)) {
         printf("Nome válido.\n");
         printf("=-=-=-=-=-=-=\n");
