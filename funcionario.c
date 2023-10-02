@@ -54,7 +54,7 @@ void funcionario(void){
 }
 
 void cadastrofun(void){
-    char cpf[12];
+    char cpf[12];     //Variaveis utilizados no cadastro de funcionarios
     char nome[100];
     char telefone[12];
   
@@ -65,10 +65,10 @@ void cadastrofun(void){
     printf("\n");
     printf("===========================\n");
   
-    printf("Digite o CPF do dentista(Apenas numeros):\n");
-    scanf("%s", cpf);
-    if (validaCPF(cpf)) {
-        printf("CPF válido.\n");
+    printf("Digite o CPF do dentista(Apenas numeros):\n"); // pergunta qual o cpf do dentista
+    scanf("%s", cpf); //Recebe o cpf do dentista
+    if (validaCPF(cpf)) { //Manda o cpf para o validador (ulti.c)
+        printf("CPF válido.\n"); //Se o cpf for valido retorna (valido)
         printf("=-=-=-=-=-=\n");
     } else {
         printf("CPF inválido.\n");
@@ -76,7 +76,7 @@ void cadastrofun(void){
     }
     
     printf("\n");
-    printf("Digite o nome do dentista(Sem espaço entre os nomes): \n");
+    printf("Digite o nome do dentista(Sem espaço entre os nomes): \n"); // Repete o mesmo processo que a validacao de cpf. (ulti.c)
     scanf("%s", nome); 
     if (validarNome(nome)) {
         printf("Nome válido.\n");
