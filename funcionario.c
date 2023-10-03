@@ -12,7 +12,7 @@ void funcionario(void){
         system("clear||cls");
         printf("===================================\n");
         printf("\n");
-        printf("   Gerenciamento de Funcion�rios   \n");
+        printf("   Gerenciamento de Funcionarios   \n");
         printf("\n");
         printf("===================================\n");
         printf("\n");
