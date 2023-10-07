@@ -193,12 +193,11 @@ void exibirInformacoesCliente(const char *cpf, const char *nome, const char *dat
     printf("\n");
     printf("=============================\n");
     
-    printf("CPF: %s\n", cpf);
+    printf("CPF: %s\n", cpf);  
     printf("Nome: %s\n", nome);
     printf("Data de nascimento: %s\n", data);
     printf("Telefone: %s\n", telefone);
     
     printf("\n");
-    printf("Pressione <ENTER> para continuar...");
     getchar();
 }
