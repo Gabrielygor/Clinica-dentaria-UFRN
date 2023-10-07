@@ -1,6 +1,6 @@
-#include <stdio.h>      //Biblioteca 
+#include <stdio.h>      //Biblioteca prontas da linguagem C 
 #include <stdlib.h> 
-#include "cliente.h"
+#include "cliente.h"    //Bibliotecas/funcoes criadas por min e icluidas usando aspas " "
 #include "telas.h"
 #include "ulti.h"
 
@@ -56,8 +56,7 @@ void cliente(void) {
 void cadastrocliente(void){
     char cpf[12]; // Definicao de variaveis usadas no cadasatro
     char nome[100];
-    int idade;
-    char telefone[12];
+    char telefone[12]; //Evitar usar variaveis do tipo int (Recomendacao de Flavius)
     char data[10];
     int valido = 0;  // Variavel para controle de loop
 
@@ -128,7 +127,7 @@ void cadastrocliente(void){
       }
     } while (!valido);
 
-    exibirInformacoesCliente(cpf, nome, data, telefone);
+    exibirInformacoesCliente(cpf, nome, data, telefone); //Chama a funcao que exibe as informacoes cadastradas de clientes
 
     
     printf("\n");
@@ -187,13 +186,13 @@ void excluircliente(void){
 
 void exibirInformacoesCliente(const char *cpf, const char *nome, const char *data, const char *telefone) {
     printf("\n");
-    printf("=============================\n");
+    printf("=============================\n"); //Funcao que exibe as informacoes/dados dos pacientes
     printf("\n");
     printf("   Informações do Paciente   \n");
     printf("\n");
     printf("=============================\n");
     
-    printf("CPF: %s\n", cpf);  
+    printf("CPF: %s\n", cpf);  //Da printf na string guardada na variavel CPF
     printf("Nome: %s\n", nome);
     printf("Data de nascimento: %s\n", data);
     printf("Telefone: %s\n", telefone);
