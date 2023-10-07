@@ -63,7 +63,7 @@ int validarNome(char *nome){
     return 1;
 }
 
-
+/*
 //Validador de idade 
 //Desenvolvido com auxilio do perplexity.ai 
 int validarIdade(int idade) {
@@ -73,6 +73,8 @@ int validarIdade(int idade) {
         return 0; // Idade inválida
     }
 }
+*/
+
 
 //VALIDA TELEFONE
 // Desenvolvido com auxilio do ChatGPT
@@ -119,6 +121,31 @@ int lerHora(char hora[5]) {
     return 1;
 }
 
-
-
 */
+
+// Valida data
+int lerData(char data[9]) {
+    int tamanho = strlen(data);
+    if (tamanho < 1 || tamanho > 9) {
+        return 0;
+    } else {
+        for (int i = 0; i <= (tamanho - 1); i++) {
+            if (data[i] == '0' || data[i] <= '9') {
+              if (data[2] == '/' && data[5] == '/') {
+                  if (data[i] == ' ') {
+                      return 1;
+                  }
+                  if (data[i] == '@') {
+                      return 0;
+                  }
+              } else {
+                return 0;
+              }
+            } else {
+                return 0;
+            }
+        }
+
+    }
+    return 1;
+}
