@@ -57,6 +57,7 @@ void cadastrofun(void){
     char cpf[12];     //Variaveis utilizados no cadastro de funcionarios
     char nome[100];
     char telefone[12];
+    int valido = 0;  // Variavel para controle de loop
   
     system("clear||cls");
     printf("===========================\n");
@@ -65,40 +66,49 @@ void cadastrofun(void){
     printf("\n");
     printf("===========================\n");
   
-    printf("Digite o CPF do dentista(Apenas numeros):\n"); // pergunta qual o cpf do dentista
-    scanf("%s", cpf); //Recebe o cpf do dentista
-    if (validaCPF(cpf)) { //Manda o cpf para o validador (ulti.c)
-        printf("CPF válido.\n"); //Se o cpf for valido retorna (valido)
-        printf("=-=-=-=-=-=\n");
-    } else {
-        printf("CPF inválido.\n");
-        printf("=-=-=-=-=-=-=\n");
-    }
+    do {
+      printf("Digite o CPF do Dentista(Apenas numeros):\n");
+      scanf("%s", cpf);
+      if (validaCPF(cpf)) {
+          printf("CPF válido.\n");
+          printf("=-=-=-=-=-=\n");
+          valido = 1;
+      } else {
+          printf("CPF inválido.\n");
+          printf("=-=-=-=-=-=-=\n");
+      }
+    } while (!valido);
     
-    printf("\n");
-    printf("Digite o nome do dentista(Sem espaço entre os nomes): \n"); // Repete o mesmo processo que a validacao de cpf. (ulti.c)
-    scanf("%s", nome); 
-    if (validarNome(nome)) {
-        printf("Nome válido.\n");
-        printf("=-=-=-=-=-=-=\n");
-    } else {
-        printf("Nome inválido.\n");  
-        printf("=-=-=-=-=-=-=-=\n");
-    }
+    valido = 0;
+    do {
+      printf("\n");
+      printf("Digite o nome do Dentista: \n");
+      scanf("%s", nome); 
+      if (validarNome(nome)) {
+          printf("Nome válido.\n");
+          printf("=-=-=-=-=-=-=\n");
+          valido = 1;
+      } else {
+          printf("Nome inválido.\n");  
+      }
+    } while (!valido);
     
-    printf("\n");
-    printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
-    scanf("%s", telefone);
+    valido = 0;
+    do {
+      printf("\n");
+      printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
+      scanf("%s", telefone);
+      if (validaTele(telefone)) {
+          printf("Número de telefone válido.\n");
+          printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+          valido = 1;
+      } else {
+          printf("Número de telefone inválido.\n");
+      }
+    } while (!valido);
 
-    if (validaTele(telefone)) {
-        printf("Número de telefone válido.\n");
-    } else {
-        printf("Número de telefone inválido.\n");
-    }
+    exibirInformacoesFuncionario(cpf, nome, telefone);
     
-    printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -151,4 +161,20 @@ void excluirfun(void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 
+}
+
+void exibirInformacoesFuncionario(const char *cpf, const char *nome, const char *telefone) {
+    printf("\n");
+    printf("=============================\n");
+    printf("\n");
+    printf("   Informações do Dentista   \n");
+    printf("\n");
+    printf("=============================\n");
+    
+    printf("|CPF: %s\n", cpf);
+    printf("|Nome: %s\n", nome);
+    printf("|Telefone: %s\n", telefone);
+    
+    printf("\n");
+    getchar();
 }
