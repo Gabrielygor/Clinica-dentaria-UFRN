@@ -96,7 +96,7 @@ void cadastrofun(void){
     valido = 0;
     do {
       printf("\n");
-      printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais):");
+      printf("Digite um número de telefone(apenas números com o DD e com o 9 a mais):");
       scanf("%s", telefone);
       if (validaTele(telefone)) {
           printf("Número de telefone válido.\n");
