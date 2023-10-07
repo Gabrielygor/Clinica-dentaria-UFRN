@@ -54,10 +54,12 @@ void cliente(void) {
 }
 
 void cadastrocliente(void){
-    char cpf[12];    //Define as variaveis usadas no cadastro de clientes
+    char cpf[12]; // Definicao de variaveis usadas no cadasatro
     char nome[100];
     int idade;
     char telefone[12];
+    char data[10];
+    int valido = 0;  // Variavel para controle de loop
 
     system("clear||cls");
     printf("==========================\n");
@@ -66,56 +68,69 @@ void cadastrocliente(void){
     printf("\n");
     printf("==========================\n");
 
-    printf("Digite o CPF do paciente(Apenas numeros):\n");
-    scanf("%s", cpf);   //Recebe a variavel cpf
-    if (validaCPF(cpf)) {  // Testa a variavel cpf no validador(ulti.c)
-        printf("CPF válido.\n"); //Se o cpf for valido aprova ele 
-        printf("=-=-=-=-=-=\n");
-    } else {
-        printf("CPF inválido.\n");
+    do {
+      printf("======\n");
+      printf("Digite o CPF do paciente(Apenas numeros):");
+      scanf("%s", cpf); //Recebe a variavel cpf
+      if (validaCPF(cpf)) { //Funcao que valida o cpf
+          printf("CPF válido.\n");
+          printf("=-=-=-=-=-=\n");
+          valido = 1; //Sai do loop se o cpf for valido 
+      } else {
+          printf("CPF inválido.\n");
+      }
+    } while (!valido); // continua no loop se o cpf for valido
+
+    valido = 0; // Zera a variavel "valido" para que seja possivel repetir o mesmo processo acima 
+    do {
+      printf("\n");
+      printf("=======\n");
+      printf("Digite o nome do paciente(Sem espaço entre os nomes): ");
+      scanf("%s", nome); 
+      if (validarNome(nome)) {
+          printf("Nome válido.\n");
+          printf("=-=-=-=-=-=-=\n");
+          valido = 1;
+      } else {
+          printf("Nome inválido.\n");  
+      }
+    } while (!valido);
+
+    valido = 0;  //Mudar para validcao de data de nascimento (Semana = ajeitar ulti.c)
+    do {
+      printf("\n");
+      printf("======\n");
+      printf("Digite a data de nascimento do cliente DD/MM/AAAA:");
+      scanf("%9s", data);
+
+      if (lerData(data)) {
+        printf("Data válida.\n");       
         printf("=-=-=-=-=-=-=\n");
-    }
+        valido = 1;
+      } else {
+        printf("Data inválida. Tente novamente.\n");
+      }
+    } while (!valido);
 
-    printf("\n"); //Um \n para pular uma linha antes de perguntar/receber outra informacao
-    printf("Digite o nome do paciente(Sem espaço entre os nomes): \n");
-    scanf("%s", nome); //Repete o mesmo processo que o cpf acima OBS(Todos os validadores estão localizados na pasta ulti.c)
-    if (validarNome(nome)) {
-        printf("Nome válido.\n");
-        printf("=-=-=-=-=-=-=\n");
-    } else {
-        printf("Nome inválido.\n");  
-        printf("=-=-=-=-=-=-=-=\n");
-    }
+    valido = 0;
+    do {
+      printf("\n");
+      printf("======\n");
+      printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
+      scanf("%s", telefone);
+  
+      if (validaTele(telefone)) {
+          printf("Número válido.\n");
+          printf("=-=-=-=-=-=-=-=\n");
+          valido = 1;
+      } else {
+          printf("Número inválido.\n");
+      }
+    } while (!valido);
 
-    printf("\n");
-    printf("Digite sua idade: ");
-    scanf("%d", &idade);
+    exibirInformacoesCliente(cpf, nome, data, telefone);
 
-    int resultado = validarIdade(idade);
-
-    if (resultado) {
-        printf("Idade válida!\n");
-        printf("=-=-=-=-=-=-=\n");
-    } else {
-        printf("Idade inválida!\n");
-        printf("=-=-=-=-=-=-=-=\n");
-    }
-
-    printf("\n");
-    printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
-    scanf("%s", telefone);
-
-    if (validaTele(telefone)) {
-        printf("Número válido.\n");
-        printf("=-=-=-=-=-=-=-=\n");
-    } else {
-        printf("Número inválido.\n");
-        printf("=-=-=-=-=-=-=-=-=\n");
-    }
-
-    printf("\n");
-    printf(  "EM CONSTRUÇÃO...");
-    getchar();
+    
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -168,4 +183,22 @@ void excluircliente(void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 
+}
+
+void exibirInformacoesCliente(const char *cpf, const char *nome, const char *data, const char *telefone) {
+    printf("\n");
+    printf("=============================\n");
+    printf("\n");
+    printf("   Informações do Paciente   \n");
+    printf("\n");
+    printf("=============================\n");
+    
+    printf("CPF: %s\n", cpf);
+    printf("Nome: %s\n", nome);
+    printf("Data de nascimento: %s\n", data);
+    printf("Telefone: %s\n", telefone);
+    
+    printf("\n");
+    printf("Pressione <ENTER> para continuar...");
+    getchar();
 }
