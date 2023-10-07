@@ -67,7 +67,7 @@ void cadastrofun(void){
     printf("===========================\n");
   
     do {
-      printf("Digite o CPF do Dentista(Apenas numeros):\n");
+      printf("Digite o CPF do Dentista(Apenas numeros):");
       scanf("%s", cpf);
       if (validaCPF(cpf)) {
           printf("CPF válido.\n");
@@ -82,7 +82,7 @@ void cadastrofun(void){
     valido = 0;
     do {
       printf("\n");
-      printf("Digite o nome do Dentista: \n");
+      printf("Digite o nome do Dentista:");
       scanf("%s", nome); 
       if (validarNome(nome)) {
           printf("Nome válido.\n");
@@ -96,7 +96,7 @@ void cadastrofun(void){
     valido = 0;
     do {
       printf("\n");
-      printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
+      printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais):");
       scanf("%s", telefone);
       if (validaTele(telefone)) {
           printf("Número de telefone válido.\n");
