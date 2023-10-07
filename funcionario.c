@@ -8,7 +8,7 @@
 
 void funcionario(void){
     char op;
-    do {
+    do { //Faz um loop para o menu de funcionarios so aceitar opcoes validas
         system("clear||cls");
         printf("===================================\n");
         printf("\n");
@@ -66,20 +66,20 @@ void cadastrofun(void){
     printf("\n");
     printf("===========================\n");
   
-    do {
+    do { //Cria um loop que so sai quando a informacao for valida
       printf("Digite o CPF do Dentista(Apenas numeros):");
-      scanf("%s", cpf);
-      if (validaCPF(cpf)) {
+      scanf("%s", cpf); //Recebe a variavel CPF
+      if (validaCPF(cpf)) { //Valida o CPF
           printf("CPF válido.\n");
           printf("=-=-=-=-=-=\n");
-          valido = 1;
+          valido = 1; //Sai do loop se o CPF for valido
       } else {
           printf("CPF inválido.\n");
           printf("=-=-=-=-=-=-=\n");
       }
-    } while (!valido);
+    } while (!valido); 
     
-    valido = 0;
+    valido = 0; //Zera o variavel para ser possivel realizar o loop novamente
     do {
       printf("\n");
       printf("Digite o nome do Dentista:");
@@ -165,13 +165,13 @@ void excluirfun(void){
 
 void exibirInformacoesFuncionario(const char *cpf, const char *nome, const char *telefone) {
     printf("\n");
-    printf("=============================\n");
+    printf("=============================\n"); //Exibe as informaceos de cadastro dos funcionarios
     printf("\n");
     printf("   Informações do Dentista   \n");
     printf("\n");
     printf("=============================\n");
     
-    printf("|CPF: %s\n", cpf);
+    printf("|CPF: %s\n", cpf); //Da printf na string contida na variavel CPF
     printf("|Nome: %s\n", nome);
     printf("|Telefone: %s\n", telefone);
     
