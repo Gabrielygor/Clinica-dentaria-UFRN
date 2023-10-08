@@ -95,7 +95,7 @@ void cadastrocliente(void){
       }
     } while (!valido);
 
-    valido = 0;  //Mudar para validcao de data de nascimento (Semana = ajeitar ulti.c)
+    valido = 0;  
     do {
       printf("\n");
       printf("======\n");
@@ -192,10 +192,10 @@ void exibirInformacoesCliente(const char *cpf, const char *nome, const char *dat
     printf("\n");
     printf("=============================\n");
     
-    printf("CPF: %s\n", cpf);  //Da printf na string guardada na variavel CPF
-    printf("Nome: %s\n", nome);
-    printf("Data de nascimento: %s\n", data);
-    printf("Telefone: %s\n", telefone);
+    printf("|CPF: %s\n", cpf);  //Da printf na string guardada na variavel CPF
+    printf("|Nome: %s\n", nome);
+    printf("|Data de nascimento: %s\n", data);
+    printf("|Telefone: %s\n", telefone);
     
     printf("\n");
     getchar();
