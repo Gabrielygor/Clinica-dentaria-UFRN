@@ -54,7 +54,7 @@ void cliente(void) {
 }
 
 void cadastrocliente(void){
-    struct cliente Cliente; 
+    struct cliente Cliente; //Struct que contem as informacoes de cadastro dos cliente "cliente = paciente"
     int valido = 0;  // Variavel para controle de loop
 
     system("clear||cls");
@@ -132,11 +132,11 @@ void cadastrocliente(void){
     printf("   Informações do Paciente   \n");
     printf("\n");
     printf("=============================\n");
-
     printf("|CPF: %s\n", Cliente.cpf);  //Da printf na string guardada na variavel CPF
     printf("|Nome: %s\n", Cliente.nome);
     printf("|Data de nascimento: %s\n", Cliente.data);
     printf("|Telefone: %s\n", Cliente.telefone);
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 
     printf("\n");
     getchar();

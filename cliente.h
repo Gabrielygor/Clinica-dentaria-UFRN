@@ -1,4 +1,4 @@
-struct cliente {
+struct cliente { //STRUCT que contem as informacoes de cadastro de clientes "cliente = paciente"
     char cpf[12];
     char nome[100];
     char telefone[12];
