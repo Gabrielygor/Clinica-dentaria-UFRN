@@ -54,10 +54,7 @@ void cliente(void) {
 }
 
 void cadastrocliente(void){
-    char cpf[12]; // Definicao de variaveis usadas no cadasatro
-    char nome[100];
-    char telefone[12]; //Evitar usar variaveis do tipo int (Recomendacao de Flavius)
-    char data[10];
+    struct cliente Cliente; 
     int valido = 0;  // Variavel para controle de loop
 
     system("clear||cls");
@@ -70,8 +67,8 @@ void cadastrocliente(void){
     do {
       printf("======\n");
       printf("Digite o CPF do paciente(Apenas numeros):");
-      scanf("%s", cpf); //Recebe a variavel cpf
-      if (validaCPF(cpf)) { //Funcao que valida o cpf
+      scanf("%s",  Cliente.cpf); //Recebe a variavel cpf
+      if (validaCPF( Cliente.cpf)) { //Funcao que valida o cpf
           printf("CPF válido.\n");
           printf("=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o cpf for valido 
@@ -85,8 +82,8 @@ void cadastrocliente(void){
       printf("\n");
       printf("=======\n");
       printf("Digite o nome do paciente(Sem espaço entre os nomes): ");
-      scanf("%s", nome); 
-      if (validarNome(nome)) {
+      scanf("%s",  Cliente.nome); 
+      if (validarNome( Cliente.nome)) {
           printf("Nome válido.\n");
           printf("=-=-=-=-=-=-=\n");
           valido = 1;
@@ -100,9 +97,9 @@ void cadastrocliente(void){
       printf("\n");
       printf("======\n");
       printf("Digite a data de nascimento do cliente DD/MM/AAAA:");
-      scanf("%9s", data);
+      scanf("%9s",  Cliente.data);
 
-      if (lerData(data)) {
+      if (lerData (Cliente.data)) {
         printf("Data válida.\n");       
         printf("=-=-=-=-=-=-=\n");
         valido = 1;
@@ -116,9 +113,9 @@ void cadastrocliente(void){
       printf("\n");
       printf("======\n");
       printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
-      scanf("%s", telefone);
+      scanf("%s", Cliente.telefone);
   
-      if (validaTele(telefone)) {
+      if (validaTele(Cliente.telefone)) {
           printf("Número válido.\n");
           printf("=-=-=-=-=-=-=-=\n");
           valido = 1;
@@ -127,11 +124,24 @@ void cadastrocliente(void){
       }
     } while (!valido);
 
-    exibirInformacoesCliente(cpf, nome, data, telefone); //Chama a funcao que exibe as informacoes cadastradas de clientes
 
     
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    printf("=============================\n"); //Funcao que exibe as informacoes/dados dos pacientes
+    printf("\n");
+    printf("   Informações do Paciente   \n");
+    printf("\n");
+    printf("=============================\n");
+
+    printf("|CPF: %s\n", Cliente.cpf);  //Da printf na string guardada na variavel CPF
+    printf("|Nome: %s\n", Cliente.nome);
+    printf("|Data de nascimento: %s\n", Cliente.data);
+    printf("|Telefone: %s\n", Cliente.telefone);
+
+    printf("\n");
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
     getchar();
 
 }
@@ -184,19 +194,3 @@ void excluircliente(void){
 
 }
 
-void exibirInformacoesCliente(const char *cpf, const char *nome, const char *data, const char *telefone) {
-    printf("\n");
-    printf("=============================\n"); //Funcao que exibe as informacoes/dados dos pacientes
-    printf("\n");
-    printf("   Informações do Paciente   \n");
-    printf("\n");
-    printf("=============================\n");
-    
-    printf("|CPF: %s\n", cpf);  //Da printf na string guardada na variavel CPF
-    printf("|Nome: %s\n", nome);
-    printf("|Data de nascimento: %s\n", data);
-    printf("|Telefone: %s\n", telefone);
-    
-    printf("\n");
-    getchar();
-}
