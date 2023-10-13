@@ -54,7 +54,7 @@ void funcionario(void){
 }
 
 void cadastrofun(void){
-    struct funcionario Funcionario;
+    struct funcionario Funcionario; //Struct que contem as informacoes de cadastro de funcionarios
     int valido = 0;  // Variavel para controle de loop
   
     system("clear||cls");
@@ -81,7 +81,7 @@ void cadastrofun(void){
     do {
       printf("\n");
       printf("Digite o nome do Dentista:");
-      scanf("%s", Funcionario.nome); 
+      scanf("%s", Funcionario.nome); //"Funcionario.nome" armazena a variavel nome na struct de funcionarios "funcionario.h"
       if (validarNome(Funcionario.nome)) {
           printf("Nome válido.\n");
           printf("=-=-=-=-=-=-=\n");
@@ -116,6 +116,7 @@ void cadastrofun(void){
     printf("|CPF: %s\n", Funcionario.cpf); //Da printf na string contida na variavel CPF
     printf("|Nome: %s\n", Funcionario.nome);
     printf("|Telefone: %s\n", Funcionario.telefone);
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 
     printf("\n");
     getchar();

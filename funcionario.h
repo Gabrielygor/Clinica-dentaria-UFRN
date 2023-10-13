@@ -1,4 +1,4 @@
-struct funcionario {
+struct funcionario { //Struct que contem as variaveis usadas no cadastro de funcionarios
     char cpf[12];
     char nome[100];
     char telefone[12];
