@@ -112,7 +112,6 @@ void cadastrofun(void){
     printf("   Informações do Dentista   \n");
     printf("\n");
     printf("=============================\n");
-
     printf("|CPF: %s\n", Funcionario.cpf); //Da printf na string contida na variavel CPF
     printf("|Nome: %s\n", Funcionario.nome);
     printf("|Telefone: %s\n", Funcionario.telefone);
