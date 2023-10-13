@@ -54,9 +54,7 @@ void funcionario(void){
 }
 
 void cadastrofun(void){
-    char cpf[12];     //Variaveis utilizados no cadastro de funcionarios
-    char nome[100];
-    char telefone[12];
+    struct funcionario Funcionario;
     int valido = 0;  // Variavel para controle de loop
   
     system("clear||cls");
@@ -68,8 +66,8 @@ void cadastrofun(void){
   
     do { //Cria um loop que so sai quando a informacao for valida
       printf("Digite o CPF do Dentista(Apenas numeros):");
-      scanf("%s", cpf); //Recebe a variavel CPF
-      if (validaCPF(cpf)) { //Valida o CPF
+      scanf("%s", Funcionario.cpf); //Recebe a variavel CPF
+      if (validaCPF(Funcionario.cpf)) { //Valida o CPF
           printf("CPF válido.\n");
           printf("=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o CPF for valido
@@ -83,8 +81,8 @@ void cadastrofun(void){
     do {
       printf("\n");
       printf("Digite o nome do Dentista:");
-      scanf("%s", nome); 
-      if (validarNome(nome)) {
+      scanf("%s", Funcionario.nome); 
+      if (validarNome(Funcionario.nome)) {
           printf("Nome válido.\n");
           printf("=-=-=-=-=-=-=\n");
           valido = 1;
@@ -97,8 +95,8 @@ void cadastrofun(void){
     do {
       printf("\n");
       printf("Digite um número de telefone(apenas números com o DD e com o 9 a mais):");
-      scanf("%s", telefone);
-      if (validaTele(telefone)) {
+      scanf("%s", Funcionario.telefone);
+      if (validaTele(Funcionario.telefone)) {
           printf("Número de telefone válido.\n");
           printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
           valido = 1;
@@ -107,8 +105,20 @@ void cadastrofun(void){
       }
     } while (!valido);
 
-    exibirInformacoesFuncionario(cpf, nome, telefone);
     
+    printf("\n");
+    printf("=============================\n"); //Exibe as informaceos de cadastro dos funcionarios
+    printf("\n");
+    printf("   Informações do Dentista   \n");
+    printf("\n");
+    printf("=============================\n");
+
+    printf("|CPF: %s\n", Funcionario.cpf); //Da printf na string contida na variavel CPF
+    printf("|Nome: %s\n", Funcionario.nome);
+    printf("|Telefone: %s\n", Funcionario.telefone);
+
+    printf("\n");
+    getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -163,18 +173,3 @@ void excluirfun(void){
 
 }
 
-void exibirInformacoesFuncionario(const char *cpf, const char *nome, const char *telefone) {
-    printf("\n");
-    printf("=============================\n"); //Exibe as informaceos de cadastro dos funcionarios
-    printf("\n");
-    printf("   Informações do Dentista   \n");
-    printf("\n");
-    printf("=============================\n");
-    
-    printf("|CPF: %s\n", cpf); //Da printf na string contida na variavel CPF
-    printf("|Nome: %s\n", nome);
-    printf("|Telefone: %s\n", telefone);
-    
-    printf("\n");
-    getchar();
-}

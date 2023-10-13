@@ -1,8 +1,12 @@
+struct funcionario {
+    char cpf[12];
+    char nome[100];
+    char telefone[12];
+};
+
 void funcionario(void);           //Assinatura de Funcionarios 
 void cadastrofun(void);
 void pesquisafun(void);
 void atualizafun(void);
 void listafun(void);
 void excluirfun(void);
-
-void exibirInformacoesFuncionario(const char *cpf, const char *nome, const char *telefone);
