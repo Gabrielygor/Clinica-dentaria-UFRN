@@ -67,7 +67,7 @@ void cadastrocliente(void){
     do {
       printf("======\n");
       printf("Digite o CPF do paciente(Apenas numeros):");
-      scanf("%s",  Cliente.cpf); //Recebe a variavel cpf
+      scanf("%s",  Cliente.cpf); //Recebe a variavel cpf   //Antes da struct == cpf dps ficou ficou Clinete.cpf
       if (validaCPF( Cliente.cpf)) { //Funcao que valida o cpf
           printf("CPF válido.\n");
           printf("=-=-=-=-=-=\n");
