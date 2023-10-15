@@ -7,9 +7,9 @@
 
 
 void agendamento(void){
-    char op;
-    do{
-        system("clear||cls");
+    char op; //Variavel de op(opcao) para navegar entre os modulos de agendamento 
+    do{ //Cria loop que se repete se a opcao for invalida
+        system("clear||cls"); //limpa a tela
         printf("=================\n");
         printf("\n");
         printf("   Agendamento   \n");
@@ -25,13 +25,13 @@ void agendamento(void){
         printf("=-=-=-=-=-=-=-=-=\n");
         printf("\n");
         printf("|Escolha a opção desejada: ");
-        scanf(" %c", &op);
+        scanf(" %c", &op); //Recebe a opcao desejada
         getchar();
       
-        switch (op){
+        switch (op){ //Switch case com as opcoes disponiveis para esse modulo
           case '1':
             agendarconsulta();
-            break;
+            break; //Break funcao que para o programa quando entrar no modulo agendar consulta
           case '2':
             agendarretorno();
             break;
@@ -45,18 +45,15 @@ void agendamento(void){
             break;
           default:
             printf("Opção inválida! Tente novamente.\n");
-
-
-
             }
       } while (op != '0');
 }  
 
 void agendarconsulta(void){
-    struct agendamento Agendamento;
-    int valido = 0;
+    struct agendamento Agendamento; //Struct que contem as variaveis utilizadas para o agendamento de consultas
+    int valido = 0; //Variavel para loop 
 
-    system("clear||cls");
+    system("clear||cls"); //Limpa a tela
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     printf("\n");
     printf("   Agendamento de consulta   \n");
@@ -68,46 +65,46 @@ void agendarconsulta(void){
     printf("Digite o funcionário responsavel pela consulta:\n");
 
   
-    valido = 0;  
+    valido = 0; //Zera a variavel para repetir o loop 
     do {
       printf("\n");
       printf("======\n");
       printf("Digite a data da consulta(DD/MM/AA):");
-      scanf("%9s",  Agendamento.data);
+      scanf("%9s",  Agendamento.data); //Pergunta a data e salva na variavel data com o ponteira de Agendamento.data
   
-      if (lerData (Agendamento.data)) {
+      if (lerData (Agendamento.data)) { //Valida se e uma data valida
         printf("Data válida.\n");       
         printf("=-=-=-=-=-=-=\n");
-        valido = 1;
-      } else {
+        valido = 1; //Se a data for valida muda a variavel de controle para 1 e encerra o loop 
+      } else { //Se nao continua no loop ate que a opcao seja valida
         printf("Data inválida. Tente novamente.\n");
       }
-    } while (!valido);
+    } while (!valido); 
   
-    valido = 0;
+    valido = 0; //Zera a variavel novamente para repetir o processo "denovo"
     do{
       printf("\n");
       printf("======\n");
       printf("Digite o horario da consulta (HH:MM):");
-      scanf("%5s",  Agendamento.hora);
+      scanf("%5s",  Agendamento.hora); //Pergunta e salva na variavel hora
 
-      if(lerHora(Agendamento.hora)) {
+      if(lerHora(Agendamento.hora)) { // Valida se e uma hora valida
         printf("Hora válida.\n");
         printf("=-=-=-=-=-=-=\n");
-        valido = 1;
-      }else {
+        valido = 1; //Sai do loop se a hora for valida
+      }else { //Se nao continua no loop ate q a opcao seja valida
         printf("Hora inválida. Tente novamente.\n");
       }
     }while (!valido);
 
     printf("\n");
-    printf("=================================\n"); //Funcao que exibe as informacoes/dados dos pacientes
+    printf("=================================\n"); //Funcao que exibe as informacoes/dados da consulta
     printf("\n");
     printf("   Informações do Agendamento   \n");
     printf("\n");
     printf("=================================\n");
-    printf("|Data da consulta: %s\n", Agendamento.data);
-    printf("|Hora da consulta: %s\n", Agendamento.hora);
+    printf("|Data da consulta: %s\n", Agendamento.data); //Exibe a data guardada na variavel
+    printf("|Hora da consulta: %s\n", Agendamento.hora); //Exibe a hora guardada na variavel
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
   
     printf("\n");
