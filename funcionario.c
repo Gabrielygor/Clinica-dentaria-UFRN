@@ -7,9 +7,9 @@
 
 
 void funcionario(void){
-    char op;
+    char op; //Recebe o opcao para navegar entres os modulos de fun
     do { //Faz um loop para o menu de funcionarios so aceitar opcoes validas
-        system("clear||cls");
+        system("clear||cls"); //Limpa a tela
         printf("===================================\n");
         printf("\n");
         printf("   Gerenciamento de Funcionarios   \n");
@@ -26,13 +26,13 @@ void funcionario(void){
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("\n");
         printf("|Escolha a opção desejada: ");
-        scanf(" %c", &op);
+        scanf(" %c", &op); //Recebe a opcao desejada
         getchar();
     
-        switch (op){
+        switch (op){ //Switch case para navegar entre os modulos de fun
           case '1':
               cadastrofun();
-              break;
+              break; 
           case '2':
               pesquisafun();
               break;
@@ -82,25 +82,25 @@ void cadastrofun(void){
       printf("\n");
       printf("Digite o nome do Dentista:");
       scanf("%s", Funcionario.nome); //"Funcionario.nome" armazena a variavel nome na struct de funcionarios "funcionario.h"
-      if (validarNome(Funcionario.nome)) {
+      if (validarNome(Funcionario.nome)) { // Valida o nome
           printf("Nome válido.\n");
           printf("=-=-=-=-=-=-=\n");
-          valido = 1;
-      } else {
+          valido = 1; //Sai do loop se o nome for valido
+      } else { //Se n repete ate o nome ser validado
           printf("Nome inválido.\n");  
       }
     } while (!valido);
     
-    valido = 0;
-    do {
+    valido = 0; //Zera a variavel
+    do { //Cria loop 
       printf("\n");
       printf("Digite um número de telefone(apenas números com o DD e com o 9 a mais):");
-      scanf("%s", Funcionario.telefone);
-      if (validaTele(Funcionario.telefone)) {
+      scanf("%s", Funcionario.telefone); //Recebe o telefone
+      if (validaTele(Funcionario.telefone)) { //Valida o telefone
           printf("Número de telefone válido.\n");
           printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-          valido = 1;
-      } else {
+          valido = 1; //Sai do loop se o telefone for valido
+      } else { //Se n repete o loop ate o telefone ser valido
           printf("Número de telefone inválido.\n");
       }
     } while (!valido);
@@ -113,8 +113,8 @@ void cadastrofun(void){
     printf("\n");
     printf("=============================\n");
     printf("|CPF: %s\n", Funcionario.cpf); //Da printf na string contida na variavel CPF
-    printf("|Nome: %s\n", Funcionario.nome);
-    printf("|Telefone: %s\n", Funcionario.telefone);
+    printf("|Nome: %s\n", Funcionario.nome); //Exibe o nome do func
+    printf("|Telefone: %s\n", Funcionario.telefone); //Exibe o telefone do func
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 
     printf("\n");
