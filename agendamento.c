@@ -53,16 +53,67 @@ void agendamento(void){
 }  
 
 void agendarconsulta(void){
+    struct agendamento Agendamento;
+    int valido = 0;
+
     system("clear||cls");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("\n");
+    printf("   Agendamento de consulta   \n");
+    printf("\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=\n");
+    printf("\n");
+
     printf("Digite o CPF do cliente para a consulta:\n");
     printf("Digite o funcionário responsavel pela consulta:\n");
-    printf("Digite a data da consulta:\n");
-    printf("Digite o horário da consulta:\n");
+
+  
+    valido = 0;  
+    do {
+      printf("\n");
+      printf("======\n");
+      printf("Digite a data da consulta(DD/MM/AA):");
+      scanf("%9s",  Agendamento.data);
+  
+      if (lerData (Agendamento.data)) {
+        printf("Data válida.\n");       
+        printf("=-=-=-=-=-=-=\n");
+        valido = 1;
+      } else {
+        printf("Data inválida. Tente novamente.\n");
+      }
+    } while (!valido);
+  
+    valido = 0;
+    do{
+      printf("\n");
+      printf("======\n");
+      printf("Digite o horario da consulta (HH:MM):");
+      scanf("%5s",  Agendamento.hora);
+
+      if(lerHora(Agendamento.hora)) {
+        printf("Hora válida.\n");
+        printf("=-=-=-=-=-=-=\n");
+        valido = 1;
+      }else {
+        printf("Hora inválida. Tente novamente.\n");
+      }
+    }while (!valido);
+
     printf("\n");
-    printf("EM CONSTRUÇÃO...");
+    printf("=================================\n"); //Funcao que exibe as informacoes/dados dos pacientes
+    printf("\n");
+    printf("   Informações do Agendamento   \n");
+    printf("\n");
+    printf("=================================\n");
+    printf("|Data da consulta: %s\n", Agendamento.data);
+    printf("|Hora da consulta: %s\n", Agendamento.hora);
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+  
+    printf("\n");
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
     getchar();
 
 }
