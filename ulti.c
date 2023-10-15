@@ -99,7 +99,7 @@ int ehDg(char c){
   }
 }
 
-/*
+
 int lerHora(char hora[5]) {
     int tamanho = strlen(hora); //formato HH:MM  Validacoes ainda nao usados no programa 
 
@@ -121,7 +121,7 @@ int lerHora(char hora[5]) {
     return 1;
 }
 
-*/
+
 
 // Valida data
 int lerData(char data[9]) {
