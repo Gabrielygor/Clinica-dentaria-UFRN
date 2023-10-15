@@ -9,7 +9,7 @@
 void cliente(void) {
     char op;
     do { // Loop para o menu de Clientes se repetir                                                           
-        system("clear||cls");
+        system("clear||cls"); //Limpa a tela 
         printf("===============================\n");
         printf("\n");
         printf("   Gerenciamento de Pacientes   \n");
@@ -26,10 +26,10 @@ void cliente(void) {
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("\n");
         printf("|Escolha a opção desejada: ");
-        scanf(" %c", &op);
+        scanf(" %c", &op); //Recebe a opcao desejada
         getchar();
 
-        switch (op) {
+        switch (op) { //Switch case para opcoes disponiveis no modulo de clientes
             case '1':
                 cadastrocliente();
                 break;
@@ -72,7 +72,7 @@ void cadastrocliente(void){
           printf("CPF válido.\n");
           printf("=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o cpf for valido 
-      } else {
+      } else { //Se nao repete ate o cpf se validado
           printf("CPF inválido.\n");
       }
     } while (!valido); // continua no loop se o cpf for valido
@@ -82,44 +82,44 @@ void cadastrocliente(void){
       printf("\n");
       printf("=======\n");
       printf("Digite o nome do paciente(Sem espaço entre os nomes): ");
-      scanf("%s",  Cliente.nome); 
-      if (validarNome( Cliente.nome)) {
+      scanf("%s",  Cliente.nome); //Recebe o nome do cliente
+      if (validarNome( Cliente.nome)) { //Valida o nome do cliente
           printf("Nome válido.\n");
           printf("=-=-=-=-=-=-=\n");
-          valido = 1;
-      } else {
+          valido = 1; //Sai do loop se o nome for valido 
+      } else { //Se nao repete ate o nome ser validado
           printf("Nome inválido.\n");  
       }
     } while (!valido);
 
-    valido = 0;  
-    do {
+    valido = 0; //Zera a variavel novamente
+    do { //Cria o laco
       printf("\n");
       printf("======\n");
       printf("Digite a data de nascimento do cliente DD/MM/AAAA:");
-      scanf("%9s",  Cliente.data);
+      scanf("%9s",  Cliente.data); //Rece a variavel data
 
-      if (lerData (Cliente.data)) {
+      if (lerData (Cliente.data)) { //Valida a data
         printf("Data válida.\n");       
         printf("=-=-=-=-=-=-=\n");
-        valido = 1;
-      } else {
+        valido = 1; //Sai do loop se a data for valida
+      } else { //Se nao repete o loop 
         printf("Data inválida. Tente novamente.\n");
       }
     } while (!valido);
 
-    valido = 0;
-    do {
+    valido = 0; //Zera denovo kkkkkk
+    do { //Cria loop novamente kk
       printf("\n");
       printf("======\n");
       printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
-      scanf("%s", Cliente.telefone);
+      scanf("%s", Cliente.telefone); //Recebe a variavel de telefone
   
-      if (validaTele(Cliente.telefone)) {
+      if (validaTele(Cliente.telefone)) { //Valida o telefone
           printf("Número válido.\n");
           printf("=-=-=-=-=-=-=-=\n");
-          valido = 1;
-      } else {
+          valido = 1; //Se o telefone for valido sai do krai do loop 
+      } else { //Se nao repete ate o telefone ser validado 
           printf("Número inválido.\n");
       }
     } while (!valido);
@@ -133,9 +133,9 @@ void cadastrocliente(void){
     printf("\n");
     printf("=============================\n");
     printf("|CPF: %s\n", Cliente.cpf);  //Da printf na string guardada na variavel CPF
-    printf("|Nome: %s\n", Cliente.nome);
-    printf("|Data de nascimento: %s\n", Cliente.data);
-    printf("|Telefone: %s\n", Cliente.telefone);
+    printf("|Nome: %s\n", Cliente.nome); //Exibe o nome
+    printf("|Data de nascimento: %s\n", Cliente.data); //Exibe a data
+    printf("|Telefone: %s\n", Cliente.telefone); //Exibe o telefone
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 
     printf("\n");
