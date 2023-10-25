@@ -8,6 +8,9 @@
 
 void cliente(void) {
     char op;
+    Cliente* cli;
+
+
     do { // Loop para o menu de Clientes se repetir                                                           
         system("clear||cls"); //Limpa a tela 
         printf("===============================\n");
@@ -34,7 +37,7 @@ void cliente(void) {
                 cadastrocliente();
                 break;
             case '2':
-                pesquisacliente();
+                pesquisacliente(cli);
                 break;
             case '3':
                 atualizacliente();
@@ -53,8 +56,9 @@ void cliente(void) {
     } while (op != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
 }
 
-void cadastrocliente(void){
-    struct cliente Cliente; //Struct que contem as informacoes de cadastro dos cliente "cliente = paciente"
+Cliente* cadastrocliente(void){
+    Cliente *cli;
+    cli = (Cliente*)malloc(sizeof(Cliente));
     int valido = 0;  // Variavel para controle de loop
 
     system("clear||cls");
@@ -67,8 +71,8 @@ void cadastrocliente(void){
     do {
       printf("======\n");
       printf("Digite o CPF do paciente(Apenas numeros):");
-      scanf("%s",  Cliente.cpf); //Recebe a variavel cpf   //Antes da struct == cpf dps ficou ficou Clinete.cpf
-      if (validaCPF( Cliente.cpf)) { //Funcao que valida o cpf
+      scanf("%s",  cli->cpf); //Recebe a variavel cpf   //Antes da struct == cpf dps ficou ficou Clinete.cpf
+      if (validaCPF( cli->cpf)) { //Funcao que valida o cpf
           printf("CPF válido.\n");
           printf("=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o cpf for valido 
@@ -82,8 +86,8 @@ void cadastrocliente(void){
       printf("\n");
       printf("=======\n");
       printf("Digite o nome do paciente(Sem espaço entre os nomes): ");
-      scanf("%s",  Cliente.nome); //Recebe o nome do cliente
-      if (validarNome( Cliente.nome)) { //Valida o nome do cliente
+      scanf("%s",  cli->nome); //Recebe o nome do cliente
+      if (validarNome( cli->nome)) { //Valida o nome do cliente
           printf("Nome válido.\n");
           printf("=-=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o nome for valido 
@@ -97,9 +101,9 @@ void cadastrocliente(void){
       printf("\n");
       printf("======\n");
       printf("Digite a data de nascimento do cliente DD/MM/AAAA:");
-      scanf("%9s",  Cliente.data); //Rece a variavel data
+      scanf("%9s",  cli->data); //Rece a variavel data
 
-      if (lerData (Cliente.data)) { //Valida a data
+      if (lerData (cli->data)) { //Valida a data
         printf("Data válida.\n");       
         printf("=-=-=-=-=-=-=\n");
         valido = 1; //Sai do loop se a data for valida
@@ -113,9 +117,9 @@ void cadastrocliente(void){
       printf("\n");
       printf("======\n");
       printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
-      scanf("%s", Cliente.telefone); //Recebe a variavel de telefone
+      scanf("%s", cli->telefone); //Recebe a variavel de telefone
   
-      if (validaTele(Cliente.telefone)) { //Valida o telefone
+      if (validaTele(cli->telefone)) { //Valida o telefone
           printf("Número válido.\n");
           printf("=-=-=-=-=-=-=-=\n");
           valido = 1; //Se o telefone for valido sai do krai do loop 
@@ -132,10 +136,10 @@ void cadastrocliente(void){
     printf("   Informações do Paciente   \n");
     printf("\n");
     printf("=============================\n");
-    printf("|CPF: %s\n", Cliente.cpf);  //Da printf na string guardada na variavel CPF
-    printf("|Nome: %s\n", Cliente.nome); //Exibe o nome
-    printf("|Data de nascimento: %s\n", Cliente.data); //Exibe a data
-    printf("|Telefone: %s\n", Cliente.telefone); //Exibe o telefone
+    printf("|CPF: %s\n", cli->cpf);  //Da printf na string guardada na variavel CPF
+    printf("|Nome: %s\n", cli->nome); //Exibe o nome
+    printf("|Data de nascimento: %s\n", cli->data); //Exibe a data
+    printf("|Telefone: %s\n", cli->telefone); //Exibe o telefone
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 
     printf("\n");
@@ -146,7 +150,7 @@ void cadastrocliente(void){
 
 }
 
-void pesquisacliente(void){
+void pesquisacliente(const Cliente* cli){
     system("clear||cls");
     printf("Digite o CPF do cliente que deseja buscar:\n");
     printf("\n");
