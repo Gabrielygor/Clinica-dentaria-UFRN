@@ -8,6 +8,8 @@
 
 void agendamento(void){
     char op; //Variavel de op(opcao) para navegar entre os modulos de agendamento 
+    Agendamento * age;
+
     do{ //Cria loop que se repete se a opcao for invalida
         system("clear||cls"); //limpa a tela
         printf("=================\n");
@@ -49,8 +51,9 @@ void agendamento(void){
       } while (op != '0');
 }  
 
-void agendarconsulta(void){
-    struct agendamento Agendamento; //Struct que contem as variaveis utilizadas para o agendamento de consultas
+Agendamento* agendarconsulta(void){
+    Agendamento *age;
+    age = (Agendamento*)malloc(sizeof(Agendamento));
     int valido = 0; //Variavel para loop 
 
     system("clear||cls"); //Limpa a tela
@@ -70,9 +73,9 @@ void agendarconsulta(void){
       printf("\n");
       printf("======\n");
       printf("Digite a data da consulta(DD/MM/AA):");
-      scanf("%9s",  Agendamento.data); //Pergunta a data e salva na variavel data com o ponteira de Agendamento.data
+      scanf("%9s",  age->data); //Pergunta a data e salva na variavel data com o ponteira de Agendamento.data
   
-      if (lerData (Agendamento.data)) { //Valida se e uma data valida
+      if (lerData (age->data)) { //Valida se e uma data valida
         printf("Data válida.\n");       
         printf("=-=-=-=-=-=-=\n");
         valido = 1; //Se a data for valida muda a variavel de controle para 1 e encerra o loop 
@@ -86,9 +89,9 @@ void agendarconsulta(void){
       printf("\n");
       printf("======\n");
       printf("Digite o horario da consulta (HH:MM):");
-      scanf("%5s",  Agendamento.hora); //Pergunta e salva na variavel hora
+      scanf("%5s",  age->hora); //Pergunta e salva na variavel hora
 
-      if(lerHora(Agendamento.hora)) { // Valida se e uma hora valida
+      if(lerHora(age->hora)) { // Valida se e uma hora valida
         printf("Hora válida.\n");
         printf("=-=-=-=-=-=-=\n");
         valido = 1; //Sai do loop se a hora for valida
@@ -103,8 +106,8 @@ void agendarconsulta(void){
     printf("   Informações do Agendamento   \n");
     printf("\n");
     printf("=================================\n");
-    printf("|Data da consulta: %s\n", Agendamento.data); //Exibe a data guardada na variavel
-    printf("|Hora da consulta: %s\n", Agendamento.hora); //Exibe a hora guardada na variavel
+    printf("|Data da consulta: %s\n",age->data); //Exibe a data guardada na variavel
+    printf("|Hora da consulta: %s\n",age->hora); //Exibe a hora guardada na variavel
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
   
     printf("\n");

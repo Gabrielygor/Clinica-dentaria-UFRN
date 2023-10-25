@@ -1,3 +1,4 @@
+typedef struct agendamento Agendamento;
 struct agendamento{
     char cpf[12];
     char data[11];
@@ -6,7 +7,7 @@ struct agendamento{
 };
 
 void agendamento(void);        // Assinatura de Agendamentos
-void agendarconsulta(void); 
+Agendamento* agendarconsulta(void); 
 void agendarretorno(void);
 void excluirconsulta(void);
 void excluirretorno(void);
