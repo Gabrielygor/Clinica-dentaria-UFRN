@@ -1,3 +1,4 @@
+typedef struct funcionario Funcionario;
 struct funcionario { //Struct que contem as variaveis usadas no cadastro de funcionarios
     char cpf[12];
     char nome[100];
@@ -5,7 +6,7 @@ struct funcionario { //Struct que contem as variaveis usadas no cadastro de func
 };
 
 void funcionario(void);           //Assinatura de Funcionarios 
-void cadastrofun(void);
+Funcionario* cadastrofun(void);
 void pesquisafun(void);
 void atualizafun(void);
 void listafun(void);
