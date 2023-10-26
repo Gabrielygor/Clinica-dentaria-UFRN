@@ -30,7 +30,7 @@ int main(void) {  // Função do programa principal que contem a logica de progr
     char op;
     do {
         tela_menu_p(); //Chama a Função de menu principal 
-        printf("Escolha a opção desejada: "); //Pergunta a opção
+        printf("Escolha a opcao desejada: "); //Pergunta a opção
         scanf(" %c", &op); //Le a opção desejada
         getchar();  //Limpa a opção escolhida acima (contida no scanf)
 
@@ -61,7 +61,7 @@ int main(void) {  // Função do programa principal que contem a logica de progr
                 // Caso 0, o programa sairá do loop e encerrará
                 break;
             default: // Opção que acontece se qualquer uma das opções pre selecionadas não for escolhida 
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opção invalida! Tente novamente.\n");
         }
     } while (op != '0'); //Loop para continuar o programa quando a opção for diferente de 0
 
