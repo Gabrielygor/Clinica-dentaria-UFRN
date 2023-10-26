@@ -99,9 +99,10 @@ int ehDg(char c){
   }
 }
 
+// Funcao adaptada do aluno https://github.com/Japagabriel
 
 int lerHora(char hora[5]) {
-    int tamanho = strlen(hora); //formato HH:MM  Validacoes ainda nao usados no programa 
+    int tamanho = strlen(hora); //formato HH:MM  
 
     if (tamanho != 5) {
         return 0;
