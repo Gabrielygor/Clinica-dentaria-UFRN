@@ -28,7 +28,7 @@ void cliente(void) {
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("\n");
-        printf("|Escolha a opção desejada: ");
+        printf("|Escolha a opcao desejada: ");
         scanf(" %c", &op); //Recebe a opcao desejada
         getchar();
 
@@ -73,11 +73,11 @@ Cliente* cadastrocliente(void){
       printf("Digite o CPF do paciente(Apenas numeros):");
       scanf("%s",  cli->cpf); //Recebe a variavel cpf   //Antes da struct == cpf dps ficou ficou Clinete.cpf
       if (validaCPF( cli->cpf)) { //Funcao que valida o cpf
-          printf("CPF válido.\n");
+          printf("CPF valido.\n");
           printf("=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o cpf for valido 
       } else { //Se nao repete ate o cpf se validado
-          printf("CPF inválido.\n");
+          printf("CPF invalido.\n");
       }
     } while (!valido); // continua no loop se o cpf for valido
 
@@ -85,14 +85,14 @@ Cliente* cadastrocliente(void){
     do {
       printf("\n");
       printf("=======\n");
-      printf("Digite o nome do paciente(Sem espaço entre os nomes): ");
+      printf("Digite o nome do paciente(Sem espaco entre os nomes): ");
       scanf("%s",  cli->nome); //Recebe o nome do cliente
       if (validarNome( cli->nome)) { //Valida o nome do cliente
-          printf("Nome válido.\n");
+          printf("Nome valido.\n");
           printf("=-=-=-=-=-=-=\n");
           valido = 1; //Sai do loop se o nome for valido 
       } else { //Se nao repete ate o nome ser validado
-          printf("Nome inválido.\n");  
+          printf("Nome invalido.\n");  
       }
     } while (!valido);
 
@@ -100,15 +100,15 @@ Cliente* cadastrocliente(void){
     do { //Cria o laco
       printf("\n");
       printf("======\n");
-      printf("Digite a data de nascimento do cliente DD/MM/AAAA:");
+      printf("Digite a data de nascimento do cliente DD/MM/AA:");
       scanf("%9s",  cli->data); //Rece a variavel data
 
       if (lerData (cli->data)) { //Valida a data
-        printf("Data válida.\n");       
+        printf("Data valida.\n");       
         printf("=-=-=-=-=-=-=\n");
         valido = 1; //Sai do loop se a data for valida
       } else { //Se nao repete o loop 
-        printf("Data inválida. Tente novamente.\n");
+        printf("Data invalida. Tente novamente.\n");
       }
     } while (!valido);
 
@@ -116,15 +116,15 @@ Cliente* cadastrocliente(void){
     do { //Cria loop novamente kk
       printf("\n");
       printf("======\n");
-      printf("Digite um número de telefone (apenas números com o DD e com o 9 a mais): ");
+      printf("Digite um numero de telefone (apenas numeros com o DD e com o 9 a mais): ");
       scanf("%s", cli->telefone); //Recebe a variavel de telefone
   
       if (validaTele(cli->telefone)) { //Valida o telefone
-          printf("Número válido.\n");
+          printf("Numero valido.\n");
           printf("=-=-=-=-=-=-=-=\n");
           valido = 1; //Se o telefone for valido sai do krai do loop 
       } else { //Se nao repete ate o telefone ser validado 
-          printf("Número inválido.\n");
+          printf("Numero invalido.\n");
       }
     } while (!valido);
 
@@ -133,7 +133,7 @@ Cliente* cadastrocliente(void){
     printf("\n");
     printf("=============================\n"); //Funcao que exibe as informacoes/dados dos pacientes
     printf("\n");
-    printf("   Informações do Paciente   \n");
+    printf("   Informacoes do Paciente   \n");
     printf("\n");
     printf("=============================\n");
     printf("|CPF: %s\n", cli->cpf);  //Da printf na string guardada na variavel CPF
