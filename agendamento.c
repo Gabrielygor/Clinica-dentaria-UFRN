@@ -26,7 +26,7 @@ void agendamento(void){
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=\n");
         printf("\n");
-        printf("|Escolha a opção desejada: ");
+        printf("|Escolha a opcao desejada: ");
         scanf(" %c", &op); //Recebe a opcao desejada
         getchar();
       
@@ -46,7 +46,7 @@ void agendamento(void){
           case '0':
             break;
           default:
-            printf("Opção inválida! Tente novamente.\n");
+            printf("Opcao invalida! Tente novamente.\n");
             }
       } while (op != '0');
 }  
@@ -76,11 +76,11 @@ Agendamento* agendarconsulta(void){
       scanf("%9s",  age->data); //Pergunta a data e salva na variavel data com o ponteira de Agendamento.data
   
       if (lerData (age->data)) { //Valida se e uma data valida
-        printf("Data válida.\n");       
+        printf("Data valida.\n");       
         printf("=-=-=-=-=-=-=\n");
         valido = 1; //Se a data for valida muda a variavel de controle para 1 e encerra o loop 
       } else { //Se nao continua no loop ate que a opcao seja valida
-        printf("Data inválida. Tente novamente.\n");
+        printf("Data invalida. Tente novamente.\n");
       }
     } while (!valido); 
   
@@ -92,18 +92,18 @@ Agendamento* agendarconsulta(void){
       scanf("%5s",  age->hora); //Pergunta e salva na variavel hora
 
       if(lerHora(age->hora)) { // Valida se e uma hora valida
-        printf("Hora válida.\n");
+        printf("Hora valida.\n");
         printf("=-=-=-=-=-=-=\n");
         valido = 1; //Sai do loop se a hora for valida
       }else { //Se nao continua no loop ate q a opcao seja valida
-        printf("Hora inválida. Tente novamente.\n");
+        printf("Hora invalida. Tente novamente.\n");
       }
     }while (!valido);
 
     printf("\n");
     printf("=================================\n"); //Funcao que exibe as informacoes/dados da consulta
     printf("\n");
-    printf("   Informações do Agendamento   \n");
+    printf("   Informacoes do Agendamento   \n");
     printf("\n");
     printf("=================================\n");
     printf("|Data da consulta: %s\n",age->data); //Exibe a data guardada na variavel
