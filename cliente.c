@@ -3,6 +3,7 @@
 #include "cliente.h"    //Bibliotecas/funcoes criadas por min e icluidas usando aspas " "
 #include "telas.h"
 #include "ulti.h"
+#include <string.h>
 
 
 
@@ -128,19 +129,9 @@ Cliente* cadastrocliente(void){
       }
     } while (!valido);
 
+    saveCliente(cli);
 
-    
-    printf("\n");
-    printf("=============================\n"); //Funcao que exibe as informacoes/dados dos pacientes
-    printf("\n");
-    printf("   Informacoes do Paciente   \n");
-    printf("\n");
-    printf("=============================\n");
-    printf("|CPF: %s\n", cli->cpf);  //Da printf na string guardada na variavel CPF
-    printf("|Nome: %s\n", cli->nome); //Exibe o nome
-    printf("|Data de nascimento: %s\n", cli->data); //Exibe a data
-    printf("|Telefone: %s\n", cli->telefone); //Exibe o telefone
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    free(cli);
 
     printf("\n");
     getchar();
@@ -150,16 +141,55 @@ Cliente* cadastrocliente(void){
 
 }
 
-void pesquisacliente(const Cliente* cli){
+void pesquisacliente(const Cliente* cli) {
+    char cpf[12];
+  
     system("clear||cls");
-    printf("Digite o CPF do cliente que deseja buscar:\n");
+    printf("Informe o CPF do paciente:");
     printf("\n");
-    printf("EM CONSTRUÇÃO...");
+
+    scanf("%s", cpf);
+
+    // Abrir o arquivo de clientes para leitura
+    FILE* file = fopen("clientes.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    // Loop para buscar o cliente com o CPF fornecido
+    Cliente clienteEncontrado;
+    int clienteEncontradoFlag = 0;
+
+    while (fread(&clienteEncontrado, sizeof(Cliente), 1, file) == 1) {
+        if (strcmp(clienteEncontrado.cpf, cpf) == 0) {
+            // Cliente encontrado, exibir informações
+
+            printf("==============\n");
+            printf("   Paciente   \n");
+            printf("===============\n");
+            printf("\n");
+            printf("|CPF: %s\n", clienteEncontrado.cpf);
+            printf("|Nome: %s\n", clienteEncontrado.nome);
+            printf("|Data de Nascimento: %s\n", clienteEncontrado.data);
+            printf("|Telefone: %s\n" , clienteEncontrado.telefone);
+            clienteEncontradoFlag = 1;
+            break; // Não é necessário continuar a busca
+        }
+    }
+
+    if (!clienteEncontradoFlag) {
+        printf("Paciente com CPF %s não encontrado.\n", cpf);
+    }
+
+    // Fechar o arquivo
+    fclose(file);
+
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-
 }
 
 void atualizacliente(void){
@@ -198,3 +228,15 @@ void excluircliente(void){
 
 }
 
+void saveCliente(Cliente* cli) {
+    FILE* file = fopen("clientes.dat", "ab");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+        return;
+    }
+
+    fwrite(cli, sizeof(Cliente), 1, file);
+
+    fclose(file);
+}
