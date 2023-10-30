@@ -204,16 +204,32 @@ void atualizacliente(void){
 
 }
 
-void listacliente(void){
+void listacliente(void) {
+    Cliente cliente;
     system("clear||cls");
-    printf("Lista de Clientes cadastrados no sistema:\n");
-    printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
+    printf("Lista de Clientes cadastrados no sistema:\n\n");
+
+    FILE* file = fopen("clientes.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("CPF: %s\n", cliente.cpf);
+        printf("Nome: %s\n", cliente.nome);
+        printf("Data de Nascimento: %s\n", cliente.data);
+        printf("Telefone: %s\n", cliente.telefone);
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    }
+
+    fclose(file);
+
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-
 }
 
 void excluircliente(void){
