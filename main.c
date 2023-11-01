@@ -31,7 +31,7 @@ int main(void) {  // Função do programa principal que contem a logica de progr
     do {
         tela_menu_p(); //Chama a Função de menu principal 
         printf("Escolha a opcao desejada: "); //Pergunta a opção
-        scanf(" %c", &op); //Le a opção desejada
+        scanf("%s", &op); //Le a opção desejada
         getchar();  //Limpa a opção escolhida acima (contida no scanf)
 
         switch (op) {
