@@ -101,7 +101,7 @@ Cliente* cadastrocliente(void){
     do { //Cria o laco
       printf("\n");
       printf("======\n");
-      printf("Digite a data de nascimento do cliente DD/MM/AA:");
+      printf("Digite a data de nascimento do cliente DD/MM/AA (EX 12/12/12):");
       scanf("%9s",  cli->data); //Rece a variavel data
 
       if (lerData (cli->data)) { //Valida a data
@@ -192,16 +192,85 @@ void pesquisacliente(const Cliente* cli) {
     getchar();
 }
 
-void atualizacliente(void){
+void atualizacliente(void) {
+    char cpf[12];   
+    Cliente clienteAtualizado;
+    int clienteEncontradoFlag = 0;
     system("clear||cls");
-    printf("Digite o CPF do cliente para atualizar:");
-    printf("\n");  
-    printf("EM CONSTRUÇÃO...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("   Atualizar Paciente   \n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("\n");
+    printf("Digite o CPF do cliente para atualizar:\n");
+    scanf("%s", cpf);
+
+    FILE* file = fopen("clientes.dat", "rb+");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+        return;
+    }
+
+    while (fread(&clienteAtualizado, sizeof(Cliente), 1, file) == 1) {
+        if (strcmp(clienteAtualizado.cpf, cpf) == 0) {
+            printf("Cliente encontrado.\n");
+            printf("\n");
+            printf("Digite o CPF do paciente(Apenas numeros): ");
+            scanf("%s", clienteAtualizado.cpf);
+            printf("=-=-=-=-=\n");
+            while (!validaCPF(clienteAtualizado.cpf)) {
+                printf("CPF invalido, insira novamente abaixo: \n");
+                scanf("%s", clienteAtualizado.cpf);  
+                printf("=-=-=-=-=\n");
+            }
+            printf("Digite o nome do paciente(Sem espaco entre os nomes): ");
+            scanf("%s", clienteAtualizado.nome);
+            printf("=-=-=-=-=\n");
+            while (!validarNome(clienteAtualizado.nome)) {
+                printf("Nome invalido, insira novamente abaixo: ");
+                scanf("%s", clienteAtualizado.nome);
+                printf("=-=-=-=-=\n");
+            }
+            printf("Digite a data de nascimento do cliente DD/MM/AA (EX 12/12/12): ");
+            scanf("%s", clienteAtualizado.data);
+            printf("=-=-=-=-=\n");
+            while (!lerData(clienteAtualizado.data)) {
+                printf("Data invalida, insira novamente abaixo: ");
+                scanf("%s", clienteAtualizado.data);
+                printf("=-=-=-=-=\n");
+            }
+            printf("Digite um numero de telefone (apenas numeros com o DD e com o 9 a mais): ");
+            scanf("%s", clienteAtualizado.telefone);
+            printf("=-=-=-=-=\n");
+            while (!validaTele(clienteAtualizado.telefone)) {
+                printf("Telefone invalido, insira novamente abaixo: ");
+                scanf("%s", clienteAtualizado.telefone);
+                printf("=-=-=-=-=\n");
+            }
+
+            fseek(file, -sizeof(Cliente), SEEK_CUR);
+            fwrite(&clienteAtualizado, sizeof(Cliente), 1, file);
+            clienteEncontradoFlag = 1;
+            break;
+        }
+    }
+
+    if (!clienteEncontradoFlag) {
+        printf("\n");
+        printf("Cliente com CPF %s nao encontrado.\n", cpf);
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
+    } else {
+        printf("\n");
+        printf("Cliente atualizado com sucesso.\n");
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
+    }
+    fclose(file);
+    getchar();
 }
 
 void listacliente(void) {
