@@ -129,6 +129,8 @@ Cliente* cadastrocliente(void){
       }
     } while (!valido);
 
+    cli->ativo = 1; // define o cliente como ativo 1 Ativo e 0 = Inativo
+
     saveCliente(cli);
 
     free(cli);
@@ -164,6 +166,7 @@ void pesquisacliente(const Cliente* cli) {
 
     while (fread(&clienteEncontrado, sizeof(Cliente), 1, file) == 1) {
         if (strcmp(clienteEncontrado.cpf, cpf) == 0) {
+            if (clienteEncontrado.ativo == 1) {
             // Cliente encontrado, exibir informações
 
             printf("==============\n");
@@ -176,6 +179,7 @@ void pesquisacliente(const Cliente* cli) {
             printf("|Telefone: %s\n" , clienteEncontrado.telefone);
             clienteEncontradoFlag = 1;
             break; // Não é necessário continuar a busca
+            }
         }
     }
 
@@ -214,6 +218,7 @@ void atualizacliente(void) {
 
     while (fread(&clienteAtualizado, sizeof(Cliente), 1, file) == 1) {
         if (strcmp(clienteAtualizado.cpf, cpf) == 0) {
+            if (clienteAtualizado.ativo == 1) {
             printf("Cliente encontrado.\n");
             printf("\n");
             printf("Digite o CPF do paciente(Apenas numeros): ");
@@ -253,6 +258,7 @@ void atualizacliente(void) {
             fwrite(&clienteAtualizado, sizeof(Cliente), 1, file);
             clienteEncontradoFlag = 1;
             break;
+            }
         }
     }
 
@@ -286,12 +292,14 @@ void listacliente(void) {
     }
 
     while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {
+        if (cliente.ativo == 1) {
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("CPF: %s\n", cliente.cpf);
         printf("Nome: %s\n", cliente.nome);
         printf("Data de Nascimento: %s\n", cliente.data);
         printf("Telefone: %s\n", cliente.telefone);
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
     }
 
     fclose(file);
@@ -301,16 +309,52 @@ void listacliente(void) {
     getchar();
 }
 
-void excluircliente(void){
+void excluircliente(void) {
+    int clienteEncontradoFlag = 0;
+    Cliente cliente;
+    char cpf[12];
     system("clear||cls");
-    printf("Digite o CPF do cliente que deseja excluir:\n");
-    printf("\n");
-    printf("Excluir Em construção...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
+    printf("=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("   Excluir Paciente   \n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("\n");
+
+    printf("Digite o CPF do paciente que deseja excluir: ");
+    scanf("%s", cpf);
+
+    FILE* file = fopen("clientes.dat", "rb+");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+        return;
+    }
+
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {
+        if (strcmp(cliente.cpf, cpf) == 0) {
+            cliente.ativo = 0; // Marca o cliente como inativo
+            fseek(file, -sizeof(Cliente), SEEK_CUR);
+            fwrite(&cliente, sizeof(Cliente), 1, file);
+            clienteEncontradoFlag = 1;
+            break;
+        }
+    }
+
+    if (!clienteEncontradoFlag) {
+        printf("Paciente com CPF %s não encontrado.\n", cpf);
+        getchar();
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    } else {
+        printf("Paciente excluído LOGICAMENTE com sucesso.\n");
+        getchar();
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    }
+
+    fclose(file);
+
+    getchar();
 }
 
 void saveCliente(Cliente* cli) {

@@ -4,6 +4,7 @@ struct cliente { //STRUCT que contem as informacoes de cadastro de clientes "cli
     char nome[100];
     char telefone[12];
     char data[10];
+    int ativo; // 1 para ativo, 0 para inativo
 };
 
 
