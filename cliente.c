@@ -333,44 +333,46 @@ void listacliente(void) {
     getchar();
 }
 
+// Exclusao LOGICA do paciente
 void excluircliente(void) {
-    int clienteEncontradoFlag = 0;
-    Cliente cliente;
-    char cpf[12];
+    int clienteEncontradoFlag = 0;  //Flag de controle de loop 
+    Cliente cliente;  //Estrutura para salvar os dados 
+    char cpf[12];  //Variavel que le o cpf
     system("clear||cls");
-
-    printf("=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("=======================\n");
     printf("   Excluir Paciente   \n");
-    printf("=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("=======================\n");
     printf("\n");
 
     printf("Digite o CPF do paciente que deseja excluir: ");
-    scanf("%s", cpf);
+    scanf("%s", cpf);  //Le o cpf
 
-    FILE* file = fopen("clientes.dat", "rb+");
+    FILE* file = fopen("clientes.dat", "rb+");  //Abre o arquivo no mode de leitura e escrita (rb+)
 
-    if (file == NULL) {
+    if (file == NULL) {  //Da erro se o arquivo for NULL
         printf("Erro ao abrir o arquivo para leitura e escrita.\n");
         return;
     }
 
-    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {
-        if (strcmp(cliente.cpf, cpf) == 0) {
-            cliente.ativo = 0; // Marca o cliente como inativo
-            fseek(file, -sizeof(Cliente), SEEK_CUR);
-            fwrite(&cliente, sizeof(Cliente), 1, file);
-            clienteEncontradoFlag = 1;
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le o aruivo 
+        if (strcmp(cliente.cpf, cpf) == 0) {  //Confere se o cpf de entrada e igual 
+            cliente.ativo = 0; // Marca o cliente como inativo (==0)
+            fseek(file, -sizeof(Cliente), SEEK_CUR);  //Volta o apontador para o paciente certo 
+            fwrite(&cliente, sizeof(Cliente), 1, file);  //Escreve a mudanca no arquivo (de 1 para 0)
+            clienteEncontradoFlag = 1; //Flag que sai do loop 
             break;
         }
     }
 
-    if (!clienteEncontradoFlag) {
-        printf("Paciente com CPF %s não encontrado.\n", cpf);
+    if (!clienteEncontradoFlag) {  //Print de paciente nao encontrado 
+        printf("\n");
+        printf("Paciente com CPF %s nao encontrado.\n", cpf);
         getchar();
         printf("\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     } else {
-        printf("Paciente excluído LOGICAMENTE com sucesso.\n");
+        printf("\n");
+        printf("Paciente excluido LOGICAMENTE com sucesso.\n");
         getchar();
         printf("\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -381,15 +383,15 @@ void excluircliente(void) {
     getchar();
 }
 
-void saveCliente(Cliente* cli) {
-    FILE* file = fopen("clientes.dat", "ab");
+void saveCliente(Cliente* cli) {  
+    FILE* file = fopen("clientes.dat", "ab");  //Abre e cria o arquivo (Cliente.dat) em modo de escrita 
 
     if (file == NULL) {
         printf("Erro ao abrir o arquivo para escrita.\n");
         return;
     }
 
-    fwrite(cli, sizeof(Cliente), 1, file);
+    fwrite(cli, sizeof(Cliente), 1, file);  //Escreve as informacoes do paciente
 
-    fclose(file);
+    fclose(file);  //Fecha o arquivo
 }
