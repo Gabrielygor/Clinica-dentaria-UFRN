@@ -300,21 +300,25 @@ void atualizacliente(void) {
 }
 
 void listacliente(void) {
-    Cliente cliente;
+    Cliente cliente;  //Estrutura para armazenar os dados 
     system("clear||cls");
-    printf("Lista de Clientes cadastrados no sistema:\n\n");
+    printf("=========================\n");
+    printf("    Lista de Pacientes   \n");
+    printf("=========================\n");
+    printf("\n");
 
-    FILE* file = fopen("clientes.dat", "rb");
+    FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
 
-    if (file == NULL) {
+    if (file == NULL) {  //Se o arquivo for NULL da erro 
         printf("Erro ao abrir o arquivo para leitura.\n");
         return;
     }
 
-    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {
-        if (cliente.ativo == 1) {
+    //LOOP que so para quanto tds os apcientes ativos forem printados 
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
+        if (cliente.ativo == 1) {  //Verifica se o paciente esta ativo
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("CPF: %s\n", cliente.cpf);
+        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
         printf("Nome: %s\n", cliente.nome);
         printf("Data de Nascimento: %s\n", cliente.data);
         printf("Telefone: %s\n", cliente.telefone);
@@ -322,7 +326,7 @@ void listacliente(void) {
         }
     }
 
-    fclose(file);
+    fclose(file);  //Fecha o arquivo
 
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
