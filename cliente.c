@@ -1,3 +1,14 @@
+///////////////////////////////////////////////////////////////////////////////
+///             Universidade Federal do Rio Grande do Norte (UFRN)          ///
+///                 Centro de Ensino Superior do Seridó (CERES)             ///
+///               Departamento de Computação e Tecnologia                   ///
+///                  Disciplina DCT1106 -- Programação                      ///
+///             Projeto Sistema de Gestão para clinicas dentarias           ///
+///                      Developed by @Gabrielygor                          ///
+///////////////////////////////////////////////////////////////////////////////
+///  Trabalho referente ao segundo semestre do ano de 2023 do curso de BSI  ///
+///////////////////////////////////////////////////////////////////////////////
+
 #include <stdio.h>      //Biblioteca prontas da linguagem C 
 #include <stdlib.h> 
 #include "cliente.h"    //Bibliotecas/funcoes criadas por min e icluidas usando aspas " "
@@ -58,8 +69,8 @@ void cliente(void) {
 }
 
 Cliente* cadastrocliente(void){
-    Cliente *cli;
-    cli = (Cliente*)malloc(sizeof(Cliente));
+    Cliente *cli; //Apontador para a estrutura cliente
+    cli = (Cliente*)malloc(sizeof(Cliente)); //Aloca memoria para a estrutura cliente
     int valido = 0;  // Variavel para controle de loop
 
     system("clear||cls");
@@ -131,9 +142,9 @@ Cliente* cadastrocliente(void){
 
     cli->ativo = 1; // define o cliente como ativo 1 Ativo e 0 = Inativo
 
-    saveCliente(cli);
+    saveCliente(cli); //Chama a funcao que salva os clientes 
 
-    free(cli);
+    free(cli); // Libera a memoria armazenada para a Struct Clientes
 
     printf("\n");
     getchar();
@@ -144,51 +155,49 @@ Cliente* cadastrocliente(void){
 }
 
 void pesquisacliente(const Cliente* cli) {
-    char cpf[12];
+    char cpf[12];  //Variavel para buscar o paciente
+    Cliente clienteEncontrado;  //Armazena os dados do paciente encontrado 
+    int clienteEncontradoFlag = 0;  //Flag de rastreamento de paciente 
   
-    system("clear||cls");
+    system("clear||cls"); //Limpa a tela 
+    printf("=========================\n");
+    printf("   Pesquisar Pacientes   \n");
+    printf("=========================\n");
+    printf("\n");
     printf("Informe o CPF do paciente:");
+    scanf("%s", cpf);  //Pergunta o cpf do paciente
     printf("\n");
 
-    scanf("%s", cpf);
+    FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo
 
-    // Abrir o arquivo de clientes para leitura
-    FILE* file = fopen("clientes.dat", "rb");
-
-    if (file == NULL) {
+    if (file == NULL) {  //Se o arquivo for NULL da erro na arbetura
         printf("Erro ao abrir o arquivo para leitura.\n");
         return;
     }
 
-    // Loop para buscar o cliente com o CPF fornecido
-    Cliente clienteEncontrado;
-    int clienteEncontradoFlag = 0;
+    while (fread(&clienteEncontrado, sizeof(Cliente), 1, file) == 1) {  //Le os paciente cadastrados no sistema 
+        if (strcmp(clienteEncontrado.cpf, cpf) == 0) {  // Confere se o cpf e igual
+            if (clienteEncontrado.ativo == 1) {  // Confere se o paciente ta ativo
 
-    while (fread(&clienteEncontrado, sizeof(Cliente), 1, file) == 1) {
-        if (strcmp(clienteEncontrado.cpf, cpf) == 0) {
-            if (clienteEncontrado.ativo == 1) {
-            // Cliente encontrado, exibir informações
-
-            printf("==============\n");
-            printf("   Paciente   \n");
-            printf("===============\n");
             printf("\n");
-            printf("|CPF: %s\n", clienteEncontrado.cpf);
+            printf("|CPF: %s\n", clienteEncontrado.cpf);  //Printa as informacoes do paciente encontrado 
             printf("|Nome: %s\n", clienteEncontrado.nome);
             printf("|Data de Nascimento: %s\n", clienteEncontrado.data);
             printf("|Telefone: %s\n" , clienteEncontrado.telefone);
-            clienteEncontradoFlag = 1;
+            printf("\n");
+            printf("=-=-=-=-=\n");
+            clienteEncontradoFlag = 1;  //Flag q sai do loop (Parecido com oq fiz na funcao de cadastro)
             break; // Não é necessário continuar a busca
             }
         }
     }
 
-    if (!clienteEncontradoFlag) {
+    if (!clienteEncontradoFlag) {  // Se o cpf nao estiver no arquivo da erro
         printf("Paciente com CPF %s não encontrado.\n", cpf);
+        printf("=-=-=-=-=\n");
     }
 
-    // Fechar o arquivo
-    fclose(file);
+    fclose(file);  //Fecha o arquivo 
 
     getchar();
     printf("\n");
