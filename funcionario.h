@@ -9,7 +9,7 @@ struct funcionario { //Struct que contem as variaveis usadas no cadastro de func
 
 void funcionario(void);           //Assinatura de Funcionarios 
 Funcionario* cadastrofuncionario(void);
-void pesquisafun(void);
+void pesquisafuncionario(void);
 void atualizafun(void);
 void listafuncionarios(void);
 void excluirfun(void);

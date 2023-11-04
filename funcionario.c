@@ -37,7 +37,7 @@ void funcionario(void){
               cadastrofuncionario();
               break; 
           case '2':
-              pesquisafun();
+              pesquisafuncionario();
               break;
           case '3':
               atualizafun();
@@ -137,16 +137,54 @@ Funcionario* cadastrofuncionario(void) {
     getchar();
 }
 
-void pesquisafun(void){
+void pesquisafuncionario(void) {
+    char cpf[12];
+    Funcionario funcionarioEncontrado;
+    int funcionarioEncontradoFlag = 0;
+
     system("clear||cls");
-    printf("Digite o CPF do funcionário que deseja pesquisar:\n");
+    printf("===========================\n");
+    printf("   Pesquisar Funcionario   \n");
+    printf("===========================\n");
     printf("\n");
-    printf("EM CONSTRÇÃO...");  
+    printf("Informe o CPF do funcionario:");
+    scanf("%s", cpf);
+    printf("\n");
+
+    FILE* file = fopen("funcionarios.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    while (fread(&funcionarioEncontrado, sizeof(Funcionario), 1, file) == 1) {
+        if (strcmp(funcionarioEncontrado.cpf, cpf) == 0) {
+            if (funcionarioEncontrado.ativo == 1) {
+                printf("\n");
+                printf("|CPF: %s\n", funcionarioEncontrado.cpf);
+                printf("|Nome: %s\n", funcionarioEncontrado.nome);
+                printf("|Data de Nascimento: %s\n", funcionarioEncontrado.data);
+                printf("|Telefone: %s\n", funcionarioEncontrado.telefone);
+                printf("\n");
+                printf("=-=-=-=-=\n");
+                funcionarioEncontradoFlag = 1;
+                break;
+            }
+        }
+    }
+
+    if (!funcionarioEncontradoFlag) {
+        printf("Funcionario com CPF %s nao encontrado.\n", cpf);
+        printf("=-=-=-=-=\n");
+    }
+
+    fclose(file);
+
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-
 }
 
 void atualizafun(void){
