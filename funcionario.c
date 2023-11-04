@@ -3,6 +3,7 @@
 #include "funcionario.h"
 #include "telas.h"
 #include "ulti.h"
+#include <string.h>
 
 
 
@@ -18,22 +19,22 @@ void funcionario(void){
         printf("\n");
         printf("===================================\n");
         printf("\n");
-        printf("|[1]. Cadastrar Funcionário\n");
-        printf("|[2]. Pesquisar Funcionário\n");
-        printf("|[3]. Atualizar Funcionário\n");
-        printf("|[4]. Excluir Funcionário\n");
-        printf("|[5]. Listar Funcionários\n");
+        printf("|[1]. Cadastrar Funcionario\n");
+        printf("|[2]. Pesquisar Funcionario\n");
+        printf("|[3]. Atualizar Funcionario\n");
+        printf("|[4]. Listar Funcionarios\n");
+        printf("|[5]. Excluir Funcionario\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("\n");
-        printf("|Escolha a opção desejada: ");
+        printf("|Escolha a opcao desejada: ");
         scanf(" %c", &op); //Recebe a opcao desejada
         getchar();
     
         switch (op){ //Switch case para navegar entre os modulos de fun
           case '1':
-              cadastrofun();
+              cadastrofuncionario();
               break; 
           case '2':
               pesquisafun();
@@ -55,77 +56,85 @@ void funcionario(void){
     } while (op != '0');
 }
 
-Funcionario* cadastrofun(void){
-    Funcionario * fun;
+Funcionario* cadastrofuncionario(void) {
+    Funcionario* fun;
     fun = (Funcionario*)malloc(sizeof(Funcionario));
-    int valido = 0;  // Variavel para controle de loop
-  
+    int valido = 0;
+    int cpfDuplicado = 0;
+
     system("clear||cls");
     printf("===========================\n");
-    printf("\n");
-    printf("   Cadastro de Dentista   \n");
-    printf("\n");
+    printf("   Cadastro de Funcionario   \n");
     printf("===========================\n");
-  
-    do { //Cria um loop que so sai quando a informacao for valida
-      printf("Digite o CPF do Dentista(Apenas numeros):");
-      scanf("%s", fun->cpf); //Recebe a variavel CPF
-      if (validaCPF(fun->cpf)) { //Valida o CPF
-          printf("CPF válido.\n");
-          printf("=-=-=-=-=-=\n");
-          valido = 1; //Sai do loop se o CPF for valido
-      } else {
-          printf("CPF inválido.\n");
-          printf("=-=-=-=-=-=-=\n");
-      }
-    } while (!valido); 
-    
-    valido = 0; //Zera o variavel para ser possivel realizar o loop novamente
-    do {
-      printf("\n");
-      printf("Digite o nome do Dentista:");
-      scanf("%s", fun->nome); //"Funcionario.nome" armazena a variavel nome na struct de funcionarios "funcionario.h"
-      if (validarNome(fun->nome)) { // Valida o nome
-          printf("Nome válido.\n");
-          printf("=-=-=-=-=-=-=\n");
-          valido = 1; //Sai do loop se o nome for valido
-      } else { //Se n repete ate o nome ser validado
-          printf("Nome inválido.\n");  
-      }
+
+     do {
+        printf("======\n");
+        printf("Digite o CPF do funcionario(Apenas numeros): ");
+        scanf("%s", fun->cpf);
+        if (validaCPF(fun->cpf) && !verificaCPFDuplicad(fun->cpf)) {
+            printf("CPF valido.\n");
+            printf("=-=-=-=-=-=\n");
+            valido = 1;
+        } else if (verificaCPFDuplicad(fun->cpf)) {
+            printf("CPF ja cadastrado.\n");
+        } else {
+            printf("CPF invalido.\n");
+        }
     } while (!valido);
-    
-    valido = 0; //Zera a variavel
-    do { //Cria loop 
-      printf("\n");
-      printf("Digite um número de telefone(apenas números com o DD e com o 9 a mais):");
-      scanf("%s", fun->telefone); //Recebe o telefone
-      if (validaTele(fun->telefone)) { //Valida o telefone
-          printf("Número de telefone válido.\n");
-          printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-          valido = 1; //Sai do loop se o telefone for valido
-      } else { //Se n repete o loop ate o telefone ser valido
-          printf("Número de telefone inválido.\n");
-      }
+  
+    valido = 0;
+    do {
+        printf("\n");
+        printf("Digite o nome do funcionario (Sem espacos entre os nomes): ");
+        scanf("%s", fun->nome);
+        if (validarNome(fun->nome)) {
+            printf("Nome valido.\n");
+            printf("=-=-=-=-=-=-=\n");
+            valido = 1;
+        } else {
+            printf("Nome invalido.\n");
+        }
     } while (!valido);
 
-    
-    printf("\n");
-    printf("=============================\n"); //Exibe as informaceos de cadastro dos funcionarios
-    printf("\n");
-    printf("   Informações do Dentista   \n");
-    printf("\n");
-    printf("=============================\n");
-    printf("|CPF: %s\n", fun->cpf); //Da printf na string contida na variavel CPF
-    printf("|Nome: %s\n", fun->nome); //Exibe o nome do func
-    printf("|Telefone: %s\n", fun->telefone); //Exibe o telefone do func
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    valido = 0;
+    do {
+        printf("\n");
+        printf("Digite a data de nascimento do funcionario (DD/MM/AA, Ex: 12/12/12): ");
+        scanf("%9s", fun->data);
+        if (lerData(fun->data)) {
+            printf("Data valida.\n");
+            printf("=-=-=-=-=-=-=\n");
+            valido = 1;
+        } else {
+            printf("Data invalida. \n");
+        }
+    } while (!valido);
+
+    valido = 0;
+    do {
+        printf("\n");
+        printf("Digite um numero de telefone (apenas números com o DD e com o 9 a mais): ");
+        scanf("%s", fun->telefone);
+        if (validaTele(fun->telefone)) {
+            printf("Numero de telefone valido.\n");
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            valido = 1;
+        } else {
+            printf("Numero de telefone invalido.\n");
+        }
+    } while (!valido);
+
+    fun->ativo = 1;
+
+    saveFuncionario(fun);
+
+    free(fun);
 
     printf("\n");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-
 }
 
 void pesquisafun(void){
@@ -176,3 +185,40 @@ void excluirfun(void){
 
 }
 
+void saveFuncionario(Funcionario* fun) {
+    FILE* file = fopen("funcionarios.dat", "ab");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+        return;
+    }
+
+    fwrite(fun, sizeof(Funcionario), 1, file);
+
+    fclose(file);
+}
+
+
+//Funcao feita com auxilio do chatgpt
+
+int verificaCPFDuplicad(const char* cpf) {
+    FILE* file = fopen("funcionarios.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return 0;
+    }
+
+    Funcionario funcionarioLido;
+
+    while (fread(&funcionarioLido, sizeof(Funcionario), 1, file) == 1) {
+        if (strcmp(funcionarioLido.cpf, cpf) == 0) {
+            fclose(file);
+            return 1;
+        }
+    }
+
+    fclose(file);
+
+    return 0;
+}
