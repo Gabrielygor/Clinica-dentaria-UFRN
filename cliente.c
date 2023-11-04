@@ -198,7 +198,7 @@ void pesquisacliente(const Cliente* cli) {
     }
 
     if (!clienteEncontradoFlag) {  // Se o cpf nao estiver no arquivo da erro
-        printf("Paciente com CPF %s não encontrado.\n", cpf);
+        printf("Paciente com CPF %s nao encontrado.\n", cpf);
         printf("=-=-=-=-=\n");
     }
 
