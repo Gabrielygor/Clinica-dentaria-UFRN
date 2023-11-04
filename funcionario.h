@@ -11,7 +11,7 @@ void funcionario(void);           //Assinatura de Funcionarios
 Funcionario* cadastrofuncionario(void);
 void pesquisafun(void);
 void atualizafun(void);
-void listafun(void);
+void listafuncionarios(void);
 void excluirfun(void);
 void saveFuncionario(Funcionario* fun);
 

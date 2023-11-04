@@ -43,10 +43,10 @@ void funcionario(void){
               atualizafun();
               break;
           case '4':
-              excluirfun();
+              listafuncionarios();
               break;
           case '5':
-              listafun();
+              //listafun();
               break;
           case '0':
               break;
@@ -161,16 +161,38 @@ void atualizafun(void){
 
 }
 
-void listafun(void){
+void listafuncionarios(void) {
+    Funcionario funcionario;
     system("clear||cls");
-    printf("Lista de funcionários cadastrados nos sistema:\n");
+    printf("============================\n");
+    printf("    Lista de Funcionarios   \n");
+    printf("============================\n");
     printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
+
+
+    FILE* file = fopen("funcionarios.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+        if (funcionario.ativo == 1) {
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            printf("CPF: %s\n", funcionario.cpf);
+            printf("Nome: %s\n", funcionario.nome);
+            printf("Data de Nascimento: %s\n", funcionario.data);
+            printf("Telefone: %s\n", funcionario.telefone);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
+
+    fclose(file);
+
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-
 }
 
 void excluirfun(void){
