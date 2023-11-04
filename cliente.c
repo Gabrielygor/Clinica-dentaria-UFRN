@@ -72,6 +72,7 @@ Cliente* cadastrocliente(void){
     Cliente *cli; //Apontador para a estrutura cliente
     cli = (Cliente*)malloc(sizeof(Cliente)); //Aloca memoria para a estrutura cliente
     int valido = 0;  // Variavel para controle de loop
+    int cpfDuplicado = 0;  //Variavel de cpf duplicado
 
     system("clear||cls");
     printf("==========================\n");
@@ -81,17 +82,21 @@ Cliente* cadastrocliente(void){
     printf("==========================\n");
 
     do {
-      printf("======\n");
-      printf("Digite o CPF do paciente(Apenas numeros):");
-      scanf("%s",  cli->cpf); //Recebe a variavel cpf   //Antes da struct == cpf dps ficou ficou Clinete.cpf
-      if (validaCPF( cli->cpf)) { //Funcao que valida o cpf
-          printf("CPF valido.\n");
-          printf("=-=-=-=-=-=\n");
-          valido = 1; //Sai do loop se o cpf for valido 
-      } else { //Se nao repete ate o cpf se validado
-          printf("CPF invalido.\n");
-      }
-    } while (!valido); // continua no loop se o cpf for valido
+        printf("======\n");
+        printf("Digite o CPF do paciente (Apenas numeros): ");
+        scanf("%s", cli->cpf);  //Recebe o CPF do paciente
+        cpfDuplicado = verificaCPFDuplicado(cli->cpf);  //Verifica se o cpf e duplicado
+        if (cpfDuplicado) {  //Se for duplicado da erro
+            printf("CPF ja cadastrado.\n");
+            printf("=-=-=-=-=-=-=-=\n");
+        } else if (validaCPF(cli->cpf)) {  //Se nao for duplicado e for valido == Cpf valido
+            printf("CPF valido.\n");
+            printf("=-=-=-=-=-=-=-=\n");
+            valido = 1;
+        } else {
+            printf("CPF invalido.\n");
+        }
+    } while (!valido || cpfDuplicado);  //Enquanto nao for valido e n duplicado continua no loop 
 
     valido = 0; // Zera a variavel "valido" para que seja possivel repetir o mesmo processo acima 
     do {
@@ -394,4 +399,31 @@ void saveCliente(Cliente* cli) {
     fwrite(cli, sizeof(Cliente), 1, file);  //Escreve as informacoes do paciente
 
     fclose(file);  //Fecha o arquivo
+}
+
+// Funcao feita com auxilio do ChatGpt
+
+int verificaCPFDuplicado(const char* cpf) {
+    // Abre o arquivo de clientes para leitura
+    FILE* file = fopen("clientes.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return 0; // Retorna 0 para falso (CPF não duplicado)
+    }
+
+    Cliente clienteLido;
+
+    while (fread(&clienteLido, sizeof(Cliente), 1, file) == 1) {
+        if (strcmp(clienteLido.cpf, cpf) == 0) {
+            // CPF já cadastrado
+            fclose(file);
+            return 1; // Retorna 1 para verdadeiro (CPF duplicado)
+        }
+    }
+
+    // Fecha o arquivo
+    fclose(file);
+
+    return 0; // Retorna 0 para falso (CPF não duplicado)
 }
