@@ -40,7 +40,7 @@ void funcionario(void){
               pesquisafuncionario();
               break;
           case '3':
-              atualizafun();
+              atualizafuncionario();
               break;
           case '4':
               listafuncionarios();
@@ -113,7 +113,7 @@ Funcionario* cadastrofuncionario(void) {
     valido = 0;
     do {
         printf("\n");
-        printf("Digite um numero de telefone (apenas números com o DD e com o 9 a mais): ");
+        printf("Digite um numero de telefone (apenas numeros com o DD e com o 9 a mais): ");
         scanf("%s", fun->telefone);
         if (validaTele(fun->telefone)) {
             printf("Numero de telefone valido.\n");
@@ -187,17 +187,72 @@ void pesquisafuncionario(void) {
     getchar();
 }
 
-void atualizafun(void){
+void atualizafuncionario(void) {
+    char cpf[12];
+    Funcionario funcionarioAtualizado;
+    int funcionarioEncontradoFlag = 0;
     system("clear||cls");
-    printf("Digite o CPF do funcionário que deseja atualizar:\n");
-    printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
-}
+    printf("===========================\n");
+    printf("   Atualizar Funcionario   \n");
+    printf("===========================\n");
+    printf("\n");
+    printf("Digite o CPF do funcionario para atualizar:\n");
+    scanf("%s", cpf);
+
+    FILE* file = fopen("funcionarios.dat", "rb+");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+        return;
+    }
+
+    while (fread(&funcionarioAtualizado, sizeof(Funcionario), 1, file) == 1) {
+        if (strcmp(funcionarioAtualizado.cpf, cpf) == 0) {
+            if (funcionarioAtualizado.ativo == 1) {
+                printf("Funcionario encontrado.\n");
+                printf("\n");
+                printf("Digite o CPF do funcionario (Apenas numeros): ");
+                scanf("%s", funcionarioAtualizado.cpf);
+                printf("=-=-=-=-=\n");
+                while (!validaCPF(funcionarioAtualizado.cpf)) {
+                    printf("CPF invalido, insira novamente abaixo: \n");
+                    scanf("%s", funcionarioAtualizado.cpf);
+                    printf("=-=-=-=-=\n");
+                }
+                printf("Digite o nome do funcionario (Sem espacos entre os nomes): ");
+                scanf("%s", funcionarioAtualizado.nome);
+                printf("=-=-=-=-=\n");
+                while (!validarNome(funcionarioAtualizado.nome)) {
+                    printf("Nome invalido, insira novamente abaixo: \n");
+                    scanf("%s", funcionarioAtualizado.nome);
+                    printf("=-=-=-=-=\n");
+                }
+                printf("Digite a data de nascimento do funcionario (DD/MM/AA, Ex: 12/12/12): ");
+                scanf("%9s", funcionarioAtualizado.data);
+                printf("=-=-=-=-=\n");
+                while (!lerData(funcionarioAtualizado.data)) {
+                    printf("Data invalida, insira novamente abaixo: \n");
+                    scanf("%9s", funcionarioAtualizado.data);
+                    printf("=-=-=-=-=\n");
+                }
+                printf("Digite um numero de telefone (apenas numeros com o DD e com o 9 a mais): ");
+                scanf("%s", funcionarioAtualizado.telefone);
+                printf("=-=-=-=-=\n");
+                while (!validaTele(funcionarioAtualizado.telefone)) {
+                    printf("Telefone invalido, insira novamente abaixo: \n");
+                    scanf("%s", funcionarioAtualizado.telefone);
+                    printf("=-=-=-=-=\n");
+                }
+
+                fseek(file, -sizeof(Funcionario), SEEK_CUR);
+                fwrite(&funcionarioAtualizado, sizeof(Funcionario), 1, file);
+                funcionarioEncontradoFlag = 1;
+                break;
+            }
+        }
+    }
+}  
 
 void listafuncionarios(void) {
     Funcionario funcionario;
