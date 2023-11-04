@@ -46,7 +46,7 @@ void funcionario(void){
               listafuncionarios();
               break;
           case '5':
-              //listafun();
+              excluirfuncionario();
               break;
           case '0':
               break;
@@ -288,16 +288,54 @@ void listafuncionarios(void) {
     getchar();
 }
 
-void excluirfun(void){
+void excluirfuncionario(void) {
+    int funcionarioEncontradoFlag = 0;
+    Funcionario funcionario;
+    char cpf[12];
     system("clear||cls");
-    printf("Digite o CPF do funcionário que deseja excluir:\n");
-    printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
+    printf("=========================\n");
+    printf("   Excluir Funcionario   \n");
+    printf("=========================\n");
+    printf("\n");
+
+    printf("Digite o CPF do funcionario que deseja excluir: ");
+    scanf("%s", cpf);
+
+    FILE* file = fopen("funcionarios.dat", "rb+");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+        return;
+    }
+
+    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+        if (strcmp(funcionario.cpf, cpf) == 0) {
+            funcionario.ativo = 0; // Marca o funcionário como inativo
+            fseek(file, -sizeof(Funcionario), SEEK_CUR);
+            fwrite(&funcionario, sizeof(Funcionario), 1, file);
+            funcionarioEncontradoFlag = 1;
+            break;
+        }
+    }
+
+    if (!funcionarioEncontradoFlag) {
+        printf("\n");
+        printf("Funcionario com CPF %s nao encontrado.\n", cpf);
+        getchar();
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    } else {
+        printf("\n");
+        printf("Funcionario excluido LOGICAMENTE com sucesso.\n");
+        getchar();
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    }
+
+    fclose(file);
+
+    getchar();
 }
 
 void saveFuncionario(Funcionario* fun) {

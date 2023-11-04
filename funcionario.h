@@ -12,7 +12,7 @@ Funcionario* cadastrofuncionario(void);
 void pesquisafuncionario(void);
 void atualizafuncionario(void);
 void listafuncionarios(void);
-void excluirfun(void);
+void excluirfuncionario(void);
 void saveFuncionario(Funcionario* fun);
 
 int verificaCPFDuplicad(const char* cpf);
