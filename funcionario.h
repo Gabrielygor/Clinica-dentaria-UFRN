@@ -14,5 +14,6 @@ void atualizafuncionario(void);
 void listafuncionarios(void);
 void excluirfuncionario(void);
 void saveFuncionario(Funcionario* fun);
-
 int verificaCPFDuplicad(const char* cpf);
+
+//
