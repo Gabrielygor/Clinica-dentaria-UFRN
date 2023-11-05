@@ -7,7 +7,7 @@ void tela_menu_p(void) {   //Tela principal do programa
     system("clear||cls");   //Limpa a tela do terminal
     printf("=============================================== \n");
     printf("\n");
-    printf("   SISTEMA DE GESTÃO PARA CLINICAS DENTARIAS    \n");
+    printf("   SISTEMA DE GESTAO PARA CLINICAS DENTARIAS    \n");
     printf("\n");
     printf("=============================================== \n");
     printf("\n");
@@ -29,7 +29,7 @@ void info_trabalho(void){
     system("clear||cls");
     printf("=============================\n");
     printf("\n");
-    printf("   Inforamções do Trabalho   \n");
+    printf("   Inforamcoes do Trabalho   \n");
     printf("\n");
     printf("=============================\n");
     printf("\n");
