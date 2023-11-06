@@ -40,7 +40,7 @@ void funcionario(void){
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("\n");
         printf("|Escolha a opcao desejada: ");
-        scanf(" %c", &op); //Recebe a opcao desejada
+        scanf(" %s", &op); //Recebe a opcao desejada
         getchar();
     
         switch (op){ //Switch case para navegar entre os modulos de fun
@@ -386,3 +386,35 @@ int verificaCPFDuplicad(const char* cpf) {
 
     return 0;
 }
+
+// void listaALLfuncionarios(void) {
+//     Funcionario funcionario;
+//     system("clear||cls");
+//     printf("============================\n");
+//     printf("    Lista de Funcionarios   \n");
+//     printf("============================\n");
+//     printf("\n");
+
+
+//     FILE* file = fopen("funcionarios.dat", "rb");
+
+//     if (file == NULL) {
+//         printf("Erro ao abrir o arquivo para leitura.\n");
+//         return;
+//     }
+
+//     while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+//             printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+//             printf("CPF: %s\n", funcionario.cpf);
+//             printf("Nome: %s\n", funcionario.nome);
+//             printf("Data de Nascimento: %s\n", funcionario.data);
+//             printf("Telefone: %s\n", funcionario.telefone);
+//             printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+//     }
+
+//     fclose(file);
+
+//     printf("\n");
+//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//     getchar();
+// }
