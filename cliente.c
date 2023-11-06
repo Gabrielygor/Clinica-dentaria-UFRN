@@ -41,7 +41,7 @@ void cliente(void) {
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
         printf("\n");
         printf("|Escolha a opcao desejada: ");
-        scanf(" %c", &op); //Recebe a opcao desejada
+        scanf(" %s", &op); //Recebe a opcao desejada
         getchar();
 
         switch (op) { //Switch case para opcoes disponiveis no modulo de clientes
@@ -427,3 +427,35 @@ int verificaCPFDuplicado(const char* cpf) {
 
     return 0; // Retorna 0 para falso (CPF não duplicado)
 }
+
+// void listaALLcliente(void) {
+//     Cliente cliente;  //Estrutura para armazenar os dados 
+//     system("clear||cls");
+//     printf("=========================\n");
+//     printf("    Lista de Pacientes   \n");
+//     printf("=========================\n");
+//     printf("\n");
+
+//     FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
+
+//     if (file == NULL) {  //Se o arquivo for NULL da erro 
+//         printf("Erro ao abrir o arquivo para leitura.\n");
+//         return;
+//     }
+
+//     //LOOP que so para quanto tds os apcientes ativos forem printados 
+//     while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
+//         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+//         printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
+//         printf("Nome: %s\n", cliente.nome);
+//         printf("Data de Nascimento: %s\n", cliente.data);
+//         printf("Telefone: %s\n", cliente.telefone);
+//         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+//     }
+
+//     fclose(file);  //Fecha o arquivo
+
+//     printf("\n");
+//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//     getchar();
+// }
