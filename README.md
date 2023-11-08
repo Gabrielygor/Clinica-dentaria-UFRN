@@ -12,4 +12,6 @@ Atenção: este NÃO é um programa comercial. O autor não se responsabiliza po
 
 #Para compilar
 gcc -o main *.c
+
+
 ./main
