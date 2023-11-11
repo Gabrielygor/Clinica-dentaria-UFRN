@@ -20,7 +20,7 @@
 
 void funcionario(void){
     char op; //Recebe o opcao para navegar entres os modulos de fun
-    Funcionario* fun;
+    //Funcionario* fun;
 
     do { //Faz um loop para o menu de funcionarios so aceitar opcoes validas
         system("clear||cls"); //Limpa a tela
@@ -146,6 +146,7 @@ Funcionario* cadastrofuncionario(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return fun;
 }
 
 void pesquisafuncionario(void) {
