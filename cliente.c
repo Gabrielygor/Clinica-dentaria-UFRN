@@ -20,7 +20,7 @@
 
 void cliente(void) {
     char op;
-    Cliente* cli;
+    //Cliente* cli;
 
 
     do { // Loop para o menu de Clientes se repetir                                                           
@@ -49,7 +49,7 @@ void cliente(void) {
                 cadastrocliente();
                 break;
             case '2':
-                pesquisacliente(cli);
+                pesquisacliente();
                 break;
             case '3':
                 atualizacliente();
@@ -156,10 +156,10 @@ Cliente* cadastrocliente(void){
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
     getchar();
-
+    return cli;
 }
 
-void pesquisacliente(const Cliente* cli) {
+void pesquisacliente(void) {
     char cpf[12];  //Variavel para buscar o paciente
     Cliente clienteEncontrado;  //Armazena os dados do paciente encontrado 
     int clienteEncontradoFlag = 0;  //Flag de rastreamento de paciente 

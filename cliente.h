@@ -10,7 +10,7 @@ struct cliente { //STRUCT que contem as informacoes de cadastro de clientes "cli
 
 void cliente(void);                  // Assinaturas de Clientes
 Cliente* cadastrocliente(void);
-void pesquisacliente(const Cliente* cli);
+void pesquisacliente(void);
 void atualizacliente(void);
 void listacliente(void);
 void excluircliente(void);
