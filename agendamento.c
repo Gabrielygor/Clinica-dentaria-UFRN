@@ -1,17 +1,20 @@
-#include <stdio.h>      //Biblioteca 
+#include <stdio.h>      
 #include <stdlib.h> 
 #include "agendamento.h"
 #include "telas.h"
 #include "ulti.h"
+#include "cliente.h"
+#include "funcionario.h"
+#include <string.h>
 
 
 
 void agendamento(void){
-    char op; //Variavel de op(opcao) para navegar entre os modulos de agendamento 
-    Agendamento * age;
+    char op;
+    //Agendamento * age;
 
-    do{ //Cria loop que se repete se a opcao for invalida
-        system("clear||cls"); //limpa a tela
+    do{ 
+        system("clear||cls"); 
         printf("=================\n");
         printf("\n");
         printf("   Agendamento   \n");
@@ -19,29 +22,29 @@ void agendamento(void){
         printf("=================\n");
         printf("\n");
         printf("|[1]. Agendar Consulta\n");
-        printf("|[2]. Agendar Retorno\n");
-        printf("|[3]. Excluir Consultas\n");
-        printf("|[4]. Excluir Retorno\n");
+        printf("|[2]. Excluir Consultas\n");
+        printf("|[3]. Listar Agendamentos\n");
+        printf("|[4]. Listar Todas os Agendamentos\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=\n");
         printf("\n");
         printf("|Escolha a opcao desejada: ");
-        scanf(" %c", &op); //Recebe a opcao desejada
+        scanf(" %c", &op); 
         getchar();
-      
-        switch (op){ //Switch case com as opcoes disponiveis para esse modulo
+
+        switch (op){
           case '1':
             agendarconsulta();
-            break; //Break funcao que para o programa quando entrar no modulo agendar consulta
+            break; 
           case '2':
-            agendarretorno();
-            break;
-          case '3':
             excluirconsulta();
             break;
+          case '3':
+            listaagendamento();
+            break;
           case '4':
-            excluirretorno();
+           listaALLagendamento();
             break;
           case '0':
             break;
@@ -57,98 +60,285 @@ Agendamento* agendarconsulta(void){
     int valido = 0; //Variavel para loop 
 
     system("clear||cls"); //Limpa a tela
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("=============================\n");
     printf("\n");
     printf("   Agendamento de consulta   \n");
     printf("\n");
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=\n");
+    printf("=============================\n");
     printf("\n");
 
-    printf("Digite o CPF do cliente para a consulta:\n");
-    printf("Digite o funcionário responsavel pela consulta:\n");
+    do {
+        printf("======\n");
+        printf("|Digite o CPF do cliente para a consulta:");
+        scanf("%s", age->cpf);
+        getchar();
 
-  
-    valido = 0; //Zera a variavel para repetir o loop 
+        // Recupere o nome do cliente usando a função getCli
+        char *clienteNome = getCli(age->cpf);
+
+        if (clienteNome != NULL) {
+            printf("|\n");
+            printf("|Cliente encontrado: %s\n", clienteNome);
+            printf("=-=-=-=-=-=-=\n");
+            free(clienteNome); // Libera a memória alocada para o nome do cliente
+            valido = 1; // Sai do loop se o cliente for válido
+        } else {
+            printf("|\n");
+            printf("|Cliente nao encontrado.\n");
+            printf("=-=-=-=-=-=-=\n");
+            }
+    } while (!valido);
+
+    valido = 0;
+    do {
+        printf("======\n");
+        printf("|\n");
+        printf("|Digite o CPF do funcionario responsavel pela consulta:");
+        scanf("%s", age->cpff);
+        getchar();
+
+        // Recupere o nome do funcionário usando a função getFun
+        char *funcionarioNome = getFun(age->cpff);
+
+        if (funcionarioNome != NULL) {
+            printf("|\n");
+            printf("|Funcionario encontrado: %s\n", funcionarioNome);
+            printf("=-=-=-=-=-=-=\n");
+            free(funcionarioNome); // Libera a memória alocada para o nome do funcionário
+            valido = 1; // Sai do loop se o funcionário for válido
+        } else {
+            printf("|\n");
+            printf("|Funcionario não encontrado.\n");
+            printf("=-=-=-=-=-=-=\n");
+        }
+    } while (!valido);
+
+
+    valido = 0; 
     do {
       printf("\n");
       printf("======\n");
-      printf("Digite a data da consulta(DD/MM/AA):");
-      scanf("%9s",  age->data); //Pergunta a data e salva na variavel data com o ponteira de Agendamento.data
-  
-      if (lerData (age->data)) { //Valida se e uma data valida
-        printf("Data valida.\n");       
+      printf("|Digite a data da consulta(DD/MM/AA):");
+      scanf("%9s",  age->data);
+
+      if (lerData (age->data)) { 
+        printf("|Data valida.\n");       
         printf("=-=-=-=-=-=-=\n");
-        valido = 1; //Se a data for valida muda a variavel de controle para 1 e encerra o loop 
-      } else { //Se nao continua no loop ate que a opcao seja valida
-        printf("Data invalida. Tente novamente.\n");
+        valido = 1; 
+      } else { 
+        printf("|Data invalida. Tente novamente.\n");
       }
     } while (!valido); 
-  
-    valido = 0; //Zera a variavel novamente para repetir o processo "denovo"
-    do{
-      printf("\n");
-      printf("======\n");
-      printf("Digite o horario da consulta (HH:MM):");
-      scanf("%5s",  age->hora); //Pergunta e salva na variavel hora
 
-      if(lerHora(age->hora)) { // Valida se e uma hora valida
-        printf("Hora valida.\n");
-        printf("=-=-=-=-=-=-=\n");
-        valido = 1; //Sai do loop se a hora for valida
-      }else { //Se nao continua no loop ate q a opcao seja valida
-        printf("Hora invalida. Tente novamente.\n");
-      }
-    }while (!valido);
+    age->ativo = 1;
 
-    printf("\n");
-    printf("=================================\n"); //Funcao que exibe as informacoes/dados da consulta
-    printf("\n");
-    printf("   Informacoes do Agendamento   \n");
-    printf("\n");
-    printf("=================================\n");
-    printf("|Data da consulta: %s\n",age->data); //Exibe a data guardada na variavel
-    printf("|Hora da consulta: %s\n",age->hora); //Exibe a hora guardada na variavel
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-  
+    salvarAgendamento(age);
+
+    free(age);
+
     printf("\n");
     getchar();
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
     getchar();
+    return age;
 
 }
-void agendarretorno(void){
-    system("clear||cls");
-    printf("Digite o CPF do cliente:\n");
-    printf("Digite a data do retorno:\n");
-    printf("Digite o horário do retorno:\n");
-    printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
-}
 void excluirconsulta(void){
+    Agendamento age;
+    char cpf_cliente[15];
+
     system("clear||cls");
-    printf("Digite o CPF do cliente para excluir uma consulta:\n");
+
+    printf("===========================\n");
+    printf("   Excluir de Agendamento  \n");
+    printf("===========================\n");
     printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("Digite o CPF do cliente para excluir uma consulta: ");
+    scanf("%s", cpf_cliente);
+
+    FILE *file = fopen("agendamentos.dat", "r+b"); // Open for reading and writing
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de agendamentos para leitura e escrita.\n");
+        return;
+    }
+
+    int found = 0;
+
+    while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
+        if (strcmp(age.cpf, cpf_cliente) == 0 && age.ativo == 1) {
+            found = 1;
+            age.ativo = 0; // Mark as inactive (logical deletion)
+            fseek(file, -sizeof(Agendamento), SEEK_CUR); // Move file cursor back
+            fwrite(&age, sizeof(Agendamento), 1, file); // Update the record
+            printf("Consulta excluida com sucesso.\n");
+            printf("\n");
+            getchar();
+            printf("\n");
+            printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+            getchar();
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Consulta nao encontrada.\n");
+        printf("\n");
+        getchar();
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+        getchar();
+    }
+
+    fclose(file);
+}
+
+
+char *getCli(const char *cpf) {
+    Cliente cliente;
+    FILE *file = fopen("clientes.dat", "rb"); // Abre o arquivo para leitura
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return NULL;
+    }
+
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {
+        if (strcmp(cliente.cpf, cpf) == 0) {
+            // CPF encontrado, aloca memória para o nome
+            char *result = (char *)malloc(strlen(cliente.nome) + 1);
+            if (result == NULL) {
+                printf("Erro ao alocar memória.\n");
+                fclose(file);
+                return NULL;
+            }
+
+            // Copia o nome para o resultado e o retorna
+            strcpy(result, cliente.nome);
+            fclose(file);
+            return result;
+        }
+    }
+
+    // Se o CPF não for encontrado, retorna NULL
+    fclose(file);
+    return NULL;
+}
+
+//FUNCAO DESENVOLVIDA COM AUXILIO DO CHATGPT
+
+char *getFun(const char *cpff) {
+    Funcionario funcionario;
+    FILE *file = fopen("funcionarios.dat", "rb"); // Abre o arquivo para leitura
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de funcionários para leitura.\n");
+        return NULL;
+    }
+
+    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+        if (strcmp(funcionario.cpf, cpff) == 0) {
+            // CPF encontrado, aloca memória para o nome
+            char *result = (char *)malloc(strlen(funcionario.nome) + 1);
+            if (result == NULL) {
+                printf("Erro ao alocar memória.\n");
+                fclose(file);
+                return NULL;
+            }
+
+            // Copia o nome para o resultado e o retorna
+            strcpy(result, funcionario.nome);
+            fclose(file);
+            return result;
+        }
+    }
+
+    // Se o CPF não for encontrado, retorna NULL
+    fclose(file);
+    return NULL;
+}
+
+void salvarAgendamento(Agendamento *age) {
+    FILE * file;
+
+    file = fopen("agendamentos.dat", "ab");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+        return;
+    }
+
+    fwrite(age, sizeof(Agendamento), 1, file);
+
+    fclose(file);
 
 }
-void excluirretorno(void){
-    system("clear||cls");
-    printf("Digite o CPF do cliente para excluir o retorno:\n");
-    printf("\n");
-    printf("EM CONSTRUÇÃO...");
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
+
+void listaagendamento(void) {
+    system("clear||cls");
+    FILE *file = fopen("agendamentos.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de agendamentos para leitura.\n");
+        return;
+    }
+
+    Agendamento age;
+
+    printf("===========================\n");
+    printf("   Lista de Agendamentos   \n");
+    printf("===========================\n");
+    printf("\n");
+
+    while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
+        if (age.ativo == 1) {
+            printf("\n");
+            printf("|Data da consulta: %s\n", age.data);
+            printf("|CPF do cliente: %s\n", age.cpf);
+            printf("|CPF do funcionario: %s\n", age.cpff);
+            printf("|Status da consulta: %d\n", age.ativo);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
+
+    fclose(file);
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+    getchar();
+}
+
+void listaALLagendamento(void) {
+    system("clear||cls");
+    FILE *file = fopen("agendamentos.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de agendamentos para leitura.\n");
+        return;
+    }
+
+    Agendamento age;
+
+    printf("===========================\n");
+    printf("   Lista de Agendamentos   \n");
+    printf("===========================\n");
+    printf("\n");
+
+    while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
+            printf("\n");
+            printf("|Data da consulta: %s\n", age.data);
+            printf("|CPF do cliente: %s\n", age.cpf);
+            printf("|CPF do funcionario: %s\n", age.cpff);
+            printf("|Status da consulta: %d\n", age.ativo);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    }
+
+    fclose(file);
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+    getchar();
 }
