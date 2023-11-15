@@ -12,10 +12,14 @@ void cliente(void);                  // Assinaturas de Clientes
 Cliente* cadastrocliente(void);
 void pesquisacliente(void);
 void atualizacliente(void);
-void listacliente(void);
 void excluircliente(void);
 void tela_menu_p(void);
 void saveCliente(Cliente* cli);
 int verificaCPFDuplicado(const char* cpf);
 
-//void listaALLcliente(void);
+void listacliente(void);
+void relatorioCli(void);
+void listaclienteInativo(void);
+void listaALLcliente(void);
+
+//Cliente *prox;

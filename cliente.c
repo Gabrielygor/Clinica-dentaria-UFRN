@@ -34,7 +34,7 @@ void cliente(void) {
         printf("|[1]. Cadastrar paciente\n");
         printf("|[2]. Pesquisar paciente\n");
         printf("|[3]. Atualizar paciente\n");
-        printf("|[4]. Listar paciente\n");
+        printf("|[4]. Relatorio de pacientes\n");
         printf("|[5]. Excluir paciente\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
@@ -55,7 +55,7 @@ void cliente(void) {
                 atualizacliente();
                 break;
             case '4':
-                listacliente();
+                relatorioCli();
                 break;
             case '5':
                 excluircliente();
@@ -304,39 +304,6 @@ void atualizacliente(void) {
     getchar();
 }
 
-void listacliente(void) {
-    Cliente cliente;  //Estrutura para armazenar os dados 
-    system("clear||cls");
-    printf("=========================\n");
-    printf("    Lista de Pacientes   \n");
-    printf("=========================\n");
-    printf("\n");
-
-    FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
-
-    if (file == NULL) {  //Se o arquivo for NULL da erro 
-        printf("Erro ao abrir o arquivo para leitura.\n");
-        return;
-    }
-
-    //LOOP que so para quanto tds os apcientes ativos forem printados 
-    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
-        if (cliente.ativo == 1) {  //Verifica se o paciente esta ativo
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
-        printf("Nome: %s\n", cliente.nome);
-        printf("Data de Nascimento: %s\n", cliente.data);
-        printf("Telefone: %s\n", cliente.telefone);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        }
-    }
-
-    fclose(file);  //Fecha o arquivo
-
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
 // Exclusao LOGICA do paciente
 void excluircliente(void) {
@@ -428,34 +395,150 @@ int verificaCPFDuplicado(const char* cpf) {
     return 0; // Retorna 0 para falso (CPF não duplicado)
 }
 
-// void listaALLcliente(void) {
-//     Cliente cliente;  //Estrutura para armazenar os dados 
-//     system("clear||cls");
-//     printf("=========================\n");
-//     printf("    Lista de Pacientes   \n");
-//     printf("=========================\n");
-//     printf("\n");
+void listaclienteAtivo(void) {
+    Cliente cliente;  //Estrutura para armazenar os dados 
+    system("clear||cls");
+    printf("=========================\n");
+    printf("    Lista de Pacientes   \n");
+    printf("=========================\n");
+    printf("\n");
 
-//     FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
+    FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
 
-//     if (file == NULL) {  //Se o arquivo for NULL da erro 
-//         printf("Erro ao abrir o arquivo para leitura.\n");
-//         return;
-//     }
+    if (file == NULL) {  //Se o arquivo for NULL da erro 
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
 
-//     //LOOP que so para quanto tds os apcientes ativos forem printados 
-//     while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
-//         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-//         printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
-//         printf("Nome: %s\n", cliente.nome);
-//         printf("Data de Nascimento: %s\n", cliente.data);
-//         printf("Telefone: %s\n", cliente.telefone);
-//         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-//     }
+    //LOOP que so para quanto tds os apcientes ativos forem printados 
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
+        if (cliente.ativo == 1) {  //Verifica se o paciente esta ativo
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
+        printf("Nome: %s\n", cliente.nome);
+        printf("Data de Nascimento: %s\n", cliente.data);
+        printf("Telefone: %s\n", cliente.telefone);
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
 
-//     fclose(file);  //Fecha o arquivo
+    fclose(file);  //Fecha o arquivo
 
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void listaALLcliente(void) {
+    Cliente cliente;  //Estrutura para armazenar os dados 
+    system("clear||cls");
+    printf("=========================\n");
+    printf("    Lista de Pacientes   \n");
+    printf("=========================\n");
+    printf("\n");
+
+    FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
+
+    if (file == NULL) {  //Se o arquivo for NULL da erro 
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    //LOOP que so para quanto tds os apcientes ativos forem printados 
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
+        printf("Nome: %s\n", cliente.nome);
+        printf("Data de Nascimento: %s\n", cliente.data);
+        printf("Telefone: %s\n", cliente.telefone);
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    }
+
+    fclose(file);  //Fecha o arquivo
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void listaclienteInativo(void) {
+    Cliente cliente;  //Estrutura para armazenar os dados 
+    system("clear||cls");
+    printf("=========================\n");
+    printf("    Lista de Pacientes   \n");
+    printf("=========================\n");
+    printf("\n");
+
+    FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
+
+    if (file == NULL) {  //Se o arquivo for NULL da erro 
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    //LOOP que so para quanto tds os apcientes ativos forem printados 
+    while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
+        if (cliente.ativo == 0) {  //Verifica se o paciente esta ativo
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
+        printf("Nome: %s\n", cliente.nome);
+        printf("Data de Nascimento: %s\n", cliente.data);
+        printf("Telefone: %s\n", cliente.telefone);
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
+
+    fclose(file);  //Fecha o arquivo
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void relatorioCli (void){
+    char op1;
+
+    do { // Loop para o menu de Clientes se repetir                                                           
+        system("clear||cls"); //Limpa a tela 
+        printf("============================\n");
+        printf("\n");
+        printf("   Relatorio de Pacientes   \n");
+        printf("\n");
+        printf("============================\n");
+        printf("\n");
+        printf("|[1]. Listar todos os Pacientes\n");
+        printf("|[2]. Listar Pacientes Ativos\n");
+        printf("|[3]. Listar Pacientes Inativos\n");
+        printf("|[4]. Listar paciente\n");
+        printf("|[5]. \n");
+        printf("|[0]. Voltar ao menu Principal\n");
+        printf("\n");
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("|Escolha a opcao desejada: ");
+        scanf(" %s", &op1); //Recebe a opcao desejada
+        getchar();
+
+        switch (op1) { //Switch case para opcoes disponiveis no modulo de clientes
+            case '1':
+                listaALLcliente();
+                break;
+            case '2':
+                  listaclienteAtivo();
+                break;
+            case '3':
+                  listaclienteInativo();
+                break;
+            case '4':
+                listaclienteAtivo();
+                break;
+            case '5':
+                printf("N ainda\n");
+                break;
+            case '0':
+                break;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (op1 != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
+}
