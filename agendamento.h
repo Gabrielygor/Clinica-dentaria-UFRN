@@ -14,5 +14,9 @@ void excluirconsulta(void);
 char *getCli(const char *cpf);
 char *getFun(const char *cpf);
 void salvarAgendamento(Agendamento *age);
-void listaagendamento(void);
+
+
+void relatorioAge(void);
+void listaagendamentoAtivo(void);
 void listaALLagendamento(void);
+void listaagendamentoInativo(void);

@@ -23,8 +23,8 @@ void agendamento(void){
         printf("\n");
         printf("|[1]. Agendar Consulta\n");
         printf("|[2]. Excluir Consultas\n");
-        printf("|[3]. Listar Agendamentos\n");
-        printf("|[4]. Listar Todas os Agendamentos\n");
+        printf("|[3]. Relatorio de Consultas\n");
+        printf("|[4]. \n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=\n");
@@ -41,10 +41,7 @@ void agendamento(void){
             excluirconsulta();
             break;
           case '3':
-            listaagendamento();
-            break;
-          case '4':
-           listaALLagendamento();
+            relatorioAge();
             break;
           case '0':
             break;
@@ -277,7 +274,7 @@ void salvarAgendamento(Agendamento *age) {
 }
 
 
-void listaagendamento(void) {
+void listaagendamentoAtivo(void) {
     system("clear||cls");
     FILE *file = fopen("agendamentos.dat", "rb");
 
@@ -295,6 +292,40 @@ void listaagendamento(void) {
 
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
         if (age.ativo == 1) {
+            printf("\n");
+            printf("|Data da consulta: %s\n", age.data);
+            printf("|CPF do cliente: %s\n", age.cpf);
+            printf("|CPF do funcionario: %s\n", age.cpff);
+            printf("|Status da consulta: %d\n", age.ativo);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
+
+    fclose(file);
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+    getchar();
+}
+
+void listaagendamentoInativo(void) {
+    system("clear||cls");
+    FILE *file = fopen("agendamentos.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de agendamentos para leitura.\n");
+        return;
+    }
+
+    Agendamento age;
+
+    printf("===========================\n");
+    printf("   Lista de Agendamentos   \n");
+    printf("===========================\n");
+    printf("\n");
+
+    while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
+        if (age.ativo == 0) {
             printf("\n");
             printf("|Data da consulta: %s\n", age.data);
             printf("|CPF do cliente: %s\n", age.cpf);
@@ -342,3 +373,49 @@ void listaALLagendamento(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
     getchar();
 }
+
+
+void relatorioAge(void){
+    char op3;
+    //Agendamento * age;
+
+    do{ 
+        system("clear||cls"); 
+        printf("=================\n");
+        printf("\n");
+        printf("   Agendamento   \n");
+        printf("\n");
+        printf("=================\n");
+        printf("\n");
+        printf("|[1]. Listar Todas as Consultas\n");
+        printf("|[2]. Listar Consultas Ativas\n");
+        printf("|[3]. Listar Consultas Inativas\n");
+        printf("|[4]. \n");
+        printf("|[0]. Voltar ao menu Principal\n");
+        printf("\n");
+        printf("=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("|Escolha a opcao desejada: ");
+        scanf(" %c", &op3); 
+        getchar();
+
+        switch (op3){
+          case '1':
+            listaALLagendamento();
+            break; 
+          case '2':
+            listaagendamentoAtivo();
+            break;
+          case '3':
+            listaagendamentoInativo();
+            break;
+          case '4':
+           printf("N ainda\n");
+            break;
+          case '0':
+            break;
+          default:
+            printf("Opcao invalida! Tente novamente.\n");
+            }
+      } while (op3 != '0');
+} 
