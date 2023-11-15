@@ -33,7 +33,7 @@ void funcionario(void){
         printf("|[1]. Cadastrar Funcionario\n");
         printf("|[2]. Pesquisar Funcionario\n");
         printf("|[3]. Atualizar Funcionario\n");
-        printf("|[4]. Listar Funcionarios\n");
+        printf("|[4]. Relatorio de Funcionarios\n");
         printf("|[5]. Excluir Funcionario\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
@@ -54,7 +54,7 @@ void funcionario(void){
               atualizafuncionario();
               break;
           case '4':
-              listafuncionarios();
+              relatorioFun();
               break;
           case '5':
               excluirfuncionario();
@@ -266,39 +266,7 @@ void atualizafuncionario(void) {
     }
 }  
 
-void listafuncionarios(void) {
-    Funcionario funcionario;
-    system("clear||cls");
-    printf("============================\n");
-    printf("    Lista de Funcionarios   \n");
-    printf("============================\n");
-    printf("\n");
 
-
-    FILE* file = fopen("funcionarios.dat", "rb");
-
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo para leitura.\n");
-        return;
-    }
-
-    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
-        if (funcionario.ativo == 1) {
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            printf("CPF: %s\n", funcionario.cpf);
-            printf("Nome: %s\n", funcionario.nome);
-            printf("Data de Nascimento: %s\n", funcionario.data);
-            printf("Telefone: %s\n", funcionario.telefone);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        }
-    }
-
-    fclose(file);
-
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
 void excluirfuncionario(void) {
     int funcionarioEncontradoFlag = 0;
@@ -388,34 +356,153 @@ int verificaCPFDuplicad(const char* cpf) {
     return 0;
 }
 
-// void listaALLfuncionarios(void) {
-//     Funcionario funcionario;
-//     system("clear||cls");
-//     printf("============================\n");
-//     printf("    Lista de Funcionarios   \n");
-//     printf("============================\n");
-//     printf("\n");
+void listafuncionariosAtivo(void) {
+    Funcionario funcionario;
+    system("clear||cls");
+    printf("============================\n");
+    printf("    Lista de Funcionarios   \n");
+    printf("============================\n");
+    printf("\n");
 
 
-//     FILE* file = fopen("funcionarios.dat", "rb");
+    FILE* file = fopen("funcionarios.dat", "rb");
 
-//     if (file == NULL) {
-//         printf("Erro ao abrir o arquivo para leitura.\n");
-//         return;
-//     }
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
 
-//     while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
-//             printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-//             printf("CPF: %s\n", funcionario.cpf);
-//             printf("Nome: %s\n", funcionario.nome);
-//             printf("Data de Nascimento: %s\n", funcionario.data);
-//             printf("Telefone: %s\n", funcionario.telefone);
-//             printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-//     }
+    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+        if (funcionario.ativo == 1) {
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            printf("CPF: %s\n", funcionario.cpf);
+            printf("Nome: %s\n", funcionario.nome);
+            printf("Data de Nascimento: %s\n", funcionario.data);
+            printf("Telefone: %s\n", funcionario.telefone);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
 
-//     fclose(file);
+    fclose(file);
 
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void listafuncionariosInativo(void) {
+    Funcionario funcionario;
+    system("clear||cls");
+    printf("============================\n");
+    printf("    Lista de Funcionarios   \n");
+    printf("============================\n");
+    printf("\n");
+
+
+    FILE* file = fopen("funcionarios.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+        if (funcionario.ativo == 0) {
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            printf("CPF: %s\n", funcionario.cpf);
+            printf("Nome: %s\n", funcionario.nome);
+            printf("Data de Nascimento: %s\n", funcionario.data);
+            printf("Telefone: %s\n", funcionario.telefone);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        }
+    }
+
+    fclose(file);
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void listaALLfuncionarios(void) {
+    Funcionario funcionario;
+    system("clear||cls");
+    printf("============================\n");
+    printf("    Lista de Funcionarios   \n");
+    printf("============================\n");
+    printf("\n");
+
+
+    FILE* file = fopen("funcionarios.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            printf("CPF: %s\n", funcionario.cpf);
+            printf("Nome: %s\n", funcionario.nome);
+            printf("Data de Nascimento: %s\n", funcionario.data);
+            printf("Telefone: %s\n", funcionario.telefone);
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    }
+
+    fclose(file);
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void relatorioFun(void){
+    char op2; //Recebe o opcao para navegar entres os modulos de fun
+    //Funcionario* fun;
+
+    do { //Faz um loop para o menu de funcionarios so aceitar opcoes validas
+        system("clear||cls"); //Limpa a tela
+        printf("===================================\n");
+        printf("\n");
+        printf("   Gerenciamento de Funcionarios   \n");
+        printf("\n");
+        printf("===================================\n");
+        printf("\n");
+        printf("|[1]. Listar Todos os Funcionarios\n");
+        printf("|[2]. Listar Funcionario Ativos\n");
+        printf("|[3]. Listar Funcionario Inativos\n");
+        printf("|[4]. \n");
+        printf("|[5]. \n");
+        printf("|[0]. Voltar ao menu Principal\n");
+        printf("\n");
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("|Escolha a opcao desejada: ");
+        scanf(" %s", &op2); //Recebe a opcao desejada
+        getchar();
+    
+        switch (op2){ //Switch case para navegar entre os modulos de fun
+          case '1':
+              listaALLfuncionarios();
+              break; 
+          case '2':
+              listafuncionariosAtivo();
+              break;
+          case '3':
+              listafuncionariosInativo();
+              break;
+          case '4':
+                printf("N ainda\n");
+              //listafuncionarios();
+              break;
+          case '5':
+                printf("N ainda\n");
+              //excluirfuncionario();
+              break;
+          case '0':
+              break;
+          default:
+              printf("Opção inválida! Tente novamente.\n");
+      }     
+    } while (op2 != '0');
+}

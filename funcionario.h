@@ -11,9 +11,11 @@ void funcionario(void);           //Assinatura de Funcionarios
 Funcionario* cadastrofuncionario(void);
 void pesquisafuncionario(void);
 void atualizafuncionario(void);
-void listafuncionarios(void);
 void excluirfuncionario(void);
 void saveFuncionario(Funcionario* fun);
 int verificaCPFDuplicad(const char* cpf);
 
-//void listaALLfuncionarios(void);
+void relatorioFun(void);
+void listaALLfuncionarios(void);
+void listafuncionariosAtivo(void);
+void listafuncionariosInativo(void);
