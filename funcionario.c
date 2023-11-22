@@ -462,11 +462,11 @@ void relatorioFun(void){
 
     do { //Faz um loop para o menu de funcionarios so aceitar opcoes validas
         system("clear||cls"); //Limpa a tela
-        printf("===================================\n");
+        printf("===============================\n");
         printf("\n");
-        printf("   Gerenciamento de Funcionarios   \n");
+        printf("   Relatorio de Funcionarios   \n");
         printf("\n");
-        printf("===================================\n");
+        printf("===============================\n");
         printf("\n");
         printf("|[1]. Listar Todos os Funcionarios\n");
         printf("|[2]. Listar Funcionario Ativos\n");
@@ -506,3 +506,5 @@ void relatorioFun(void){
       }     
     } while (op2 != '0');
 }
+
+//Texte
