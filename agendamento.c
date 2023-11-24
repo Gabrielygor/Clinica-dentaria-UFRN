@@ -296,19 +296,14 @@ void listaagendamentoAtivo(void) {
 
     Agendamento age;
 
-    printf("===========================\n");
-    printf("   Lista de Agendamentos   \n");
-    printf("===========================\n");
+    printf("=================================\n");
+    printf("   Lista de Agendamentos Ativos  \n");
+    printf("=================================\n");
     printf("\n");
 
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
         if (age.ativo == 1) {
-            printf("\n");
-            printf("|Data da consulta: %s\n", age.data);
-            printf("|CPF do cliente: %s\n", age.cpf);
-            printf("|CPF do funcionario: %s\n", age.cpff);
-            printf("|Status da consulta: %d\n", age.ativo);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            exibeAgendamento(&age);
         }
     }
 
@@ -330,19 +325,14 @@ void listaagendamentoInativo(void) {
 
     Agendamento age;
 
-    printf("===========================\n");
-    printf("   Lista de Agendamentos   \n");
-    printf("===========================\n");
+    printf("===================================\n");
+    printf("   Lista de Agendamentos Inativos  \n");
+    printf("===================================\n");
     printf("\n");
 
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
         if (age.ativo == 0) {
-            printf("\n");
-            printf("|Data da consulta: %s\n", age.data);
-            printf("|CPF do cliente: %s\n", age.cpf);
-            printf("|CPF do funcionario: %s\n", age.cpff);
-            printf("|Status da consulta: %d\n", age.ativo);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            exibeAgendamento(&age);
         }
     }
 
@@ -370,12 +360,7 @@ void listaALLagendamento(void) {
     printf("\n");
 
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
-            printf("\n");
-            printf("|Data da consulta: %s\n", age.data);
-            printf("|CPF do cliente: %s\n", age.cpf);
-            printf("|CPF do funcionario: %s\n", age.cpff);
-            printf("|Status da consulta: %d\n", age.ativo);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+           exibeAgendamento(&age);
     }
 
     fclose(file);
@@ -392,11 +377,11 @@ void relatorioAge(void){
 
     do{ 
         system("clear||cls"); 
-        printf("=================\n");
+        printf("==============================\n");
         printf("\n");
-        printf("   Agendamento   \n");
+        printf("  Relatorio de  Agendamento   \n");
         printf("\n");
-        printf("=================\n");
+        printf("==============================\n");
         printf("\n");
         printf("|[1]. Listar Todas as Consultas\n");
         printf("|[2]. Listar Consultas Ativas\n");
@@ -430,3 +415,21 @@ void relatorioAge(void){
             }
       } while (op3 != '0');
 } 
+
+void exibeAgendamento(Agendamento *age){
+  char * nomeclie;  
+  char * nomefun;
+
+  nomeclie = getCli(age->cpf);
+  nomefun = getFun(age->cpff);
+
+  printf("|Data da Consulta: %s\n", age->data);
+  printf("|CPF do Cliente: %s\n", age->cpf);
+  printf("|Nome do Cliente: %s\n", nomeclie);
+  printf("|CPF do Funcionario: %s\n", age->cpff);
+  printf("|Nome do Funcionario: %s\n", nomefun);
+  printf("|Status da Consulta: %d\n", age->ativo);
+  printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+  printf("\n");
+    
+}

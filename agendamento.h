@@ -20,3 +20,4 @@ void relatorioAge(void);
 void listaagendamentoAtivo(void);
 void listaALLagendamento(void);
 void listaagendamentoInativo(void);
+void exibeAgendamento(Agendamento *age);
