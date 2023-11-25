@@ -5,8 +5,10 @@ struct cliente { //STRUCT que contem as informacoes de cadastro de clientes "cli
     char telefone[12];
     char data[10];
     int ativo; // 1 para ativo, 0 para inativo
+    Cliente *prox;
 };
 
+void ListaAlfaCli(void);
 
 void cliente(void);                  // Assinaturas de Clientes
 Cliente* cadastrocliente(void);

@@ -509,8 +509,7 @@ void relatorioCli (void){
         printf("|[1]. Listar todos os Pacientes\n");
         printf("|[2]. Listar Pacientes Ativos\n");
         printf("|[3]. Listar Pacientes Inativos\n");
-        printf("|[4]. Listar paciente\n");
-        printf("|[5]. \n");
+        printf("|[4]. Listar em ordem Alfabetica\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
@@ -530,10 +529,7 @@ void relatorioCli (void){
                   listaclienteInativo();
                 break;
             case '4':
-                listaclienteAtivo();
-                break;
-            case '5':
-                printf("N ainda\n");
+                  ListaAlfaCli();
                 break;
             case '0':
                 break;
@@ -541,4 +537,76 @@ void relatorioCli (void){
                 printf("Opção inválida! Tente novamente.\n");
         }
     } while (op1 != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
+}
+
+void ListaAlfaCli(void) {
+    system("clear||cls");
+    FILE* file;
+    Cliente* novocli;  //Apontador para estrutura de clientes
+    Cliente* lista;  //Apontador para a variavel de lista (para fazer a lista encadeiada)
+
+    file = fopen("clientes.dat", "rb");  //Abre o arquivo que contem os dados dos clientes
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        exit(1);  //Encerra o programa 
+    }
+
+    printf("================================\n");
+    printf("   Relatorio Ordem Alfabetica\n");
+    printf("================================\n");
+    printf("\n");
+
+    lista = NULL;  //Define a lista como NULL (Lista vazia)
+    novocli = (Cliente*)malloc(sizeof(Cliente)); // Aloca memoria para a estrutura novocli com o tamanho de um Cliente
+
+    if (novocli == NULL) {  //Se nao consegui alocar da erro 
+        printf("Erro de alocação de memória\n");
+        exit(1);  //Sai do programa 
+    }
+
+    while (fread(novocli, sizeof(Cliente), 1, file) == 1) {  //Loop para ler enquato existir
+        novocli->prox = NULL;  //Aponta o ponteiro para NULL
+
+        if ((lista == NULL) || (strcmp(novocli->nome, lista->nome) < 0)) {  //Se a lista for vazia 
+            novocli->prox = lista;  //Atualiza o ponteiro 'prox' do novo cliente para apontar para o início da lista
+            lista = novocli;  // Atualiza a inicio da lista para apontar para o novo cliente
+        } else {  
+            Cliente* ant = lista;  // Ponteiro para o cliente anterior na lista
+            Cliente* atual = lista->prox;   // Ponteiro para o próximo cliente na lista
+            while ((atual != NULL) && strcmp(atual->nome, novocli->nome) < 0) {   // Enquanto não chegamos ao final da lista e o novo cliente vem depois do cliente atual
+                ant = atual;  // Atualiza o ponteiro para o cliente anterior
+                atual = atual->prox; // Move para o próximo cliente na lista
+            }
+            ant->prox = novocli;  // Atualiza o ponteiro 'prox' do cliente anterior para apontar para o novo cliente
+            novocli->prox = atual;  // Atualiza o ponteiro 'prox' do novo cliente para apontar para o cliente atual
+        }
+
+        novocli = (Cliente*)malloc(sizeof(Cliente));
+        if (novocli == NULL) {
+            printf("Erro de alocação de memória\n");
+            exit(1);
+        }
+    }
+
+    fclose(file);  //Fecha o arquivo 
+
+    novocli = lista;  //Aponta para o proximo 
+    while (novocli != NULL) {  //Enqunato for diferente de NULL
+        printf("|Nome: %s\n", novocli->nome);  //Da print nas 
+        printf("|CPF: %s\n", novocli->cpf);
+        printf("|Telefone: %s\n", novocli->telefone);
+        printf("|Data de Nascimento: %s\n", novocli->data);
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
+        getchar();
+        novocli = novocli->prox;   // Move para o próximo cliente na lista encadeada
+    }
+
+    novocli = lista;  // Atualiza o ponteiro 'novocli' para apontar para o início da lista
+    while (lista != NULL) {
+        lista = lista->prox;  // Move a lista para o próximo nó
+        free(novocli); // Libera a memória alocada para o nó anterior da lista
+        novocli = lista; // Atualiza 'novocli' para apontar para o próximo nó da lista
+    }
 }
