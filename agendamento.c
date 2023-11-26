@@ -35,7 +35,6 @@ void agendamento(void){
         printf("|[1]. Agendar Consulta\n");
         printf("|[2]. Excluir Consultas\n");
         printf("|[3]. Relatorio de Consultas\n");
-        printf("|[4]. \n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=\n");
@@ -386,7 +385,7 @@ void relatorioAge(void){
         printf("|[1]. Listar Todas as Consultas\n");
         printf("|[2]. Listar Consultas Ativas\n");
         printf("|[3]. Listar Consultas Inativas\n");
-        printf("|[4]. \n");
+        printf("|[4]. Listar Consultas por Data\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=\n");
@@ -406,7 +405,7 @@ void relatorioAge(void){
             listaagendamentoInativo();
             break;
           case '4':
-           printf("N ainda\n");
+            ListaAlfaData();
             break;
           case '0':
             break;
@@ -432,4 +431,73 @@ void exibeAgendamento(Agendamento *age){
   printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
   printf("\n");
     
+}
+
+void ListaAlfaData(void) {
+    system("clear||cls");
+
+    FILE* file;
+    Agendamento* novoage;
+    Agendamento* lista;
+
+    file = fopen("agendamentos.dat", "rb");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        exit(1);
+    }
+
+    printf("================================\n");
+    printf("   Relatorio Ordem de Data\n");
+    printf("================================\n");
+    printf("\n");
+
+    lista = NULL;
+    novoage = (Agendamento*)malloc(sizeof(Agendamento));
+
+    if (novoage == NULL) {
+        printf("Erro de alocação de memória\n");
+        exit(1);
+    }
+
+    while (fread(novoage, sizeof(Agendamento), 1, file) == 1) {
+        novoage->prox = NULL;
+
+        if ((lista == NULL) || (strcmp(novoage->data, lista->data) < 0)) {
+            novoage->prox = lista;
+            lista = novoage;
+        } else {
+            Agendamento* ant = lista;
+            Agendamento* atual = lista->prox;
+            while ((atual != NULL) && strcmp(atual->data, novoage->data) < 0) {
+                ant = atual;
+                atual = atual->prox;
+            }
+            ant->prox = novoage;
+            novoage->prox = atual;
+        }
+
+        novoage = (Agendamento*)malloc(sizeof(Agendamento));
+        if (novoage == NULL) {
+            printf("Erro de alocação de memória\n");
+            exit(1);
+        }
+    }
+
+    fclose(file);
+
+    novoage = lista;
+    while (novoage != NULL) {
+        exibeAgendamento(novoage);
+        printf("\n");
+        printf("Pressione ENTER para ir para o próximo Cliente ou fechar a listagem\n");
+        getchar();
+        novoage = novoage->prox;
+    }
+
+    novoage = lista;
+    while (lista != NULL) {
+        lista = lista->prox;
+        free(novoage);
+        novoage = lista;
+    }
 }

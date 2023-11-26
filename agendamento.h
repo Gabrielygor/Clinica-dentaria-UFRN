@@ -5,7 +5,10 @@ struct agendamento{
    // char hora[5];
     char cpff[12];
     int ativo; // 1 para ativo, 0 para inativo
+    Agendamento *prox;
 };
+
+void ListaAlfaData(void);
 
 void agendamento(void);        // Assinatura de Agendamentos
 Agendamento* agendarconsulta(void); 
