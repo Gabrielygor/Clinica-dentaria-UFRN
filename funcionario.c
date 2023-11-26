@@ -471,8 +471,7 @@ void relatorioFun(void){
         printf("|[1]. Listar Todos os Funcionarios\n");
         printf("|[2]. Listar Funcionario Ativos\n");
         printf("|[3]. Listar Funcionario Inativos\n");
-        printf("|[4]. \n");
-        printf("|[5]. \n");
+        printf("|[4]. Listar em Ordem Alfabetica\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
@@ -492,12 +491,7 @@ void relatorioFun(void){
               listafuncionariosInativo();
               break;
           case '4':
-                printf("N ainda\n");
-              //listafuncionarios();
-              break;
-          case '5':
-                printf("N ainda\n");
-              //excluirfuncionario();
+              ListaAlfaFun();
               break;
           case '0':
               break;
@@ -507,5 +501,75 @@ void relatorioFun(void){
     } while (op2 != '0');
 }
 
-//Texte
-//Texte2
+void ListaAlfaFun(){
+    system("clear||cls");
+    FILE* file;
+    Funcionario* novofun;  
+    Funcionario* lista;  
+
+
+    file = fopen("funcionarios.dat", "rb"); 
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        exit(1);  
+    }
+
+    printf("================================\n");
+    printf("   Relatorio Ordem Alfabetica\n");
+    printf("================================\n");
+    printf("\n");
+
+    lista = NULL; 
+    novofun = (Funcionario*)malloc(sizeof(Funcionario));
+
+    if (novofun == NULL) {  
+        printf("Erro de alocação de memória\n");
+        exit(1); 
+      }
+
+    while (fread(novofun, sizeof(Funcionario), 1, file) == 1) {  
+      novofun->prox = NULL;  
+
+      if ((lista == NULL) || (strcmp(novofun->nome, lista->nome) < 0)) {  
+          novofun->prox = lista;  
+          lista = novofun;  
+      } else {  
+          Funcionario* ant = lista;  
+          Funcionario* atual = lista->prox;
+          while ((atual != NULL) && strcmp(atual->nome, novofun->nome) < 0) {   
+              ant = atual;  
+              atual = atual->prox; 
+          }
+          ant->prox = novofun;  
+          novofun->prox = atual; 
+      }
+
+      novofun = (Funcionario*)malloc(sizeof(Funcionario));
+      if (novofun == NULL) {
+          printf("Erro de alocação de memória\n");
+          exit(1);
+      }
+    }
+
+    fclose(file);
+
+    novofun = lista; 
+    while (novofun != NULL) {  
+        printf("|Nome: %s\n", novofun->nome);  
+        printf("|CPF: %s\n", novofun->cpf);
+        printf("|Telefone: %s\n", novofun->telefone);
+        printf("|Data de Nascimento: %s\n", novofun->data);
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        printf("\n");
+        printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
+        getchar();
+        novofun = novofun->prox;  
+    }
+
+    novofun = lista;  
+    while (lista != NULL) {
+        lista = lista->prox;  
+        free(novofun); 
+        novofun = lista; 
+    }
+}

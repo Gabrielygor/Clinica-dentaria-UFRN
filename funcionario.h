@@ -5,7 +5,10 @@ struct funcionario { //Struct que contem as variaveis usadas no cadastro de func
     char telefone[12];
     char data[10];
     int ativo; // 1 para ativo, 0 para inativo
+    Funcionario *prox;
 };
+
+void ListaAlfaFun(void);
 
 void funcionario(void);           //Assinatura de Funcionarios 
 Funcionario* cadastrofuncionario(void);
