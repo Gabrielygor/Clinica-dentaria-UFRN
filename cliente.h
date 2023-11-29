@@ -9,6 +9,8 @@ struct cliente { //STRUCT que contem as informacoes de cadastro de clientes "cli
 };
 
 void ListaAlfaCli(void);
+void exibeCliente(Cliente *cli);
+void cabecalhoCli(void);
 
 void cliente(void);                  // Assinaturas de Clientes
 Cliente* cadastrocliente(void);

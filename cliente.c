@@ -403,6 +403,8 @@ void listaclienteAtivo(void) {
     printf("=========================\n");
     printf("\n");
 
+    cabecalhoCli();
+
     FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
 
     if (file == NULL) {  //Se o arquivo for NULL da erro 
@@ -413,12 +415,7 @@ void listaclienteAtivo(void) {
     //LOOP que so para quanto tds os apcientes ativos forem printados 
     while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
         if (cliente.ativo == 1) {  //Verifica se o paciente esta ativo
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
-        printf("Nome: %s\n", cliente.nome);
-        printf("Data de Nascimento: %s\n", cliente.data);
-        printf("Telefone: %s\n", cliente.telefone);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        exibeCliente(&cliente);
         }
     }
 
@@ -437,6 +434,8 @@ void listaALLcliente(void) {
     printf("=========================\n");
     printf("\n");
 
+    cabecalhoCli();
+
     FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
 
     if (file == NULL) {  //Se o arquivo for NULL da erro 
@@ -446,12 +445,7 @@ void listaALLcliente(void) {
 
     //LOOP que so para quanto tds os apcientes ativos forem printados 
     while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
-        printf("Nome: %s\n", cliente.nome);
-        printf("Data de Nascimento: %s\n", cliente.data);
-        printf("Telefone: %s\n", cliente.telefone);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        exibeCliente(&cliente);
     }
 
     fclose(file);  //Fecha o arquivo
@@ -469,6 +463,8 @@ void listaclienteInativo(void) {
     printf("=========================\n");
     printf("\n");
 
+    cabecalhoCli();
+
     FILE* file = fopen("clientes.dat", "rb");  //Abre o arquivo no modo de leitura
 
     if (file == NULL) {  //Se o arquivo for NULL da erro 
@@ -479,12 +475,7 @@ void listaclienteInativo(void) {
     //LOOP que so para quanto tds os apcientes ativos forem printados 
     while (fread(&cliente, sizeof(Cliente), 1, file) == 1) {  //Le os pacientes cadastrados no sistema 
         if (cliente.ativo == 0) {  //Verifica se o paciente esta ativo
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("CPF: %s\n", cliente.cpf);  //Printa as informacoes dos paciente
-        printf("Nome: %s\n", cliente.nome);
-        printf("Data de Nascimento: %s\n", cliente.data);
-        printf("Telefone: %s\n", cliente.telefone);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        exibeCliente(&cliente);
         }
     }
 
@@ -539,6 +530,18 @@ void relatorioCli (void){
     } while (op1 != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
 }
 
+void cabecalhoCli(void){
+  printf("+----------------------+----------------------+----------------------+----------------------+\n");
+  printf("| CPF:                 | Nome:                | Data de Nascimento:  | Telefone:            |\n");
+}
+
+void exibeCliente(Cliente *cli){
+  
+  printf("+----------------------+----------------------+----------------------+----------------------+\n");
+  printf("  %-20s   %-20s   %-20s   %-20s  \n", cli->cpf, cli->nome, cli->data, cli->telefone);
+  printf("+----------------------+----------------------+----------------------+----------------------+\n");
+}
+
 void ListaAlfaCli(void) {
     system("clear||cls");
     FILE* file;
@@ -555,6 +558,8 @@ void ListaAlfaCli(void) {
     printf("   Relatorio Ordem Alfabetica\n");
     printf("================================\n");
     printf("\n");
+
+    cabecalhoCli();
 
     lista = NULL;  //Define a lista como NULL (Lista vazia)
     novocli = (Cliente*)malloc(sizeof(Cliente)); // Aloca memoria para a estrutura novocli com o tamanho de um Cliente
@@ -592,13 +597,8 @@ void ListaAlfaCli(void) {
 
     novocli = lista;  //Aponta para o proximo 
     while (novocli != NULL) {  //Enqunato for diferente de NULL
-        printf("|Nome: %s\n", novocli->nome);  //Da print nas 
-        printf("|CPF: %s\n", novocli->cpf);
-        printf("|Telefone: %s\n", novocli->telefone);
-        printf("|Data de Nascimento: %s\n", novocli->data);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("\n");
-        printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
+        exibeCliente(novocli);
+        //printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
         getchar();
         novocli = novocli->prox;   // Move para o próximo cliente na lista encadeada
     }
