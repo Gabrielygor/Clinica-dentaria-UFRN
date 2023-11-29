@@ -364,6 +364,7 @@ void listafuncionariosAtivo(void) {
     printf("============================\n");
     printf("\n");
 
+    cabecalhoFun();
 
     FILE* file = fopen("funcionarios.dat", "rb");
 
@@ -374,12 +375,7 @@ void listafuncionariosAtivo(void) {
 
     while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
         if (funcionario.ativo == 1) {
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            printf("CPF: %s\n", funcionario.cpf);
-            printf("Nome: %s\n", funcionario.nome);
-            printf("Data de Nascimento: %s\n", funcionario.data);
-            printf("Telefone: %s\n", funcionario.telefone);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            exibeFuncionario(&funcionario);
         }
     }
 
@@ -398,6 +394,7 @@ void listafuncionariosInativo(void) {
     printf("============================\n");
     printf("\n");
 
+    cabecalhoFun();
 
     FILE* file = fopen("funcionarios.dat", "rb");
 
@@ -408,12 +405,7 @@ void listafuncionariosInativo(void) {
 
     while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
         if (funcionario.ativo == 0) {
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            printf("CPF: %s\n", funcionario.cpf);
-            printf("Nome: %s\n", funcionario.nome);
-            printf("Data de Nascimento: %s\n", funcionario.data);
-            printf("Telefone: %s\n", funcionario.telefone);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            exibeFuncionario(&funcionario);
         }
     }
 
@@ -432,6 +424,7 @@ void listaALLfuncionarios(void) {
     printf("============================\n");
     printf("\n");
 
+    cabecalhoFun();
 
     FILE* file = fopen("funcionarios.dat", "rb");
 
@@ -441,12 +434,7 @@ void listaALLfuncionarios(void) {
     }
 
     while (fread(&funcionario, sizeof(Funcionario), 1, file) == 1) {
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            printf("CPF: %s\n", funcionario.cpf);
-            printf("Nome: %s\n", funcionario.nome);
-            printf("Data de Nascimento: %s\n", funcionario.data);
-            printf("Telefone: %s\n", funcionario.telefone);
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            exibeFuncionario(&funcionario);
     }
 
     fclose(file);
@@ -501,6 +489,19 @@ void relatorioFun(void){
     } while (op2 != '0');
 }
 
+void cabecalhoFun(void){
+  printf("+------------------------+----------------------+----------------------+------------------------+\n");
+  printf("| Nome:                  | CPF:                 | Telefone:            | Data de Nascimento:    |\n");
+  
+}
+
+void exibeFuncionario(Funcionario *fun){
+  printf("+------------------------+----------------------+----------------------+------------------------+\n");
+  printf("  %-22s   %-19s    %-20s   %-22s \n", fun->nome, fun->cpf, fun->telefone, fun->data);
+  printf("+------------------------+----------------------+----------------------+------------------------+\n");
+  
+}
+
 void ListaAlfaFun(){
     system("clear||cls");
     FILE* file;
@@ -518,6 +519,8 @@ void ListaAlfaFun(){
     printf("   Relatorio Ordem Alfabetica\n");
     printf("================================\n");
     printf("\n");
+
+    cabecalhoFun();
 
     lista = NULL; 
     novofun = (Funcionario*)malloc(sizeof(Funcionario));
@@ -555,13 +558,8 @@ void ListaAlfaFun(){
 
     novofun = lista; 
     while (novofun != NULL) {  
-        printf("|Nome: %s\n", novofun->nome);  
-        printf("|CPF: %s\n", novofun->cpf);
-        printf("|Telefone: %s\n", novofun->telefone);
-        printf("|Data de Nascimento: %s\n", novofun->data);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        printf("\n");
-        printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
+        exibeFuncionario(novofun);
+        //printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
         getchar();
         novofun = novofun->prox;  
     }

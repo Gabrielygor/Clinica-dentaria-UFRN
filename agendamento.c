@@ -496,7 +496,6 @@ void ListaAlfaData(void) {
     novoage = lista;
     while (novoage != NULL) {
         exibeAgendamento(novoage);
-        printf("\n");
        // printf("Pressione ENTER para ir para o proximo Cliente ou fechar a listagem\n");
         getchar();
         novoage = novoage->prox;
