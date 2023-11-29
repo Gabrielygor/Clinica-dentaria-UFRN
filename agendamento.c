@@ -300,6 +300,8 @@ void listaagendamentoAtivo(void) {
     printf("=================================\n");
     printf("\n");
 
+    cabecalhoAge();
+
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
         if (age.ativo == 1) {
             exibeAgendamento(&age);
@@ -329,6 +331,8 @@ void listaagendamentoInativo(void) {
     printf("===================================\n");
     printf("\n");
 
+    cabecalhoAge();
+
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
         if (age.ativo == 0) {
             exibeAgendamento(&age);
@@ -357,6 +361,8 @@ void listaALLagendamento(void) {
     printf("   Lista de Agendamentos   \n");
     printf("===========================\n");
     printf("\n");
+
+    cabecalhoAge();
 
     while (fread(&age, sizeof(Agendamento), 1, file) == 1) {
            exibeAgendamento(&age);
@@ -415,6 +421,11 @@ void relatorioAge(void){
       } while (op3 != '0');
 } 
 
+void cabecalhoAge(void){
+  printf("+---------------------+---------------------+------------------------+------------------------+------------------------+------------------------+\n");
+  printf("| Data da Consulta:   | CPF do Cliente:     | Nome do Cliente:       | CPF do Funcionario:    |Nome do Funcionario:    |Status da Consulta:  |\n");
+}
+
 void exibeAgendamento(Agendamento *age){
   char * nomeclie;  
   char * nomefun;
@@ -422,14 +433,9 @@ void exibeAgendamento(Agendamento *age){
   nomeclie = getCli(age->cpf);
   nomefun = getFun(age->cpff);
 
-  printf("|Data da Consulta: %s\n", age->data);
-  printf("|CPF do Cliente: %s\n", age->cpf);
-  printf("|Nome do Cliente: %s\n", nomeclie);
-  printf("|CPF do Funcionario: %s\n", age->cpff);
-  printf("|Nome do Funcionario: %s\n", nomefun);
-  printf("|Status da Consulta: %d\n", age->ativo);
-  printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-  printf("\n");
+  printf("+---------------------+---------------------+------------------------+------------------------+------------------------+------------------------+\n");
+  printf("  %-19s   %-19s   %-24s  %-23s  %-23s  %d\n", age->data, age->cpf, nomeclie, age->cpff, nomefun, age->ativo);
+  printf("+---------------------+---------------------+------------------------+------------------------+------------------------+------------------------+\n");
     
 }
 
@@ -450,6 +456,8 @@ void ListaAlfaData(void) {
     printf("   Relatorio Ordem de Data\n");
     printf("================================\n");
     printf("\n");
+
+    cabecalhoAge();
 
     lista = NULL;
     novoage = (Agendamento*)malloc(sizeof(Agendamento));
@@ -489,7 +497,7 @@ void ListaAlfaData(void) {
     while (novoage != NULL) {
         exibeAgendamento(novoage);
         printf("\n");
-        printf("Pressione ENTER para ir para o próximo Cliente ou fechar a listagem\n");
+       // printf("Pressione ENTER para ir para o proximo Cliente ou fechar a listagem\n");
         getchar();
         novoage = novoage->prox;
     }

@@ -9,6 +9,7 @@ struct agendamento{
 };
 
 void ListaAlfaData(void);
+void cabecalhoAge(void);
 
 void agendamento(void);        // Assinatura de Agendamentos
 Agendamento* agendarconsulta(void); 
