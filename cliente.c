@@ -63,7 +63,7 @@ void cliente(void) {
             case '0':
                 break;
             default:
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opcao invalida! Tente novamente.\n");
         }
     } while (op != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
 }
@@ -525,7 +525,7 @@ void relatorioCli (void){
             case '0':
                 break;
             default:
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opcao invalida! Tente novamente.\n");
         }
     } while (op1 != '0'); // Sai do loop e volta para o menu principal caso a opcção = 0
 }
@@ -565,7 +565,7 @@ void ListaAlfaCli(void) {
     novocli = (Cliente*)malloc(sizeof(Cliente)); // Aloca memoria para a estrutura novocli com o tamanho de um Cliente
 
     if (novocli == NULL) {  //Se nao consegui alocar da erro 
-        printf("Erro de alocação de memória\n");
+        printf("Erro de alocacao de memoria\n");
         exit(1);  //Sai do programa 
     }
 
@@ -588,7 +588,7 @@ void ListaAlfaCli(void) {
 
         novocli = (Cliente*)malloc(sizeof(Cliente));
         if (novocli == NULL) {
-            printf("Erro de alocação de memória\n");
+            printf("Erro de alocacao de memoria\n");
             exit(1);
         }
     }
