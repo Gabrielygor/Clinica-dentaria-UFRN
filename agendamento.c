@@ -115,7 +115,7 @@ Agendamento* agendarconsulta(void){
             valido = 1; // Sai do loop se o funcionário for válido
         } else {
             printf("|\n");
-            printf("|Funcionario não encontrado.\n");
+            printf("|Funcionario nao encontrado.\n");
             printf("=-=-=-=-=-=-=\n");
         }
     } while (!valido);
@@ -217,7 +217,7 @@ char *getCli(const char *cpf) {
             // CPF encontrado, aloca memória para o nome
             char *result = (char *)malloc(strlen(cliente.nome) + 1);
             if (result == NULL) {
-                printf("Erro ao alocar memória.\n");
+                printf("Erro ao alocar memoria.\n");
                 fclose(file);
                 return NULL;
             }
@@ -241,7 +241,7 @@ char *getFun(const char *cpff) {
     FILE *file = fopen("funcionarios.dat", "rb"); // Abre o arquivo para leitura
 
     if (file == NULL) {
-        printf("Erro ao abrir o arquivo de funcionários para leitura.\n");
+        printf("Erro ao abrir o arquivo de funcionarios para leitura.\n");
         return NULL;
     }
 
@@ -250,7 +250,7 @@ char *getFun(const char *cpff) {
             // CPF encontrado, aloca memória para o nome
             char *result = (char *)malloc(strlen(funcionario.nome) + 1);
             if (result == NULL) {
-                printf("Erro ao alocar memória.\n");
+                printf("Erro ao alocar memoria.\n");
                 fclose(file);
                 return NULL;
             }
@@ -463,7 +463,7 @@ void ListaAlfaData(void) {
     novoage = (Agendamento*)malloc(sizeof(Agendamento));
 
     if (novoage == NULL) {
-        printf("Erro de alocação de memória\n");
+        printf("Erro de alocacao de memoria\n");
         exit(1);
     }
 
@@ -486,7 +486,7 @@ void ListaAlfaData(void) {
 
         novoage = (Agendamento*)malloc(sizeof(Agendamento));
         if (novoage == NULL) {
-            printf("Erro de alocação de memória\n");
+            printf("Erro de alocacao de memoria\n");
             exit(1);
         }
     }
