@@ -62,7 +62,7 @@ void funcionario(void){
           case '0':
               break;
           default:
-              printf("Opção inválida! Tente novamente.\n");
+              printf("Opcao invalida! Tente novamente.\n");
       }     
     } while (op != '0');
 }
@@ -484,7 +484,7 @@ void relatorioFun(void){
           case '0':
               break;
           default:
-              printf("Opção inválida! Tente novamente.\n");
+              printf("Opcao invalida! Tente novamente.\n");
       }     
     } while (op2 != '0');
 }
@@ -526,7 +526,7 @@ void ListaAlfaFun(){
     novofun = (Funcionario*)malloc(sizeof(Funcionario));
 
     if (novofun == NULL) {  
-        printf("Erro de alocação de memória\n");
+        printf("Erro de alocacao de memoria\n");
         exit(1); 
       }
 
@@ -549,7 +549,7 @@ void ListaAlfaFun(){
 
       novofun = (Funcionario*)malloc(sizeof(Funcionario));
       if (novofun == NULL) {
-          printf("Erro de alocação de memória\n");
+          printf("Erro de alocacao de memoria\n");
           exit(1);
       }
     }
