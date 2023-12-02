@@ -18,6 +18,8 @@ void excluirconsulta(void);
 char *getCli(const char *cpf);
 char *getFun(const char *cpf);
 void salvarAgendamento(Agendamento *age);
+void atualizaAgendamento(void);
+void pesquisaConsultasCliente(void);
 
 
 void relatorioAge(void);

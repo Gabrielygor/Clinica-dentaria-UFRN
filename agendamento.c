@@ -34,7 +34,9 @@ void agendamento(void){
         printf("\n");
         printf("|[1]. Agendar Consulta\n");
         printf("|[2]. Excluir Consultas\n");
-        printf("|[3]. Relatorio de Consultas\n");
+        printf("|[3]. Editar Consulta\n");
+        printf("|[4]. Pesquisar Consultas po Paciente\n");
+        printf("|[5]. Relatorio de Consultas\n");
         printf("|[0]. Voltar ao menu Principal\n");
         printf("\n");
         printf("=-=-=-=-=-=-=-=-=\n");
@@ -51,6 +53,12 @@ void agendamento(void){
             excluirconsulta();
             break;
           case '3':
+            atualizaAgendamento();
+            break;
+          case '4':
+            pesquisaConsultasCliente();
+            break;
+          case '5':
             relatorioAge();
             break;
           case '0':
@@ -507,4 +515,115 @@ void ListaAlfaData(void) {
         free(novoage);
         novoage = lista;
     }
+}
+
+
+void atualizaAgendamento(void) {
+    char cpf_cliente[15];
+    Agendamento ageAtualizado;
+    int agendamentoEncontradoFlag = 0;
+
+    system("clear||cls");
+    printf("=============================\n");
+    printf("   Atualizar Agendamento   \n");
+    printf("=============================\n");
+    printf("\n");
+    printf("Digite o CPF do cliente para atualizar um agendamento: ");
+    scanf("%s", cpf_cliente);
+
+    FILE* file = fopen("agendamentos.dat", "rb+");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+        return;
+    }
+
+    while (fread(&ageAtualizado, sizeof(Agendamento), 1, file) == 1) {
+        if (strcmp(ageAtualizado.cpf, cpf_cliente) == 0 && ageAtualizado.ativo == 1) {
+            printf("\n");
+            printf("Agendamento encontrado.\n");
+            printf("\n");
+
+            printf("Digite a nova data da consulta (DD/MM/AA): ");
+            scanf("%s", ageAtualizado.data);
+             while (!lerData(ageAtualizado.data)) {
+              printf("Data invalida. Digite novamente (DD/MM/AA): ");
+              scanf("%s", ageAtualizado.data);
+          }
+
+           printf("Digite o novo CPF do funcionario: ");
+            scanf("%s", ageAtualizado.cpff);
+            while (!validaCPF(ageAtualizado.cpff)) {
+              printf("CPF invalido. Digite novamente: ");
+              scanf("%s", ageAtualizado.cpff);
+            }
+
+            fseek(file, -sizeof(Agendamento), SEEK_CUR);
+            fwrite(&ageAtualizado, sizeof(Agendamento), 1, file);
+            agendamentoEncontradoFlag = 1;
+            printf("Agendamento atualizado com sucesso.\n");
+            printf("\n");
+            printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+            getchar();
+            getchar();
+            break;
+        }
+    }
+
+    if (!agendamentoEncontradoFlag) {
+        printf("Agendamento nao encontrado.\n");
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continua...\n");
+        getchar();
+        getchar();
+    }
+
+    fclose(file);
+}
+
+void pesquisaConsultasCliente(void) {
+    char cpf[12];
+    int consultasEncontradas = 0;
+
+    system("clear||cls");
+    printf("=============================\n");
+    printf(" Pesquisar Consultas Cliente \n");
+    printf("=============================\n");
+    printf("\n");
+    printf("Informe o CPF do cliente:");
+    scanf("%s", cpf);
+    printf("\n");
+
+    FILE* file = fopen("agendamentos.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
+
+    Agendamento consultaEncontrada;
+
+    printf("Consultas do Cliente com CPF %s:\n", cpf);
+    printf("\n");
+
+    cabecalhoAge();
+
+    while (fread(&consultaEncontrada, sizeof(Agendamento), 1, file) == 1) {
+        if (strcmp(consultaEncontrada.cpf, cpf) == 0 && consultaEncontrada.ativo == 1) {
+            exibeAgendamento(&consultaEncontrada);
+            consultasEncontradas++;
+        }
+    }
+
+    if (consultasEncontradas == 0) {
+        printf("Nenhuma consulta encontrada para o cliente com CPF %s.\n", cpf);
+        printf("=-=-=-=-=\n");
+    }
+
+    fclose(file);
+
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
