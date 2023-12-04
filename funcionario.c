@@ -560,7 +560,6 @@ void ListaAlfaFun(){
     while (novofun != NULL) {  
         exibeFuncionario(novofun);
         //printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
-        getchar();
         novofun = novofun->prox;  
     }
 
@@ -570,4 +569,7 @@ void ListaAlfaFun(){
         free(novofun); 
         novofun = lista; 
     }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar(); 
 }

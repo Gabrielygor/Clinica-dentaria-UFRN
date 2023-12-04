@@ -599,7 +599,6 @@ void ListaAlfaCli(void) {
     while (novocli != NULL) {  //Enqunato for diferente de NULL
         exibeCliente(novocli);
         //printf("Tecle ENTER para ir para o proximo Paciente ou fechar a listagem\n");
-        getchar();
         novocli = novocli->prox;   // Move para o próximo cliente na lista encadeada
     }
 
@@ -609,4 +608,7 @@ void ListaAlfaCli(void) {
         free(novocli); // Libera a memória alocada para o nó anterior da lista
         novocli = lista; // Atualiza 'novocli' para apontar para o próximo nó da lista
     }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }

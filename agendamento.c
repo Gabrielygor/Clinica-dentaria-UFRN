@@ -505,7 +505,6 @@ void ListaAlfaData(void) {
     while (novoage != NULL) {
         exibeAgendamento(novoage);
        // printf("Pressione ENTER para ir para o proximo Cliente ou fechar a listagem\n");
-        getchar();
         novoage = novoage->prox;
     }
 
@@ -515,6 +514,9 @@ void ListaAlfaData(void) {
         free(novoage);
         novoage = lista;
     }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 
